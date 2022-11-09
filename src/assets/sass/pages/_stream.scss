@@ -1,0 +1,34 @@
+
+.stream-wrapper {
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.06);
+    background: $primary-color;
+    padding: 60px 80px;
+    text-align: center;
+    margin: 0 auto 15px;
+
+    .title {
+        @extend %mb-30;
+    }
+
+    @include breakpoint(max-md) {
+        padding: 50px 40px;
+    }
+
+    @media screen and (max-width:499px) {
+        padding: 40px 15px;
+    }
+
+    .cate {
+        font-style: normal;
+
+        a {
+            font-weight: 600;
+            color: $theme-color;
+
+            &:hover {
+                color: $theme-color;
+            }
+        }
+    }
+}
