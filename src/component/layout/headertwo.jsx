@@ -1,10 +1,8 @@
 import { Component } from "react";
 import { NavLink, Link } from 'react-router-dom';
 import Navigate from "../../util/Navigate";
+import Storage from "../../util/Storage";
 
-
-const contactNumber = "+800-123-4567 6587";
-const contactAddress = "Beverley, New York 224 USA";
 
 let SocialMideaList = []
 
@@ -44,6 +42,7 @@ if(process.env.REACT_APP_SOCIAL_YOUTUBE_PAGE) {
 }
 
 class HeaderTwo extends Component {
+    
     render() { 
 
         window.addEventListener('scroll', function() {
@@ -54,6 +53,22 @@ class HeaderTwo extends Component {
                 document.querySelector('.header-section').classList.remove(['header-fixed'], ['fadeInUp'])
             }
         });
+
+        let loginOrAccount = '';
+
+        if(Storage.getAuthToken()) {
+            loginOrAccount = (<>
+                <Link to="/login" className="login"><i className="icofont-user"></i> <span>Account</span> </Link>
+                <Link to="/signup" className="signup"><i className="icofont-users"></i> <span>Logout</span></Link>
+
+            </>);
+        } else {
+            loginOrAccount = (<>
+                <Link to="/login" className="login"><i className="icofont-user"></i> <span>LOG IN</span> </Link>
+                <Link to="/signup" className="signup"><i className="icofont-users"></i> <span>SIGN UP</span></Link>
+            </>);
+        }
+
         return (
             <header className="header-section style2">
                 <div className="container">
@@ -85,44 +100,24 @@ class HeaderTwo extends Component {
                                     </div>
                                     <div className="menu-area">
                                         <ul className="menu">
-                                            <li className="menu-item-has-children">
-                                                <a href={Navigate.homePage()}   aria-haspopup="true" aria-expanded="false" data-bs-offset="0,0">Home</a>
+                                            <li >
+                                                <a href={Navigate.homePage()} >Home</a>
+                                            </li>
+
+                                            <li >
+                                                <a href={Navigate.streamsPage()} >Streams</a>
+                                            </li>
+
+                                            <li >
+                                                <a href={Navigate.usersList()} >Users</a>
                                             </li>
 
                                             <li className="menu-item-has-children">
-                                                <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,0">Features</a>
-                                                <ul className="submenu dropdown-menu" aria-labelledby="dropdown">
-                                                    <li><NavLink to="/about">About</NavLink></li>
-                                                    <li><NavLink to="/gallery">gallery</NavLink></li>
-                                                    <li><NavLink to="/game-list">game list 1</NavLink></li>
-                                                    <li><NavLink to="/game-list2">game list 2</NavLink></li>
-                                                    <li><NavLink to="/partners">partners</NavLink></li>
-                                                    <li><NavLink to="/achievements">achievement</NavLink></li>
-                                                    <li><NavLink to="/team">team</NavLink></li>
-                                                    <li><NavLink to="/team-single">team single</NavLink></li>
-                                                    <li><NavLink to="/404">404 Page</NavLink></li>
-                                                </ul>
+                                                <a href={Navigate.streamsCreatePage()} aria-haspopup="true" aria-expanded="false" data-bs-offset="0,0">Start Streaming</a>
                                             </li>
-                                            <li className="menu-item-has-children">
-                                                <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,0">Shop</a>
-                                                <ul className="submenu dropdown-menu">
-                                                    <li><NavLink to="/shop">shop</NavLink></li>
-                                                    <li><NavLink to="/shop-single">Shop Details</NavLink></li>
-                                                    <li><NavLink to="/cart-page">Cart Page</NavLink></li>
-                                                </ul>
-                                            </li>
-                                            <li className="menu-item-has-children">
-                                                <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,0">Blog</a>
-                                                <ul className="submenu dropdown-menu">
-                                                    <li><NavLink to="/blog">Blog</NavLink></li>
-                                                    <li><NavLink to="/blog-2">Blog 2</NavLink></li>
-                                                    <li><NavLink to="/blog-single">Blog Single</NavLink></li>
-                                                </ul>
-                                            </li>
-                                            <li><NavLink to="/contact">Contact</NavLink></li>
                                         </ul>
-                                        <Link to="/login" className="login"><i className="icofont-user"></i> <span>LOG IN</span> </Link>
-                                        <Link to="/signup" className="signup"><i className="icofont-users"></i> <span>SIGN UP</span></Link>
+
+                                        {loginOrAccount}
 
                                         <div className="header-bar d-lg-none" onClick={this.menuTrigger}>
                                             <span></span>

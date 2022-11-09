@@ -3,6 +3,7 @@ import { Component, Fragment } from "react";
 import Header from "../../component/layout/header";
 import VideoSection from "../../component/section/video";
 import Requests from "../../util/Requests";
+import Storage from "../../util/Storage";
 import withRouter from "../../util/withRouter";
 
 class StreamsWatchPage extends Component {
@@ -18,24 +19,42 @@ class StreamsWatchPage extends Component {
 
     componentDidMount() {
 
-        let id = this.props.router.params.id;
+        if(Storage.getAuthToken()){
 
-        Requests.userMe().then(response => {
+            Requests.userMe().then(response => {
 
-            let userData = response.data;
+                let userData = response.data;
 
-            Requests.eventsView(id).then(response => {
+                this.loadStreamData(userData);
 
-                if (response.data.invirtu_id) {
-                    this.setState({ broadcast_widget: <Broadcasting id={response.data.invirtu_id} auth_token={userData.invirtu_user_jwt_token} /> })
-                }
             }).catch(error => {
                 console.log(error);
             });
 
+        } else {
+            this.loadStreamData();
+        }
+    }
+
+    loadStreamData(user) {
+
+        let id = this.props.router.params.id;
+
+        Requests.eventsView(id).then(response => {
+
+            if (response.data.invirtu_id) {
+                let auth_token = null;
+
+                if(user){
+                    auth_token = user.invirtu_user_jwt_token
+                }
+
+                this.setState({ broadcast_widget: <Broadcasting id={response.data.invirtu_id} auth_token={auth_token} /> })
+            }
         }).catch(error => {
             console.log(error);
         });
+
     }
 
     render() {

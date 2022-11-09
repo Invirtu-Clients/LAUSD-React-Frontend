@@ -40,7 +40,7 @@ if(process.env.REACT_APP_SOCIAL_YOUTUBE_PAGE) {
     });
 }
 
-class Header extends Component {
+class HeaderOld extends Component {
     menuTrigger() {
         document.querySelector('.menu').classList.toggle('active')
         document.querySelector('.header-bar').classList.toggle('active')
@@ -117,18 +117,41 @@ class Header extends Component {
                                                 <a href={Navigate.homePage()} >Home</a>
                                             </li>
 
-                                            <li >
-                                                <a href={Navigate.streamsPage()} >Streams</a>
-                                            </li>
-
-                                            <li >
-                                                <a href={Navigate.usersList()} >Users</a>
+                                            <li className="menu-item-has-children">
+                                                <a href={Navigate.homePage()} aria-haspopup="true" aria-expanded="false" data-bs-offset="0,0">Start Streaming</a>
                                             </li>
 
                                             <li className="menu-item-has-children">
-                                                <a href={Navigate.streamsCreatePage()} aria-haspopup="true" aria-expanded="false" data-bs-offset="0,0">Start Streaming</a>
+                                                <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,0">Features</a>
+                                                <ul className="submenu dropdown-menu" aria-labelledby="dropdown">
+                                                    <li><NavLink to="/about">About</NavLink></li>
+                                                    <li><NavLink to="/gallery">gallery</NavLink></li>
+                                                    <li><NavLink to="/game-list">game list 1</NavLink></li>
+                                                    <li><NavLink to="/game-list2">game list 2</NavLink></li>
+                                                    <li><NavLink to="/partners">partners</NavLink></li>
+                                                    <li><NavLink to="/achievements">achievement</NavLink></li>
+                                                    <li><NavLink to="/team">team</NavLink></li>
+                                                    <li><NavLink to="/team-single">team single</NavLink></li>
+                                                    <li><NavLink to="/404">404 Page</NavLink></li>
+                                                </ul>
                                             </li>
-                                           
+                                            <li className="menu-item-has-children">
+                                                <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,0">Shop</a>
+                                                <ul className="submenu dropdown-menu">
+                                                    <li><NavLink to="/shop">shop</NavLink></li>
+                                                    <li><NavLink to="/shop-single">Shop Details</NavLink></li>
+                                                    <li><NavLink to="/cart-page">Cart Page</NavLink></li>
+                                                </ul>
+                                            </li>
+                                            <li className="menu-item-has-children">
+                                                <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,0">Blog</a>
+                                                <ul className="submenu dropdown-menu">
+                                                    <li><NavLink to="/blog">Blog</NavLink></li>
+                                                    <li><NavLink to="/blog-2">Blog 2</NavLink></li>
+                                                    <li><NavLink to="/blog-single">Blog Single</NavLink></li>
+                                                </ul>
+                                            </li>
+                                            <li><NavLink to="/contact">Contact</NavLink></li>
                                         </ul>
                                         {loginOrAccount}
 
@@ -151,4 +174,4 @@ class Header extends Component {
     }
 }
  
-export default Header;
+export default HeaderOld;

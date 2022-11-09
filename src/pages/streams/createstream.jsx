@@ -8,6 +8,7 @@ import PageHeader from "../../component/layout/pageheader";
 import SocialMedia from "../../component/section/socialmedia";
 import VideoSection from "../../component/section/video";
 import timeouts from "../../constants/timeouts";
+import HasAccess from "../../util/HasAccess";
 import Navigate from "../../util/Navigate";
 import Requests from "../../util/Requests";
 import Response from "../../util/Response";
@@ -23,6 +24,10 @@ class StreamCreatePage extends Component {
             events: [],
             errors: {}
         };
+
+        if(!HasAccess.isLoggedIn()){
+            window.location = Navigate.authLogin();
+        }
     }
 
     create(event) {

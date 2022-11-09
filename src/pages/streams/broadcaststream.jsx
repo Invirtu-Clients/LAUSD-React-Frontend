@@ -103,6 +103,19 @@ class StreamsBroadcastPage extends Component {
                         </ul>
                     </div>
                 </section>
+                <section className="about-section">
+                    <div className="container">
+                        <h3>Recordings</h3>
+                        <p>When a broadcast is started, a recording will be automatically generated. Those recordings can be viewed below.</p>
+
+                        <br />
+                        <ul>
+                            {this.state.event && this.state.event.recordings && this.state.event.recordings.map(function(recording, index){
+                                return <li key={ index }>{recording.title}</li>;
+                            })}
+                        </ul>
+                    </div>
+                </section>
             </Fragment>
         );
     }
