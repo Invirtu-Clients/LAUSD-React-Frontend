@@ -89,7 +89,7 @@ class StreamsWatchPage extends Component {
                         <ul>
                             {this.state.event && this.state.event.recordings && this.state.event.recordings.map((recording, index) => {
                                 return <li key={ index }>
-                                        <Link to={Navigate.streamsWatchRecording(this.state.event.id, recording.id)}>{recording.title}</Link>
+                                        <Link to={Navigate.streamsWatchRecordingPage(this.state.event.id, recording.id)}>{recording.title}</Link>
                                     </li>;
                             })}
                         </ul>

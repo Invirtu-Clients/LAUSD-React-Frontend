@@ -2,15 +2,13 @@ import { Component } from "react";
 import { Link } from "react-router-dom";
 
 
-const title = <h2 className="mb-3"><span className="theme-color text-uppercase">CODERS AND DEVELOPERS</span> CONTRIBUTE TO THE PLATFORM TODAY!</h2>;
+const title = <h2 className="mb-3"><span className="theme-color text-uppercase">CODERS AND DEVELOPERS</span> CONTRIBUTE TO THE PLATFORM!</h2>;
 
-const subtitle = "Let's Buid together";
+const subtitle = "Let's Build together";
 
 const desc = 'The platform has a lot of potential to be a game-changer for esports influencers, fans, and organizations. Be part of the movement by helping us code on Github.';
 
 const btnText = 'View On Github';
-
-
 
 class CtaSection extends Component {
     render() { 

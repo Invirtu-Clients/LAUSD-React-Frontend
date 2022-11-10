@@ -4,7 +4,11 @@
 
  const app_routes = {
    
+    //misc
     home : '/home',
+    privacy : '/privacy',
+    terms : '/terms',
+    contact : '/contact',
 
     //authentication
     auth_login : '/login',

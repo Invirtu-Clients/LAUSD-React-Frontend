@@ -66,8 +66,8 @@ class Header extends Component {
 
         if(Session.isLoggedIn()) {
             loginOrAccount = (<>
-                <Link to="/login" className="login"><i className="icofont-user"></i> <span>Account</span> </Link>
-                <Link to="/signup" className="signup"><i className="icofont-users"></i> <span>Logout</span></Link>
+                <Link to={Navigate.accountMainPage()}  className="login"><i className="icofont-user"></i> <span>Account</span> </Link>
+                <Link onClick={(e) => { e.preventDefault(); Session.end(); window.location = Navigate.homePage()}} className="signup"><i className="icofont-users"></i> <span>Logout</span></Link>
 
             </>);
         } else {

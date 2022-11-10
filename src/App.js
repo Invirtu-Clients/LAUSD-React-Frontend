@@ -13,7 +13,7 @@ import GalleryPage from "./pages/gallery";
 import GameListSection from "./pages/gamelist";
 import GameListTwoSection from "./pages/gamelisttwo";
 import HomePage from './pages/home';
-import HomeTwo from './pages/misc/hometwo';
+
 import LogIn from "./pages/auth/login";
 import PartnerPage from "./pages/partner";
 import ShopPage from "./pages/shop";
@@ -30,12 +30,20 @@ import StreamsCreatePage from "./pages/streams/createstream";
 import StreamsBroadcastPage from "./pages/streams/broadcaststream";
 import StreamsWatchPage from "./pages/streams/watchstream";
 import WatchRecordingPage from "./pages/streams/watchrecording";
+import ManageRecordingPage from "./pages/streams/managerecording";
 
 import AuthFacebook from "./pages/auth/auth_facebook";
 import AuthTwitch from "./pages/auth/auth_twitch";
 import AuthYoutube from "./pages/auth/auth_youtube";
-import Profile from "./pages/account/profile";
-import UsersPage from "./pages/account/users";
+
+import AccountUpdatePage from "./pages/account/profile";
+
+import UsersPage from "./pages/users/users";
+import UserProfilePage from "./pages/users/profile";
+
+import PrivacyPage from "./pages/misc/privacy";
+import TermsPage from "./pages/misc/terms";
+import HomeTwo from './pages/misc/hometwo';
 
 // import Footer from "./component/layout/footer";
 // import Header from "./component/layout/header";
@@ -52,7 +60,12 @@ function App() {
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<HomeTwo  />} />
+          
           <Route path={Navigate.homePage()} element={<HomeTwo />} />
+          <Route path={Navigate.privacyPage()} element={<PrivacyPage />} />
+          <Route path={Navigate.termsPage()} element={<TermsPage />} />
+
+          <Route path={Navigate.accountMainPage()} element={<AccountUpdatePage />} />
 
           <Route path={Navigate.authLogin()} element={<LogIn />} />
           <Route path={Navigate.authRegister()} element={<SignUp />} />
@@ -64,12 +77,13 @@ function App() {
           <Route path={Navigate.streamsCreatePage()} element={<StreamsCreatePage />} />
           <Route path={Navigate.streamsWatchPage()} element={<StreamsWatchPage />} />
           <Route path={Navigate.streamsBroadcastPage()} element={<StreamsBroadcastPage />} />
-          <Route path={Navigate.streamsWatchRecording()} element={<WatchRecordingPage />} />
+          <Route path={Navigate.streamsWatchRecordingPage()} element={<WatchRecordingPage />} />
+          <Route path={Navigate.streamsManageRecordingPage()} element={<ManageRecordingPage />} />
 
           <Route path={Navigate.usersList()} element={<UsersPage />} />
-          <Route path={Navigate.usersProfilePage()} element={<Profile />} />
-          <Route path={Navigate.usersFollowers()} element={<Profile />} />
-          <Route path={Navigate.usersFollowing()} element={<Profile />} />
+          <Route path={Navigate.usersProfilePage()} element={<UserProfilePage />} />
+          
+         
 
           <Route path="*" element={<ErrorPage />} />
 

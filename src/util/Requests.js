@@ -22,6 +22,14 @@ const Requests = {
 
         return Requests._sendRequest(url, api_routes.auth_one_time_login.method, data);
     },
+    //Account
+    updateAccount : (data) => {
+
+        let url = Requests._formatApiUrl(api_routes.users_update.route);
+
+        return Requests._sendRequest(url, api_routes.users_update.method, data);
+
+    },
     //Events
     eventsList : (query) => {
         let url = Requests._formatApiUrl(api_routes.events_list.route);

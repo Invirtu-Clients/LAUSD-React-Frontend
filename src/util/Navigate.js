@@ -10,8 +10,18 @@ import app_routes from "../constants/app_routes";
  */
 const Navigate = {
 
+    //Misc Pages
     homePage : () => {
         return app_routes.home;
+    },
+    privacyPage : () => {
+        return app_routes.privacy;
+    },
+    termsPage : () => {
+        return app_routes.terms;
+    },
+    contactPage : () => {
+        return app_routes.contact;
     },
     //Authentication
     authLogin : () => {
@@ -28,6 +38,11 @@ const Navigate = {
     },
     authYoutube : () => {
         return app_routes.auth_youtube;
+    },
+
+    //Account Page
+    accountMainPage : () => {
+        return app_routes.account_update;
     },
 
     //Stream Pages
@@ -77,7 +92,7 @@ const Navigate = {
 
         return path;
     },
-    streamsWatchRecording: (event_id, recording_id) => {
+    streamsWatchRecordingPage: (event_id, recording_id) => {
 
         let path = app_routes.streams_recording_watch;
 
@@ -91,7 +106,7 @@ const Navigate = {
 
         return path;
     },
-    streamsWatchUpdate: (event_id, recording_id) => {
+    streamsManageRecordingPage: (event_id, recording_id) => {
 
         let path = app_routes.streams_recording_update;
 
