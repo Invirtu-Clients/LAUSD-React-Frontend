@@ -51,6 +51,14 @@ ul {
   }
 }
 
+ul.indent {
+  margin-left: 20px;
+  li {
+    list-style:circle;
+
+  }
+}
+
 
 //====================================
 // Gradient BG utilities

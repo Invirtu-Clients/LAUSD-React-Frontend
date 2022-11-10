@@ -51,7 +51,7 @@ body {
     @include transition($transition);
     display: inline-block;
     text-decoration: none;
-    color: $white-color;
+    color: lightblue;
     &:hover {
       color: $theme-color;
     }

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Input({ children, type, name, placeholder, className, value, id, onChange }) {
+export default function Input({ children, type, name, placeholder, className, value, id, onChange, defaultValue }) {
 
     if(!type){
         type = 'text';
@@ -14,7 +14,8 @@ export default function Input({ children, type, name, placeholder, className, va
                 placeholder={placeholder} 
                 className={className} 
                 id={id} 
-                defaultValue={value}
+                value={value}
+                defaultValue={defaultValue}
                 onChange={onChange}
                 />
 

@@ -66,19 +66,14 @@ class WatchRecordingPage extends Component {
 
     filterRecording(event) {
 
-
-        console.log(event);
-
         if(event && event.recordings) {
 
-            console.log("Here");
             let recording_id = this.props.router.params.subid;
-            console.log(recording_id);
+
             event.recordings.forEach((recording) => {
 
-                console.log(recording);;
                 if(recording.id == recording_id) {
-                    console.log(recording);
+
                     this.setState({
                         recording : recording,
                         recording_video: <RecordingVideo video={recording} />
@@ -96,8 +91,6 @@ class WatchRecordingPage extends Component {
         return (
             <Fragment>
                 <Header />
-                
-
                 {this.state.recording_video}
             </Fragment>
         );
