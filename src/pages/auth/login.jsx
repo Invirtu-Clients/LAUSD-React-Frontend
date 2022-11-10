@@ -92,7 +92,7 @@ class LogIn extends Component {
                                     </div>
                                 </div>
                                 <div className="form-group">
-                                    <button className="d-block default-button" onClick={(e => {this.login(e)})}><span>Login</span></button>
+                                    <button type="button" className="d-block default-button" onClick={(e => {this.login(e)})}><span>Login</span></button>
                                 </div>
                             </div>
                             <div className="account-bottom">

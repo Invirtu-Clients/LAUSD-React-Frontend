@@ -147,7 +147,7 @@ class SignUp extends Component {
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <button className="d-block default-button" onClick={(e => {this.register(e)})}><span>Get Started Now</span></button>
+                                    <button type="button" className="d-block default-button" onClick={(e => {this.register(e)})}><span>Get Started Now</span></button>
                                 </div>
                             </div>
                             <div className="account-bottom">
