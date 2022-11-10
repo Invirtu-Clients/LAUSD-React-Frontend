@@ -61,7 +61,7 @@ class LogIn extends Component {
                     <div className=" container">
                         <div className="account-wrapper">
                             <h3 className="title">{title}</h3>
-                            <form className="account-form">
+                            <div className="account-form">
                                 <div className="form-group">
                                     <input
                                         type="text"
@@ -94,7 +94,7 @@ class LogIn extends Component {
                                 <div className="form-group">
                                     <button className="d-block default-button" onClick={(e => {this.login(e)})}><span>Login</span></button>
                                 </div>
-                            </form>
+                            </div>
                             <div className="account-bottom">
                                 <span className="d-block cate pt-10">Don’t Have any Account? <Link to={Navigate.authRegister()}> Sign Up</Link></span>
                                 <span className="or"><span>or</span></span>
