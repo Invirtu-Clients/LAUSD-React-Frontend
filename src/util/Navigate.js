@@ -26,7 +26,10 @@ const Navigate = {
     dataRemovalPage : () => {
         return app_routes.dataremoval;
     },
-    
+    gdprPage : () => {
+        return app_routes.gdpr;
+    },
+
     //Authentication
     authLogin : () => {
         return app_routes.auth_login;

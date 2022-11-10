@@ -45,10 +45,11 @@ import PrivacyPage from "./pages/misc/privacy";
 import TermsPage from "./pages/misc/terms";
 import ContactPage from "./pages/misc/contact";
 import DataRemovalPage from "./pages/misc/dataremoval";
-
+import GDPRPage from "./pages/misc/gdpr";
 
 import Moment from 'react-moment';
 import 'moment-timezone';
+
 
 // import Footer from "./component/layout/footer";
 // import Header from "./component/layout/header";
@@ -71,6 +72,7 @@ function App() {
           <Route path={Navigate.termsPage()} element={<TermsPage />} />
           <Route path={Navigate.contactPage()} element={<ContactPage />} />
           <Route path={Navigate.dataRemovalPage()} element={<DataRemovalPage />} />
+          <Route path={Navigate.gdprPage()} element={<GDPRPage />} />
 
           <Route path={Navigate.accountMainPage()} element={<AccountUpdatePage />} />
 

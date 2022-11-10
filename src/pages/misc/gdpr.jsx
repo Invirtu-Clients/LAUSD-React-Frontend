@@ -11,12 +11,12 @@ import HrShape from "../../component/layout/hrshape";
 import Footer from "../../component/layout/footer";
 
 
-class PrivacyPage extends Component {
+class GDPRPage extends Component {
     render() {
         return (
             <Fragment>
                 <Header />
-                <PageHeader title={'Privacy Policy'} curPage={'Legal'} />
+                <PageHeader title={'GDPR Policy'} curPage={'Legal'} />
                 <h1>Privacy Policy</h1>
                 <p>Last updated: June 30, 2022</p>
                 <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
@@ -31,7 +31,7 @@ class PrivacyPage extends Component {
                         <p><strong>Account</strong> means a unique account created for You to access our Service or parts of our Service.</p>
                     </li>
                     <li>
-                        <p><strong>Company</strong> (referred to as either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement) refers to Invirtu Labs, Inc, 3423 Piedmont Rd NE, Atlanta, GA 30305.</p>
+                        <p><strong>Company</strong> (referred to as either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement) refers to Invirtu Labs, Co, 3423 Piedmont Rd NE, Atlanta, GA 30305.</p>
                     </li>
                     <li>
                         <p><strong>Cookies</strong> are small files that are placed on Your computer, mobile device or any other device by a website, containing the details of Your browsing history on that website among its many uses.</p>
@@ -71,9 +71,6 @@ class PrivacyPage extends Component {
                     </li>
                     <li>
                         <p>First name and last name</p>
-                    </li>
-                    <li>
-                        <p>Phone number</p>
                     </li>
                     <li>
                         <p>Usage Data</p>
@@ -189,9 +186,10 @@ class PrivacyPage extends Component {
                 <ul>
                     <li>By email: support@invirtu.io</li>
                 </ul>
+
             </Fragment>
         );
     }
 }
 
-export default PrivacyPage;
+export default GDPRPage;

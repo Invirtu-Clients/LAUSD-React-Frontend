@@ -10,6 +10,7 @@
     terms : '/terms',
     contact : '/contact',
     dataremoval : '/dataremoval',
+    gdpr : '/gdpr',
 
     //authentication
     auth_login : '/login',
