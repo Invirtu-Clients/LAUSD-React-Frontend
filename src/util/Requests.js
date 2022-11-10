@@ -1,5 +1,7 @@
 
 import api_routes from "../constants/api_routes";
+import Navigate from "./Navigate";
+import Session from "./Session";
 import Storage from "./Storage";
 
 
@@ -137,6 +139,13 @@ const Requests = {
         }).then(function(res){ 
 
             if(!res.ok) {
+                
+                if(res.status == 401) {
+                    //Remove the users info and send them back to the login
+                    Session.end();
+                    window.location = Navigate.authLogin();
+                }
+
                 return res.text().then(text => { throw new Error(text) })
             } else {
                return res.json();

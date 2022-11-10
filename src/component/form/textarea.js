@@ -9,9 +9,9 @@ export default function Textarea({ children, name, placeholder, className, value
             placeholder={placeholder} 
             className={className} 
             id={id} 
-            defaultValue={value}
+            defaultValue={children}
             onChange={onChange}
-            >{children}</textarea>
+            ></textarea>
         </>
     );
 }

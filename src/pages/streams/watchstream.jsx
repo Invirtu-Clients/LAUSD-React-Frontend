@@ -3,6 +3,7 @@ import { Component, Fragment } from "react";
 import Header from "../../component/layout/header";
 import VideoSection from "../../component/section/video";
 import Requests from "../../util/Requests";
+import Session from "../../util/Session";
 import Storage from "../../util/Storage";
 import withRouter from "../../util/withRouter";
 
@@ -19,8 +20,9 @@ class StreamsWatchPage extends Component {
 
     componentDidMount() {
 
-        if(Storage.getAuthToken()){
-
+        if(Session.isLoggedIn()){
+            alert(Session.isLoggedIn())
+            alert(Storage.getAuthToken());
             Requests.userMe().then(response => {
 
                 let userData = response.data;

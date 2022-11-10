@@ -2,15 +2,15 @@ import { Component } from "react";
 
 
 const subtitle = "who we are";
-const title = "we are professional team esport";
-const desc = "Distinctively provide acces mutfuncto users whereas transparent proceses somes ncentivize eficient functionalities rather than an extensible archtectur services and cross";
+const title = "Esports They Way You Invison";
+const desc = "A platform that you can customize, tweak and brand to create the esports you deserve.";
 
 
 let AboutListContent = [
     {
         imgUrl: 'assets/images/about/icon-1.png',
-        imgAlt: 'About Icon',
-        title: '103k Community Earning',
+        imgAlt: 'Restream To Twitch, Youtube and Facebook',
+        title: 'Restream To Twitch, Youtube and Facebook',
         desc: 'Distinctively provide acces mutfuncto users whereas communicate leveraged services',
     },
     {

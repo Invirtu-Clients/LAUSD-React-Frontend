@@ -13,7 +13,7 @@ import GalleryPage from "./pages/gallery";
 import GameListSection from "./pages/gamelist";
 import GameListTwoSection from "./pages/gamelisttwo";
 import HomePage from './pages/home';
-import HomeTwo from './pages/hometwo';
+import HomeTwo from './pages/misc/hometwo';
 import LogIn from "./pages/auth/login";
 import PartnerPage from "./pages/partner";
 import ShopPage from "./pages/shop";

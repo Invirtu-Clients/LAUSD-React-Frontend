@@ -9,6 +9,7 @@ import timeouts from "../../constants/timeouts";
 import Navigate from "../../util/Navigate";
 import Requests from "../../util/Requests";
 import Response from "../../util/Response";
+import Session from "../../util/Session";
 import Storage from "../../util/Storage";
 import withRouter from "../../util/withRouter";
 
@@ -56,7 +57,7 @@ class AuthFacebook extends Component {
 
         let redirect = process.env.REACT_APP_OAUTH_FACEBOOK_URL;
 
-        if(Storage.getAuthToken()) {
+        if(Session.isLoggedIn()) {
 
             Requests.userOneTimeToken().then((response) => {
             

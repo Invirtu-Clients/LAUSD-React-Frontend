@@ -12,6 +12,7 @@ import HasAccess from "../../util/HasAccess";
 import Navigate from "../../util/Navigate";
 import Requests from "../../util/Requests";
 import Response from "../../util/Response";
+import Session from "../../util/Session";
 import withRouter from "../../util/withRouter";
 
 class StreamCreatePage extends Component {
@@ -25,7 +26,7 @@ class StreamCreatePage extends Component {
             errors: {}
         };
 
-        if(!HasAccess.isLoggedIn()){
+        if(!Session.isLoggedIn()){
             window.location = Navigate.authLogin();
         }
     }

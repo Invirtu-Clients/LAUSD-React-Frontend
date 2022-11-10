@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { NavLink, Link } from 'react-router-dom';
 import Navigate from "../../util/Navigate";
+import Session from "../../util/Session";
 import Storage from "../../util/Storage";
 
 
@@ -20,10 +21,10 @@ if(process.env.REACT_APP_SOCIAL_INSTAGRAM_PAGE) {
     });
 }
 
-if(process.env.REACT_APP_SOCIAL_FACEBOOK_PAGE) {
+if(process.env.REACT_APP_SOCIAL_GITHUB_PAGE) {
     SocialMideaList.push({
-        IconName: 'icofont-facebook',
-        IconLink: process.env.REACT_APP_SOCIAL_FACEBOOK_PAGE,
+        IconName: 'icofont-github',
+        IconLink: process.env.REACT_APP_SOCIAL_GITHUB_PAGE,
     });
 }
 
@@ -56,7 +57,7 @@ class HeaderTwo extends Component {
 
         let loginOrAccount = '';
 
-        if(Storage.getAuthToken()) {
+        if(Session.isLoggedIn()) {
             loginOrAccount = (<>
                 <Link to="/login" className="login"><i className="icofont-user"></i> <span>Account</span> </Link>
                 <Link to="/signup" className="signup"><i className="icofont-users"></i> <span>Logout</span></Link>
@@ -64,8 +65,8 @@ class HeaderTwo extends Component {
             </>);
         } else {
             loginOrAccount = (<>
-                <Link to="/login" className="login"><i className="icofont-user"></i> <span>LOG IN</span> </Link>
-                <Link to="/signup" className="signup"><i className="icofont-users"></i> <span>SIGN UP</span></Link>
+                <Link to={Navigate.authLogin()} className="login"><i className="icofont-user"></i> <span>LOG IN</span> </Link>
+                <Link to={Navigate.authRegister()} className="signup"><i className="icofont-users"></i> <span>SIGN UP</span></Link>
             </>);
         }
 
