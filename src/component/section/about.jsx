@@ -1,29 +1,29 @@
 import { Component } from "react";
 
 
-const subtitle = "who we are";
-const title = "Esports They Way You Invison";
-const desc = "A platform that you can customize, tweak and brand to create the esports you deserve.";
+const subtitle = "Our Goal";
+const title = "Esports The Way You Envision";
+const desc = "Use an open-source gaming platform that you can customize, tweak and brand to create the esports you deserve.";
 
 
 let AboutListContent = [
     {
-        imgUrl: 'assets/images/about/icon-1.png',
-        imgAlt: 'Restream To Twitch, Youtube and Facebook',
-        title: 'Restream To Twitch, Youtube and Facebook',
-        desc: 'Distinctively provide acces mutfuncto users whereas communicate leveraged services',
+        imgUrl: '/assets/images/about/icon-1.png',
+        imgAlt: 'Restream To Twitch, Youtube, and Facebook',
+        title: 'Restream To Twitch, Youtube, and Facebook',
+        desc: 'Grow your audience by restreaming automatically on Glitch, Facebook, Youtube, and Twitch simultaneously.',
     },
     {
-        imgUrl: 'assets/images/about/icon-2.png',
-        imgAlt: 'About Icon',
-        title: '34m+ Registered Players',
-        desc: 'Distinctively provide acces mutfuncto users whereas communicate leveraged services',
+        imgUrl: '/assets/images/about/icon-2.png',
+        imgAlt: 'No-Code Your Own Experience',
+        title: 'No-Code Your Own Experience',
+        desc: 'Use Invirtu\'s No-Code Tool to create fully custom experiences for yourself, your fans, and your sponsors.',
     },
     {
-        imgUrl: 'assets/images/about/icon-3.png',
+        imgUrl: '/assets/images/about/icon-3.png',
         imgAlt: 'About Icon',
-        title: '240k Streams Complete',
-        desc: 'Distinctively provide acces mutfuncto users whereas communicate leveraged services',
+        title: 'Make Own Your Rules and Control Monetization',
+        desc: 'Decide on your own rules for yourself and users, and create monetization strategies best work with your approach to esports.',
     },
 ]
 

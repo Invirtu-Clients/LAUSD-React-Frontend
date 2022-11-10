@@ -29,6 +29,8 @@ import StreamsPage from "./pages/streams/streams";
 import StreamsCreatePage from "./pages/streams/createstream";
 import StreamsBroadcastPage from "./pages/streams/broadcaststream";
 import StreamsWatchPage from "./pages/streams/watchstream";
+import WatchRecordingPage from "./pages/streams/watchrecording";
+
 import AuthFacebook from "./pages/auth/auth_facebook";
 import AuthTwitch from "./pages/auth/auth_twitch";
 import AuthYoutube from "./pages/auth/auth_youtube";
@@ -62,11 +64,14 @@ function App() {
           <Route path={Navigate.streamsCreatePage()} element={<StreamsCreatePage />} />
           <Route path={Navigate.streamsWatchPage()} element={<StreamsWatchPage />} />
           <Route path={Navigate.streamsBroadcastPage()} element={<StreamsBroadcastPage />} />
+          <Route path={Navigate.streamsWatchRecording()} element={<WatchRecordingPage />} />
 
           <Route path={Navigate.usersList()} element={<UsersPage />} />
           <Route path={Navigate.usersProfilePage()} element={<Profile />} />
           <Route path={Navigate.usersFollowers()} element={<Profile />} />
           <Route path={Navigate.usersFollowing()} element={<Profile />} />
+
+          <Route path="*" element={<ErrorPage />} />
 
           <Route path="about" element={<AboutPage />} />
           <Route path="gallery" element={<GalleryPage />} />
@@ -76,7 +81,7 @@ function App() {
           <Route path="achievements" element={<AchievementPage />} />
           <Route path="team" element={<TeamPage />} />
           <Route path="team-single" element={<TeamSinglePage />} />
-          <Route path="*" element={<ErrorPage />} />
+         
           <Route path="shop" element={<ShopPage />} />
           <Route path="shop-single" element={<ShopDetails />} />
           <Route path="cart-page" element={<ShopCart />} />

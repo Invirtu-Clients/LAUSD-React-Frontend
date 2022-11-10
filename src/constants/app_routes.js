@@ -23,6 +23,8 @@
     streams_watch : '/streams/:id/watch',
     streams_broadcast : '/streams/:id/broadcast',
     streams_delete : '/streams/:id/delete',
+    streams_recording_watch : '/streams/:id/watchrecording/:subid',
+    streams_recording_update : '/streams/:id/updaterecording/:subid',
 
     //messages route
     messages : '/messages',

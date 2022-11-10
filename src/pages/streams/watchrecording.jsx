@@ -2,8 +2,10 @@ import { VideoConferencing } from "invirtu-react-widgets";
 import { Component, Fragment } from "react";
 import Input from "../../component/form/input";
 import Header from "../../component/layout/header";
+import RecordingVideo from "../../component/section/recordingvideo";
 import VideoSection from "../../component/section/video";
 import Requests from "../../util/Requests";
+import Session from "../../util/Session";
 import withRouter from "../../util/withRouter";
 
 class WatchRecordingPage extends Component {
@@ -13,36 +15,28 @@ class WatchRecordingPage extends Component {
         this.state = {
             events: [],
             errors: {},
-            stream : {},
-            video_conference_widget: '',
-            rtmp_source : ''
+            recording : null,
+            recording_video : null, 
         };
     }
 
     componentDidMount() {
 
-        let id = this.props.router.params.id;
+        if(Session.isLoggedIn()){
+            
+            Requests.userMe().then(response => {
 
-        Requests.userMe().then(response => {
+                let userData = response.data;
 
-            let userData = response.data;
+                this.loadStreamData(userData);
 
-            Requests.eventsView(id).then(response => {
-
-                if (response.data.invirtu_id) {
-
-                    this.setState({ 
-                        video_conference_widget: <VideoConferencing id={response.data.invirtu_id} auth_token={userData.invirtu_user_jwt_token} />,
-                        event: response.data
-                     });
-                }
             }).catch(error => {
                 console.log(error);
             });
 
-        }).catch(error => {
-            console.log(error);
-        });
+        } else {
+            this.loadStreamData();
+        }
     }
 
     loadStreamData(user) {
@@ -58,7 +52,11 @@ class WatchRecordingPage extends Component {
                     auth_token = user.invirtu_user_jwt_token
                 }
 
-                this.setState({ broadcast_widget: <Broadcasting id={response.data.invirtu_id} auth_token={auth_token} /> })
+                this.setState({ 
+                    event: response.data
+                 })
+
+                 this.filterRecording(response.data);
             }
         }).catch(error => {
             console.log(error);
@@ -66,77 +64,41 @@ class WatchRecordingPage extends Component {
 
     }
 
-    addRTMPSource(event) {
+    filterRecording(event) {
 
-        event.preventDefault();
 
-        let id = this.props.router.params.id;
+        console.log(event);
 
-        Requests.eventsAddRTMPSource(id, {rtmp_source : this.state.rtmp_source}).then(response => {
-            
-            this.setState({ 
-                rtmp_source: '',
-                event: response.data
-             });
+        if(event && event.recordings) {
 
-        }).catch(error => {
-            console.log(error);
-        })
+            console.log("Here");
+            let recording_id = this.props.router.params.subid;
+            console.log(recording_id);
+            event.recordings.forEach((recording) => {
+
+                console.log(recording);;
+                if(recording.id == recording_id) {
+                    console.log(recording);
+                    this.setState({
+                        recording : recording,
+                        recording_video: <RecordingVideo video={recording} />
+                    });
+                }
+            });
+
+        }
     }
+
+
 
     render() {
 
         return (
             <Fragment>
                 <Header />
-                <section className="about-section">
-                    <div className="container">
-                        <div className="section-wrapper padding-top">
-                            <div className="row">
-                                <div className="col-12">
-                                    {this.state.video_conference_widget}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section className="about-section">
-                    <div className="container">
-                        <h3>Restreams</h3>
-                        <p>Restreams is the ability to stream your broadcast to multiple other sources. Enter the RTMP streams from sources like Facebook, Youtube or Twitch to Restream to those sites.</p>
+                
 
-                        <form>
-                            <div className="form-group">
-                                <label>Enter RTMP Source</label>
-                                <Input name={"rtmp_src"} onChange={(e)=>{this.setState({rtmp_source: e.target.value});}} />
-
-                                <div className="form-group">
-                                    <button className="d-block default-button" onClick={(e => {this.addRTMPSource(e)})}><span>Add Source</span></button>
-                                </div>
-                            </div>
-                        </form>
-
-                        <br />
-                        <ul>
-                            {this.state.event && this.state.event.restreams && this.state.event.restreams.map(function(restream, index){
-                                return <li key={ index }>{restream.stream_url}</li>;
-                            })}
-                        </ul>
-                    </div>
-                </section>
-                <section className="about-section">
-                    <div className="container">
-                        <h3>Recordings</h3>
-                        <p>When a broadcast is started, a recording will be automatically generated. Those recordings can be viewed below.</p>
-
-                        <br />
-                        <ul>
-                            {this.state.event && this.state.event.recordings && this.state.event.recordings.map(function(recording, index){
-                                return <li key={ index }>{recording.title}</li>;
-                            })}
-                        </ul>
-                    </div>
-                </section>
+                {this.state.recording_video}
             </Fragment>
         );
     }

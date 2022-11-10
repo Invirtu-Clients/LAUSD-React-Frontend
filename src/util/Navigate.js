@@ -77,6 +77,34 @@ const Navigate = {
 
         return path;
     },
+    streamsWatchRecording: (event_id, recording_id) => {
+
+        let path = app_routes.streams_recording_watch;
+
+        if(event_id){
+            path = path.replace(':id', event_id)
+        }
+
+        if(recording_id){
+            path = path.replace(':subid', recording_id)
+        }
+
+        return path;
+    },
+    streamsWatchUpdate: (event_id, recording_id) => {
+
+        let path = app_routes.streams_recording_update;
+
+        if(event_id){
+            path = path.replace(':id', event_id)
+        }
+
+        if(recording_id){
+            path = path.replace(':subid', recording_id)
+        }
+
+        return path;
+    },
 
     //Users
     usersList : () => {

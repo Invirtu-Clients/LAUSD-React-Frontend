@@ -1,7 +1,9 @@
 import { Broadcasting } from "invirtu-react-widgets";
 import { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
 import Header from "../../component/layout/header";
 import VideoSection from "../../component/section/video";
+import Navigate from "../../util/Navigate";
 import Requests from "../../util/Requests";
 import Session from "../../util/Session";
 import Storage from "../../util/Storage";
@@ -14,6 +16,7 @@ class StreamsWatchPage extends Component {
         this.state = {
             events: [],
             errors: {},
+            stream : {},
             broadcast_widget: ''
         };
     }
@@ -21,8 +24,7 @@ class StreamsWatchPage extends Component {
     componentDidMount() {
 
         if(Session.isLoggedIn()){
-            alert(Session.isLoggedIn())
-            alert(Storage.getAuthToken());
+            
             Requests.userMe().then(response => {
 
                 let userData = response.data;
@@ -51,7 +53,10 @@ class StreamsWatchPage extends Component {
                     auth_token = user.invirtu_user_jwt_token
                 }
 
-                this.setState({ broadcast_widget: <Broadcasting id={response.data.invirtu_id} auth_token={auth_token} /> })
+                this.setState({ 
+                    broadcast_widget: <Broadcasting id={response.data.invirtu_id} auth_token={auth_token} />,
+                    event: response.data
+                 })
             }
         }).catch(error => {
             console.log(error);
@@ -73,6 +78,21 @@ class StreamsWatchPage extends Component {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </section>
+                <section className="about-section">
+                    <div className="container">
+                        <h3>Recordings</h3>
+                        <p>Missed the stream? No problem, what past recordings of the streams.</p>
+
+                        <br />
+                        <ul>
+                            {this.state.event && this.state.event.recordings && this.state.event.recordings.map((recording, index) => {
+                                return <li key={ index }>
+                                        <Link to={Navigate.streamsWatchRecording(this.state.event.id, recording.id)}>{recording.title}</Link>
+                                    </li>;
+                            })}
+                        </ul>
                     </div>
                 </section>
 

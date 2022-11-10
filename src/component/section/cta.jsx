@@ -2,13 +2,13 @@ import { Component } from "react";
 import { Link } from "react-router-dom";
 
 
-const title = <h2 className="mb-3">JOIN <span className="theme-color text-uppercase">bigamer</span> ESPORTS TO BECOME NEXT PRO GAMER TODAY!</h2>;
+const title = <h2 className="mb-3"><span className="theme-color text-uppercase">CODERS AND DEVELOPERS</span> CONTRIBUTE TO THE PLATFORM TODAY!</h2>;
 
-const subtitle = "Let's Play together";
+const subtitle = "Let's Buid together";
 
-const desc = 'Distinctively provide acces mutfuncto users whereas transparent proceses somes ncentivize eficient functionalities rather than an extensible archtectur services and cross';
+const desc = 'The platform has a lot of potential to be a game-changer for esports influencers, fans, and organizations. Be part of the movement by helping us code on Github.';
 
-const btnText = 'Join Community';
+const btnText = 'View On Github';
 
 
 
@@ -26,7 +26,7 @@ class CtaSection extends Component {
                                         <p className="theme-color text-uppercase ls-2">{subtitle}</p>
                                         {title}
                                         <p className="mb-4">{desc}</p>
-                                        <Link to="/signup" className="default-button"><span>{btnText} <i className="icofont-circled-right"></i></span></Link>
+                                        <a target="_blank" href="https://github.com/orgs/Glitch-Gaming-Platform" className="default-button"><span>{btnText} <i className="icofont-circled-right"></i></span></a>
                                     </div>
                                 </div>
                                 <div className="col-lg-6">

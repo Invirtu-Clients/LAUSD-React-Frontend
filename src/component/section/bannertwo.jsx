@@ -2,6 +2,7 @@ import { Component } from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import site from "../../constants/site";
+import Navigate from "../../util/Navigate";
 
 let BannerListContent = [
     {
@@ -39,7 +40,7 @@ class BannerTwo extends Component {
                                                 <h1>{val.title}</h1>
                                                 <h2>{val.subtitle}</h2>
                                                 <p>{val.desc}</p>
-                                                <Link to="/login" className="default-button"><span>{val.btnText}  <i className="icofont-play-alt-1"></i></span> </Link>
+                                                <Link to={Navigate.authLogin()} className="default-button"><span>{val.btnText}  <i className="icofont-play-alt-1"></i></span> </Link>
                                             </div>
                                         </div>
                                     </div>
