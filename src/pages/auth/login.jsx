@@ -25,7 +25,6 @@ class LogIn extends Component {
 
     login(event) {
 
-
         event.preventDefault();
 
         let data = {
@@ -93,7 +92,7 @@ class LogIn extends Component {
                                     </div>
                                 </div>
                                 <div className="form-group">
-                                    <a href="#" style={{color: "#ff0052"}} className="d-block default-button" onClick={(e => {this.login(e)})}><span>Login</span></a>
+                                    <button type="button" className="d-block default-button" onClick={(e => {this.login(e)})}><span>Login</span></button>
                                 </div>
                             </div>
                             <div className="account-bottom">
