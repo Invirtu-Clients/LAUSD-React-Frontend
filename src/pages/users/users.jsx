@@ -36,7 +36,7 @@ class UsersPage extends Component {
                 <Header />
                 <PageHeader title={'Users'} curPage={'Users'} />
 
-                <div className="shop-single  aside-bg">
+                <div className="shop-single">
 
 
                     <div className="container">

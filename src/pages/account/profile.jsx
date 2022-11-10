@@ -52,7 +52,7 @@ class AccountUpdatePage extends Component {
                 <Header />
                 <PageHeader title={'Update Profile'} curPage={'Profile'} />
 
-                <div className="shop-single  aside-bg">
+                <div className="shop-single">
 
 
                     <div className="container">

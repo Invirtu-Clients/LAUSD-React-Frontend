@@ -66,7 +66,7 @@ class UserProfilePage extends Component {
                 <Header />
                 <PageHeader title={'User Profile'} curPage={'Profile'} />
 
-                <div className="shop-single  aside-bg">
+                <div className="shop-single">
 
 
                     <div className="container">
