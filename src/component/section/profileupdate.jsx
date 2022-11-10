@@ -1,7 +1,9 @@
 import { Component } from "react";
 import { Autoplay, Navigation } from "swiper";
 import { Swiper } from "swiper/react";
+import timeouts from "../../constants/timeouts";
 import Requests from "../../util/Requests";
+import Response from "../../util/Response";
 import Danger from "../alerts/Danger";
 
 const Name = "Rajib Ahmed";
@@ -48,7 +50,16 @@ class ProfileUpdateHeader extends Component {
         Requests.updateAccount(data).then(response => {
             console.log(response);
         }).catch(error => {
-            console.log(error);
+
+            let jsonErrors = Response.parseJSONFromError(error);
+
+            if(jsonErrors) {
+                this.setState({errors : jsonErrors});
+
+                setTimeout(() =>{
+                    this.setState({errors : {}});
+                }, timeouts.error_message_timeout)
+            }
         })
     }
 

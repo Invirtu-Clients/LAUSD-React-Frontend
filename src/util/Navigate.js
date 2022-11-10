@@ -23,6 +23,10 @@ const Navigate = {
     contactPage : () => {
         return app_routes.contact;
     },
+    dataRemovalPage : () => {
+        return app_routes.dataremoval;
+    },
+    
     //Authentication
     authLogin : () => {
         return app_routes.auth_login;

@@ -43,7 +43,6 @@ class StreamCreatePage extends Component {
         Requests.eventsCreate(data).then(response => {
             this.props.router.navigate(Navigate.streamsBroadcastPage(response.data.id));
         }).catch(error => {
-            console.log(error);
 
             let jsonErrors = Response.parseJSONFromError(error);
 

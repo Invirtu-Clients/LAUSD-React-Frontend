@@ -8,7 +8,6 @@ import AchievementPage from "./pages/achievement";
 import BlogPage from "./pages/blog";
 import BlogDetails from "./pages/blog-single";
 import BlogPageTwo from "./pages/blogtwo";
-import ContactUs from "./pages/contact";
 import GalleryPage from "./pages/gallery";
 import GameListSection from "./pages/gamelist";
 import GameListTwoSection from "./pages/gamelisttwo";
@@ -41,9 +40,15 @@ import AccountUpdatePage from "./pages/account/profile";
 import UsersPage from "./pages/users/users";
 import UserProfilePage from "./pages/users/profile";
 
+import HomeTwo from './pages/misc/hometwo';
 import PrivacyPage from "./pages/misc/privacy";
 import TermsPage from "./pages/misc/terms";
-import HomeTwo from './pages/misc/hometwo';
+import ContactPage from "./pages/misc/contact";
+import DataRemovalPage from "./pages/misc/dataremoval";
+
+
+import Moment from 'react-moment';
+import 'moment-timezone';
 
 // import Footer from "./component/layout/footer";
 // import Header from "./component/layout/header";
@@ -64,6 +69,8 @@ function App() {
           <Route path={Navigate.homePage()} element={<HomeTwo />} />
           <Route path={Navigate.privacyPage()} element={<PrivacyPage />} />
           <Route path={Navigate.termsPage()} element={<TermsPage />} />
+          <Route path={Navigate.contactPage()} element={<ContactPage />} />
+          <Route path={Navigate.dataRemovalPage()} element={<DataRemovalPage />} />
 
           <Route path={Navigate.accountMainPage()} element={<AccountUpdatePage />} />
 
@@ -102,7 +109,6 @@ function App() {
           <Route path="blog" element={<BlogPage />} />
           <Route path="blog-2" element={<BlogPageTwo />} />
           <Route path="blog-single" element={<BlogDetails />} />
-          <Route path="contact" element={<ContactUs />} />
           
         </Routes>
       </>

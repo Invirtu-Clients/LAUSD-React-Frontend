@@ -1,5 +1,6 @@
 import { Component, Fragment } from "react";
 import Header from "../../component/layout/header";
+import PageHeader from "../../component/layout/pageheader";
 import VideoSection from "../../component/section/video";
 import Requests from "../../util/Requests";
 import withRouter from "../../util/withRouter";
@@ -31,6 +32,7 @@ class StreamsPage extends Component {
         return(
             <Fragment>
                 <Header />
+                <PageHeader title={'The Live Streams'} curPage={'Streams'} />
                 {this.state.events}
             </Fragment>
         );

@@ -74,6 +74,12 @@ const api_routes = {
         method : 'DELETE'
     },
 
+    //Recordings
+    recordings_update : {
+        route: '/events/{event_id}/recording/{recording_id}',
+        method : 'PUT'
+    },
+
     //Users
     users_list : {
         route: '/users',

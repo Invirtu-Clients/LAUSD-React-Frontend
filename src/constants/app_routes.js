@@ -9,6 +9,7 @@
     privacy : '/privacy',
     terms : '/terms',
     contact : '/contact',
+    dataremoval : '/dataremoval',
 
     //authentication
     auth_login : '/login',

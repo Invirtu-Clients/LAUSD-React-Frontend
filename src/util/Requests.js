@@ -78,6 +78,17 @@ const Requests = {
 
         return Requests._sendRequest(url, api_routes.events_remove_rtmp_source.method, data);
     },
+    //Recording
+    recordingsUpdate : (event_id, recording_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.recordings_update.route);
+
+        url = url.replace('{event_id}', event_id);
+
+        url = url.replace('{recording_id}', recording_id);
+
+        return Requests._sendRequest(url, api_routes.recordings_update.method, data);
+    },
+
     //User(s)
     userList : (query) => {
         let url = Requests._formatApiUrl(api_routes.users_list.route);

@@ -160,9 +160,9 @@ class StreamsBroadcastPage extends Component {
                         <p>When a broadcast is started, a recording will be automatically generated. Those recordings can be viewed below.</p>
 
                         <br />
-                        <ul>
-                            {this.state.event && this.state.event.recordings && this.state.event.recordings.map(function(recording, index){
-                                return <li key={ index }>{recording.title}</li>;
+                        <ul className="indent">
+                            {this.state.event && this.state.event.recordings && this.state.event.recordings.map((recording, index) => {
+                                return <li key={ index }><Link to={Navigate.streamsManageRecordingPage(this.state.event.id, recording.id)}>{recording.title}</Link></li>;
                             })}
                         </ul>
                     </div>
