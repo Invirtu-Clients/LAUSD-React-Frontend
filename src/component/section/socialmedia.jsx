@@ -7,7 +7,7 @@ class SocialMedia extends Component {
         return (
             <Fragment>
                 <li>
-                    <a href={Navigate.authFacebook()}><img src="/assets/images/match/social-1.png" alt="vimeo" /></a>
+                    <a href={Navigate.authFacebook()}><img src={"/assets/images/match/facebook.png"} alt="facebook" /></a>
                 </li>
                 <li>
                     <a href={Navigate.authYoutube()}><img src="/assets/images/match/social-2.png" alt="youtube" /></a>
