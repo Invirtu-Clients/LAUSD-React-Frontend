@@ -38,7 +38,17 @@ const Session = {
         Storage.set(Session._email_key, null);
 
     },
-    processLogin : (data) => {
+    processAuthentication : (data) => {
+
+        Storage.setAuthToken(data.token.access_token);
+
+        Storage.set(Session._id_key, data.id);
+
+        Storage.set(Session._first_name_key, data.first_name);
+
+        Storage.set(Session._last_name_key, data.last_name);
+
+        Storage.set(Session._email_key, data.email);
 
     }
 

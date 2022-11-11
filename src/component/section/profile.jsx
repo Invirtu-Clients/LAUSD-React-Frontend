@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { Autoplay, Navigation } from "swiper";
 import { Swiper } from "swiper/react";
+import FollowButton from "./followbutton";
 
 const Name = "Rajib Ahmed";
 const desc = "Competently conceptualize alternative synergy and technically and niche markets. Efficiently impact technically sound outsourcing rath tnclicks-and-mortar best practices.";
@@ -80,8 +81,11 @@ class ProfileHeader extends Component {
                         </div>
                     </div>
                     <div className="col-md-6 col-12">
+                        <FollowButton user={user} />
                         <div className="post-content">
-                            <h4>{user.first_name} {user.last_name}</h4>
+                            <h4>{user.username}</h4>
+                            <h6>({user.first_name} {user.last_name})</h6>
+                            
 
                             <div className="social-media">
                                 {AuthorSocialList.map((val, i) => (

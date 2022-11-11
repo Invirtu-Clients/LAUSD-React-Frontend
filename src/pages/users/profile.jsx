@@ -1,6 +1,7 @@
 import { Component, Fragment } from "react";
 import Header from "../../component/layout/header";
 import PageHeader from "../../component/layout/pageheader";
+import FollowButton from "../../component/section/followbutton";
 import ProfileHeader from "../../component/section/profile";
 import Requests from "../../util/Requests";
 import withRouter from "../../util/withRouter";
@@ -71,6 +72,7 @@ class UserProfilePage extends Component {
             <Fragment>
                 <Header />
                 <PageHeader title={"User Profile"} curPage={"Profile"} />
+
 
                 <div className="shop-single">
                     <div className="container">
