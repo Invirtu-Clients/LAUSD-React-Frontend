@@ -66,7 +66,7 @@ class UserListItem extends Component {
         return (
             <div className="authors">
                 <div className="author-thumb">
-                    <Link to={Navigate.usersProfilePage(user.id)}><img src="assets/images/blog/author/01.jpg" alt="author" /></Link>
+                    <Link to={Navigate.usersProfilePage(user.id)}><img src={(user.avatar) ? user.avatar : "/assets/images/blog/author/01.jpg"} alt="author" /></Link>
                 </div>
                 <div className="author-content">
                     <h6><Link to={Navigate.usersProfilePage(user.id)}>{name}</Link></h6>
