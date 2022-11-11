@@ -83,7 +83,7 @@ class StreamsWatchPage extends Component {
                 <section className="about-section">
                     <div className="container">
                         <h3>Recordings</h3>
-                        <p>Missed the stream? No problem, what past recordings of the streams.</p>
+                        <p>Missed the stream? No problem, watch past recordings of the streams.</p>
 
                         <br />
                         <ul>
