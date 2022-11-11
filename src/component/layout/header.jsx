@@ -57,7 +57,7 @@ class Header extends Component {
             var value = window.scrollY;
             if (value > 200) {
                 document.querySelector('.header-section').classList.add(['header-fixed'], ['fadeInUp'])
-            }else{
+            } else if(document.querySelector('.header-section') != null){
                 document.querySelector('.header-section').classList.remove(['header-fixed'], ['fadeInUp'])
             }
         });

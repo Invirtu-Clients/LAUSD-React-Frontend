@@ -1,16 +1,21 @@
 import { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
 import Header from "../../component/layout/header";
 import PageHeader from "../../component/layout/pageheader";
 import FollowButton from "../../component/section/followbutton";
 import ProfileHeader from "../../component/section/profile";
+import UserListItem from "../../component/section/userlistitem";
+import Navigate from "../../util/Navigate";
 import Requests from "../../util/Requests";
 import withRouter from "../../util/withRouter";
+
+import Moment from 'react-moment';
 
 class UserProfilePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            events: "",
+            events: [],
             profileHeader: "",
             followers: "No Followers",
             following: "No Followers",
@@ -60,6 +65,9 @@ class UserProfilePage extends Component {
             .then((response) => {
                 this.setState({
                     profileHeader: <ProfileHeader user={response.data} />,
+                    followers: <UserListItem user={response.data.followers} />,
+                    followers: <UserListItem user={response.data.following} />,
+                    events: response.data.events
                 });
             })
             .catch((error) => {
@@ -78,44 +86,67 @@ class UserProfilePage extends Component {
                     <div className="container">
                         {this.state.profileHeader}
 
-                        <div className="review">
-                            <ul className="review-nav RevActive lab-ul">
-                                <li
-                                    onClick={this.streamsShow}
-                                    className="streams"
-                                    data-target="streams-show"
-                                >
-                                    Streams
-                                </li>
-                                <li
-                                    onClick={this.descriptionShow}
-                                    className="desc"
-                                    data-target="description-show"
-                                >
-                                    Followers
-                                </li>
-                                <li
-                                    onClick={this.reviewShow}
-                                    className="rev"
-                                    data-target="review-content-show"
-                                >
-                                    Following
-                                </li>
-                            </ul>
-                            <div className="streams-content"></div>
-                            <div className="review-content review-content-show">
-                                <div className="review-showing">
-                                    <h3>{this.state.following}</h3>
-                                </div>
-                                <div className="description">
-                                    <h3>{this.state.followers}</h3>
-                                </div>
-                            </div>
+                        <ul className="nav nav-tabs" id="myTab" role="tablist">
+                            <li className="nav-item" role="presentation">
+                                <button className="nav-link active btn btn btn-primary btn-lg"  id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Streams</button>
+                            </li>
+                            <li className="nav-item" role="presentation">
+                                <button className="nav-link   btn btn btn-primary btn-lg" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Followers</button>
+                            </li>
+                            <li className="nav-item" role="presentation">
+                                <button className="nav-link  btn btn-primary  btn-lg" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Following</button>
+                            </li>
+                        </ul>
+                        <div className="tab-content" id="myTabContent">
+                            <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">{
+                                this.state.events && this.state.events.map((elem) => {
+                                    const { id, imageone, imagetwo, title, alt1, alt2, matchdate, matchtime, groupcount, playercount, matchpname, matchpamount, btntext } = elem;
+                                    return (
+                                        <div className="col-12" key={id}>
+                                            <div className="match-item item-layer">
+                                                <div className="match-inner">
+                                                    <div className="match-header d-flex flex-wrap justify-content-between align-items-center">
+                                                        <p className="match-team-info"> <span className="fw-bold"> <Moment>{elem.created_at}</Moment></span></p>
+                                                        <p className="match-prize"> <span className="fw-bold"></span></p>
+                                                    </div>
+                                                    <div className="match-content">
+                                                        <div className="row gy-4 align-items-center justify-content-center">
+                                                            <div className="col-xl-4 col-md-6 order-md-2">
+                                                                <div className="match-game-team">
+
+                                                                </div>
+                                                            </div>
+                                                            <div className="col-xl-4 col-md-6 order-md-1">
+                                                                <div className="match-game-info">
+                                                                    <h4><Link to={Navigate.streamsWatchPage(elem.id)}>{elem.title}</Link> </h4>
+                                                                    <p className="d-flex flex-wrap justify-content-center  justify-content-md-start">
+                                                                        <span className="match-date">{matchdate} </span><span className="match-time">{matchtime}</span>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div className="col-xl-4 col-md-6 order-md-3">
+                                                                <div className="match-game-social">
+                                                                    <ul className="match-social-list d-flex flex-wrap align-items-center justify-content-center justify-content-xl-start">
+
+                                                                        <li><a href={Navigate.streamsWatchPage(elem.id)} className="default-button reverse-effect"><span>{btntext}<i className="icofont-play-alt-1"></i></span> </a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }</div>
+                            <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">{this.state.followers}</div>
+                            <div className="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">{this.state.following}</div>
                         </div>
+
+
                     </div>
                 </div>
-
-                {this.state.events}
             </Fragment>
         );
     }
