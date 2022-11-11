@@ -16,6 +16,7 @@ class StreamsBroadcastPage extends Component {
             events: [],
             errors: {},
             stream : {},
+            event : {},
             watch_page : '#',
             video_conference_widget: '',
             rtmp_source : ''
@@ -150,7 +151,7 @@ class StreamsBroadcastPage extends Component {
                         <ul className="indent">
                             <li><a target={"_blank"} href="https://youtu.be/zmvdD72KsBs">Playstation 5</a></li>
                             <li>XBOX (coming soon)</li>
-                            <li>Computer (comming soon)_</li>
+                            <li>Computer (comming soon)</li>
                         </ul>
                     </div>
                 </section>
@@ -164,6 +165,41 @@ class StreamsBroadcastPage extends Component {
                             {this.state.event && this.state.event.recordings && this.state.event.recordings.map((recording, index) => {
                                 return <li key={ index }><Link to={Navigate.streamsManageRecordingPage(this.state.event.id, recording.id)}>{recording.title}</Link></li>;
                             })}
+                        </ul>
+                    </div>
+                </section>
+
+                <section className="about-section">
+                    <div className="container">
+                        <h3>RTMP Ingestion Stream</h3>
+                        <p>A stream can all be ingested and broadcast from another source. Use the RTMP Endpoint to accomplish RTMP streaming from other sources.</p>
+
+                        <br />
+                        <form className="form-group">
+                            <label>RTMP Endpoint</label>
+                            <Input value={this.state.event.invirtu_rtmp_broadcast_endpoint} />
+                        </form>
+
+                        <form className="form-group">
+                            <label>RTMP Key</label>
+                            <Input value={this.state.event.invirtu_rtmp_broadcast_key} />
+                        </form>
+                        
+                        <br />
+
+                        <h4>Using The Key</h4>
+
+                        <p>Depending on the service you are using, the key is used in different ways.</p>
+
+                        <h5>OBS Example & Mevo Cameras</h5>
+                        <ul>
+                            <li><strong>Endpoint:</strong> rtmp://ingest.bingewave.com/live</li>
+                            <li><strong>Key:</strong>{this.state.event.id}?sign={this.state.event.invirtu_rtmp_broadcast_key}</li>
+                        </ul>
+
+                        <h5>FFMPEG Example</h5>
+                        <ul>
+                            <li><strong>Command:</strong> ffmpeg -re -i [a_local_file_or_input_stream] -maxrate 5M -crf 24 -bufsize 6000k -c:v libx264 -preset superfast -tune zerolatency -strict -2 -c:a aac -ar 44100 -attempt_recovery 1 -max_recovery_attempts 5 -drop_pkts_on_overflow 1 -max_muxing_queue_size 9999 -f flv 'rtmp://ingest.bingewave.com/live/{this.state.event.id}?sign={this.state.event.invirtu_rtmp_broadcast_key}'</li>
                         </ul>
                     </div>
                 </section>
