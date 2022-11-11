@@ -126,6 +126,16 @@ const Requests = {
 
         return Requests._sendRequest(url, api_routes.users_one_time_token.method, null, query);
     },
+    userUploadAvatar : (data, query) => {
+        let url = Requests._formatApiUrl(api_routes.users_upload_avatar.route);
+
+        return Requests._sendRequest(url, api_routes.users_upload_avatar.method, data, query);
+    },
+    userUploadBanner : (data, query) => {
+        let url = Requests._formatApiUrl(api_routes.users_upload_banner.route);
+
+        return Requests._sendRequest(url, api_routes.users_upload_banner.method, data, query);
+    },
     userToggleFollow : (user_id, data,query) => {
         let url = Requests._formatApiUrl(api_routes.users_toggle_follow.route);
 
@@ -145,16 +155,18 @@ const Requests = {
             url = "?" + this.toQueryString(query);
         }
 
-        if(data instanceof FormData && data !== null) {
-            body = data;
-        } else if(typeof data === 'object' && data !== null) {
-            body = JSON.stringify(data);
-        }
-
         let headers =  {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         };
+
+        if(data instanceof FormData && data !== null) {
+            body = data;
+            delete headers['Accept'];
+            delete headers['Content-Type'];
+        } else if(typeof data === 'object' && data !== null) {
+            body = JSON.stringify(data);
+        }
 
         if(Storage.getAuthToken()) {
             headers['Authorization'] = 'Bearer ' + Storage.getAuthToken();
@@ -187,7 +199,7 @@ const Requests = {
             str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
           }
         return str.join("&");
-      }
+    }
     
 }
 

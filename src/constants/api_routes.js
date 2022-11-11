@@ -47,6 +47,14 @@ const api_routes = {
         route : '/events/{event_id}/removeRTMPSource/{stream_id}',
         method : 'DELETE'
     },
+    events_upload_main_image : {
+        route : '/events/{event_id}/uploadMainImage',
+        method : 'POST'
+    },
+    events_upload_main_banner : {
+        route : '/events/{event_id}/uploadBannerImage',
+        method : 'POST'
+    },
 
     //Messages
     messages_list : {
@@ -115,6 +123,14 @@ const api_routes = {
     },
     users_toggle_follow : {
         route: '/users/{user_id}/follow',
+        method : 'POST'
+    },
+    users_upload_avatar : {
+        route: '/users/uploadAvatarImage',
+        method : 'POST'
+    },
+    users_upload_banner : {
+        route: '/users/uploadBannerImage',
         method : 'POST'
     },
 
