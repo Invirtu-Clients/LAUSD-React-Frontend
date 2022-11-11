@@ -35,7 +35,7 @@ class VideoSection extends Component {
                                                 <div className="video-item">
                                                     <div className="video-inner position-relative">
                                                         <div className="video-thumb position-relative video-overlay">
-                                                            <img src="https://picsum.photos/200" alt={`${val.imgAlt}`} className="w-100" />
+                                                            <img src={(val.image_main) ? val.image_main : "/assets/images/cta/02.png"} alt={`${val.imgAlt}`} className="w-100" />
                                                             <div className="video-icon">
                                                                 <a href={Navigate.streamsWatchPage(val.id)} >
                                                                     <i className="icofont-play-alt-1"></i>
