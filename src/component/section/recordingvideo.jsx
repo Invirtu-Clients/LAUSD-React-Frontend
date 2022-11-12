@@ -44,11 +44,13 @@ class RecordingVideo extends Component {
 
             video = (<VideoJSPlayer options={videoJsOptions} onReady={handlePlayerReady} />);
         } else if (this.props.video.video_processing_state == recording_state.UNPROCESSED) {
-            video = (<Info>Recording requires processing, please check back later.</Info>);
+            video = <Info>Recording requires processing, please check back later.</Info>
         } else if (this.props.video.video_processing_state == recording_state.PROCESSING) {
-            video = (<Info>Recording is currently processing, please check back soon!</Info>);
+            video = <Info>Recording is currently processing, please check back soon!</Info>
         } else if (this.props.video.video_processing_state == recording_state.PROBLEM) {
-            video = (<Danger>Recording is currently processing, please check back soon!</Danger>);
+            video = <Danger>Recording is currently processing, please check back soon!</Danger>
+        } else {
+            video = <Info>Unkown Processing State.</Info>
         }
 
         return (
