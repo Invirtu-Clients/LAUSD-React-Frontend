@@ -23,7 +23,7 @@ if(process.env.REACT_APP_SOCIAL_INSTAGRAM_PAGE) {
 if(process.env.REACT_APP_SOCIAL_GITHUB_PAGE) {
     SocialMideaList.push({
         IconName: 'icofont-github',
-        IconLink: process.env.REACT_APP_SOCIAL_GITHUB__PAGE,
+        IconLink: process.env.REACT_APP_SOCIAL_GITHUB_PAGE,
     });
 }
 
@@ -42,6 +42,7 @@ if(process.env.REACT_APP_SOCIAL_YOUTUBE_PAGE) {
 }
 
 class Header extends Component {
+    
     menuTrigger() {
         document.querySelector('.menu').classList.toggle('active')
         document.querySelector('.header-bar').classList.toggle('active')

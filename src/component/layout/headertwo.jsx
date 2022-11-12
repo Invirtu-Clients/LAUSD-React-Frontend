@@ -43,6 +43,15 @@ if(process.env.REACT_APP_SOCIAL_YOUTUBE_PAGE) {
 }
 
 class HeaderTwo extends Component {
+
+    menuTrigger() {
+        document.querySelector('.menu').classList.toggle('active')
+        document.querySelector('.header-bar').classList.toggle('active')
+    }
+    menuTriggerTwo() {
+        document.querySelector('.header-top').classList.toggle('open')
+        // document.querySelector('.header-bar').classList.toggle('active')
+    }
     
     render() { 
 
