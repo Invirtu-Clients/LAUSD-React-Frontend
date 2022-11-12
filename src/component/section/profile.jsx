@@ -74,7 +74,7 @@ class ProfileHeader extends Component {
                         <div className="product-thumb">
                             <div className="swiper-container pro-single-top">
                             <div className="single-thumb">
-                                                <img src={"https://picsum.photos/200"} />
+                                                <img src={(user.avatar) ? user.avatar : "https://picsum.photos/200"} />
                                     </div>
                               
                             </div>

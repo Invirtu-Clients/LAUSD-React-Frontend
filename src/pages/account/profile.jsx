@@ -8,10 +8,10 @@ import VideoSection from "../../component/section/video";
 import Navigate from "../../util/Navigate";
 import Requests from "../../util/Requests";
 import withRouter from "../../util/withRouter";
-import ImageUploading from 'react-images-uploading';
 
 import Moment from 'react-moment';
 import Data from "../../util/Data";
+import Storage from "../../util/Storage";
 
 
 
@@ -24,7 +24,6 @@ class AccountUpdatePage extends Component {
             profileHeader: '',
             followers: '<h3>No Followers</h3>',
             following: '<h3>No Followers</h3>',
-            images: [],
             errors: {},
 
         };
@@ -46,34 +45,6 @@ class AccountUpdatePage extends Component {
         })
     }
 
-    imageOnChange = (imageList, addUpdateIndex) => {
-        // data for submit
-        console.log(imageList, addUpdateIndex);
-        this.setState({ images: imageList });
-        //setImages(imageList);
-    };
-
-    saveImage = (index) => {
-
-        let image = this.state.images[index];
-
-        console.log(image);
-
-        const blob = Data.dataURItoBlob(image.data_url);
-
-        const formData = new FormData();
-        formData.append('image', image.file, 'screenshot.png');
-
-        let file = image.file;
-        file.name = 'image';
-        Requests.userUploadAvatar(file).then(response => {
-            console.log(response);
-        }).catch(error => {
-            console.log(error)
-        })
-        
-    }
-
 
     render() {
 
@@ -83,50 +54,8 @@ class AccountUpdatePage extends Component {
                 <PageHeader title={'Update Profile'} curPage={'Profile'} />
 
                 <div className="shop-single">
-
-
                     <div className="container">
                         {this.state.profileHeader}
-
-                        <h4>Upload Image</h4>
-                        <ImageUploading
-                            multiple
-                            value={this.state.images}
-                            onChange={this.imageOnChange}
-                            maxNumber={1}
-                            dataURLKey="data_url"
-                        >
-                            {({
-                                imageList,
-                                onImageUpload,
-                                onImageRemoveAll,
-                                onImageUpdate,
-                                onImageRemove,
-                                isDragging,
-                                dragProps,
-                            }) => (
-                                // write your building UI
-                                <div className="upload__image-wrapper">
-                                    <button
-                                        style={isDragging ? { color: 'red' } : undefined}
-                                        onClick={onImageUpload}
-                                        {...dragProps}
-                                    >
-                                        Click or Drop here
-                                    </button>
-                                    &nbsp;
-                                    
-                                    {imageList.map((image, index) => (
-                                        <div key={index} className="image-item">
-                                            <img src={image['data_url']} alt="" width="100" />
-                                            <div className="image-item__btn-wrapper">
-                                                <button onClick={() => this.saveImage(index)}>Save A Profile Image</button>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        </ImageUploading>
                     </div>
                 </div>
 
