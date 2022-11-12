@@ -1,5 +1,6 @@
 import { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
+import Danger from "../../component/alerts/Danger";
 import Footer from "../../component/layout/footer";
 import Header from "../../component/layout/header";
 import PageHeader from "../../component/layout/pageheader";
@@ -21,6 +22,7 @@ class LogIn extends Component {
         this.state = {
             email: '',
             password: '',
+            errors : []
         };
     }
 
@@ -42,15 +44,11 @@ class LogIn extends Component {
             this.props.router.navigate(Navigate.streamsPage());
         }).catch((error) => {
 
-            let jsonErrors = Response.parseJSONFromError(error);
+            this.setState({errors : ['Invalid username and password']});
 
-            if(jsonErrors) {
-                this.setState({errors : jsonErrors});
-
-                setTimeout(() =>{
-                    this.setState({errors : {}});
-                }, timeouts.error_message_timeout)
-            }
+            setTimeout(() =>{
+                this.setState({errors : []});
+            }, timeouts.error_message_timeout)
         });
 
     }
@@ -64,7 +62,7 @@ class LogIn extends Component {
                     <div className=" container">
                         <div className="account-wrapper">
                             <h3 className="title">{title}</h3>
-                            <div className="account-form">
+                            <form className="account-form">
                                 <div className="form-group">
                                     <input
                                         type="text"
@@ -94,10 +92,13 @@ class LogIn extends Component {
                                         <a href="#">Forget Password?</a>
                                     </div>
                                 </div>
+                                {this.state.errors &&  this.state.errors.map(function(name, index){
+                                        return <Danger message={name} key={index} />;
+                                })}
                                 <div className="form-group">
                                     <button type="button" className="d-block default-button" onClick={(e => {this.login(e)})}><span>Login</span></button>
                                 </div>
-                            </div>
+                            </form>
                             <div className="account-bottom">
                                 <span className="d-block cate pt-10">Don’t Have any Account? <Link to={Navigate.authRegister()}> Sign Up</Link></span>
                                 <span className="or"><span>or</span></span>
