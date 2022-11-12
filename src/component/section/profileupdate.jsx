@@ -24,6 +24,14 @@ class ProfileUpdateHeader extends Component {
             email: '',
             username: '',
             user : {},
+            facebook_handle: '',
+            instagram_handle: '',
+            paetron_handle: '',
+            snapchat_handle: '',
+            tiktok_handle: '',
+            twitch_handle: '',
+            twitter_handle: '',
+            youtube_handle: '',
             errors: {},
             images: [],
         };
@@ -45,6 +53,15 @@ class ProfileUpdateHeader extends Component {
             last_name: this.state.last_name,
             email: this.state.email,
             username: this.state.username,
+            facebook_handle: this.props.user.facebook_handle,
+            instagram_handle: this.props.user.instagram_handle,
+            paetron_handle: this.props.user.paetron_handle,
+            snapchat_handle: this.props.user.snapchat_handle,
+            tiktok_handle: this.props.user.tiktok_handle,
+            twitch_handle: this.props.user.twitch_handle,
+            twitter_handle: this.props.user.twitter_handle,
+            youtube_handle: this.props.user.youtube_handle
+
         };
 
         Requests.updateAccount(data).then(response => {
@@ -198,6 +215,118 @@ class ProfileUpdateHeader extends Component {
                                             placeholder="Your email *"
                                         />
                                         {this.state.errors && this.state.errors.email && this.state.errors.email.map(function (name, index) {
+                                            return <Danger message={name} key={index} />;
+                                        })}
+                                    </div>
+
+                                    <div className="form-group">
+                                        <input
+                                            type="text"
+                                            name="facebook_handle"
+                                            id="item04"
+                                            value={this.state.facebook_handle}
+                                            onChange={(e) => { this.setState({ facebook_handle: e.target.value }); }}
+                                            placeholder="Your Facebook handle *"
+                                        />
+                                        {this.state.errors && this.state.errors.facebook_handle && this.state.errors.facebook_handle.map(function (name, index) {
+                                            return <Danger message={name} key={index} />;
+                                        })}
+                                    </div>
+
+                                    <div className="form-group">
+                                        <input
+                                            type="text"
+                                            name="instagram_handle"
+                                            id="item05"
+                                            value={this.state.instagram_handle}
+                                            onChange={(e) => { this.setState({ instagram_handle: e.target.value }); }}
+                                            placeholder="Your Instagram handle *"
+                                        />
+                                        {this.state.errors && this.state.errors.instagram_handle && this.state.errors.instagram_handle.map(function (name, index) {
+                                            return <Danger message={name} key={index} />;
+                                        })}
+                                    </div>
+
+                                    <div className="form-group">
+                                        <input
+                                            type="text"
+                                            name="paetron_handle"
+                                            id="item06"
+                                            value={this.state.paetron_handle}
+                                            onChange={(e) => { this.setState({ paetron_handle: e.target.value }); }}
+                                            placeholder="Your Paetron handle *"
+                                        />
+                                        {this.state.errors && this.state.errors.paetron_handle && this.state.errors.paetron_handle.map(function (name, index) {
+                                            return <Danger message={name} key={index} />;
+                                        })}
+                                    </div>
+
+                                    <div className="form-group">
+                                        <input
+                                            type="text"
+                                            name="snapchat_handle"
+                                            id="item07"
+                                            value={this.state.snapchat_handle}
+                                            onChange={(e) => { this.setState({ snapchat_handle: e.target.value }); }}
+                                            placeholder="Your Snapchat handle *"
+                                        />
+                                        {this.state.errors && this.state.errors.snapchat_handle && this.state.errors.snapchat_handle.map(function (name, index) {
+                                            return <Danger message={name} key={index} />;
+                                        })}
+                                    </div>
+
+                                    <div className="form-group">
+                                        <input
+                                            type="text"
+                                            name="tiktok_handle"
+                                            id="item08"
+                                            value={this.state.tiktok_handle}
+                                            onChange={(e) => { this.setState({ tiktok_handle: e.target.value }); }}
+                                            placeholder="Your Tik Tok handle *"
+                                        />
+                                        {this.state.errors && this.state.errors.tiktok_handle && this.state.errors.tiktok_handle.map(function (name, index) {
+                                            return <Danger message={name} key={index} />;
+                                        })}
+                                    </div>
+
+                                    <div className="form-group">
+                                        <input
+                                            type="text"
+                                            name="twitch_handle"
+                                            id="item09"
+                                            value={this.state.twitch_handle}
+                                            onChange={(e) => { this.setState({ twitch_handle: e.target.value }); }}
+                                            placeholder="Your Twitch handle *"
+                                        />
+                                        {this.state.errors && this.state.errors.twitch_handle && this.state.errors.twitch_handle.map(function (name, index) {
+                                            return <Danger message={name} key={index} />;
+                                        })}
+                                    </div>
+
+                                    <div className="form-group">
+                                        <input
+                                            type="text"
+                                            name="twitter_handle"
+                                            id="item10"
+                                            value={this.state.twitter_handle}
+                                            onChange={(e) => { this.setState({ twitter_handle: e.target.value }); }}
+                                            placeholder="Your Twitter handle *"
+                                        />
+                                        {this.state.errors && this.state.errors.twitter_handle && this.state.errors.twitter_handle.map(function (name, index) {
+                                            return <Danger message={name} key={index} />;
+                                        })}
+                                    </div>
+
+                                    <div className="form-group">
+                                        <input
+                                            type="text"
+                                            name="youtube_handle"
+                                            id="item12"
+                                            value={this.state.youtube_handle}
+                                            onChange={(e) => { this.setState({ youtube_handle: e.target.value }); }}
+                                            placeholder="Your Youtube handle *"
+                                        />
+                                        {this.state.errors && this.state.errors.youtube_handle && this.state.errors.youtube_handle.map(function (name, index) {
                                             return <Danger message={name} key={index} />;
                                         })}
                                     </div>
