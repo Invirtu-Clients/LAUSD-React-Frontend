@@ -7,6 +7,7 @@ import VideoSection from "../../component/section/video";
 import Requests from "../../util/Requests";
 import Session from "../../util/Session";
 import withRouter from "../../util/withRouter";
+import PageHeader from "../../component/layout/pageheader";
 
 class WatchRecordingPage extends Component {
 
@@ -91,6 +92,7 @@ class WatchRecordingPage extends Component {
         return (
             <Fragment>
                 <Header />
+                <PageHeader title={'Watch Recording'} curPage={'Recording'} />
                 {this.state.recording_video}
             </Fragment>
         );
