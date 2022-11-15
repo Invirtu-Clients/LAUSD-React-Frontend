@@ -88,6 +88,20 @@ const Requests = {
 
         return Requests._sendRequest(url, api_routes.recordings_update.method, data);
     },
+    eventsSetToBroadcastMode: (event_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.events_set_broadcast_mode.route);
+
+        url = url.replace('{event_id}', event_id);
+
+        return Requests._sendRequest(url, api_routes.events_set_broadcast_mode.method, data);
+    },
+    eventsSetToLivestreamMode: (event_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.events_set_livestream_mode.route);
+
+        url = url.replace('{event_id}', event_id);
+
+        return Requests._sendRequest(url, api_routes.events_set_livestream_mode.method , data);
+    },
 
     //User(s)
     userList : (query) => {

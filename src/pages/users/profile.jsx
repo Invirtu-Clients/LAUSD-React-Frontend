@@ -10,6 +10,7 @@ import Requests from "../../util/Requests";
 import withRouter from "../../util/withRouter";
 
 import Moment from 'react-moment';
+import Footer from "../../component/layout/footer";
 
 class UserProfilePage extends Component {
     constructor(props) {
@@ -147,6 +148,7 @@ class UserProfilePage extends Component {
 
                     </div>
                 </div>
+                <Footer />
             </Fragment>
         );
     }

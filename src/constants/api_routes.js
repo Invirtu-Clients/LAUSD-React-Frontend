@@ -55,6 +55,14 @@ const api_routes = {
         route : '/events/{event_id}/uploadBannerImage',
         method : 'POST'
     },
+    events_set_broadcast_mode : {
+        route : '/events/{event_id}/enableBroadcastMode',
+        method : 'POST'
+    },
+    events_set_livestream_mode : {
+        route : '/events/{event_id}/enableLivestreamMode',
+        method : 'POST'
+    },
 
     //Messages
     messages_list : {

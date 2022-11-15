@@ -10,6 +10,7 @@ import Requests from "../../util/Requests";
 import Session from "../../util/Session";
 import withRouter from "../../util/withRouter";
 import PageHeader from "../../component/layout/pageheader";
+import Footer from "../../component/layout/footer";
 
 class ManageRecordingPage extends Component {
 
@@ -178,6 +179,7 @@ class ManageRecordingPage extends Component {
 
                     </div>
                 </section>
+                <Footer />
             </Fragment>
         );
     }

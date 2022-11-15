@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Danger from "../../component/alerts/Danger";
 import Input from "../../component/form/input";
 import Textarea from "../../component/form/textarea";
+import Footer from "../../component/layout/footer";
 import Header from "../../component/layout/header";
 import PageHeader from "../../component/layout/pageheader";
 import SocialMedia from "../../component/section/socialmedia";
@@ -94,7 +95,7 @@ class StreamCreatePage extends Component {
                         </div>
                     </div>
                 </div>
-
+                <Footer />
             </Fragment>
         );
     }

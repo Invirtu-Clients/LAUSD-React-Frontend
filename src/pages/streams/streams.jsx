@@ -1,4 +1,6 @@
 import { Component, Fragment } from "react";
+import Info from "../../component/alerts/Info";
+import Footer from "../../component/layout/footer";
 import Header from "../../component/layout/header";
 import PageHeader from "../../component/layout/pageheader";
 import VideoSection from "../../component/section/video";
@@ -33,7 +35,9 @@ class StreamsPage extends Component {
             <Fragment>
                 <Header />
                 <PageHeader title={'The Live Streams'} curPage={'Streams'} />
+                
                 {this.state.events}
+                <Footer />
             </Fragment>
         );
     }
