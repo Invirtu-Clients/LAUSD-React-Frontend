@@ -135,7 +135,7 @@ class StreamsBroadcastPage extends Component {
                     {this.state.video_conference_widget}
                 </div>
                 
-                <section className="about-section">
+                <section className="about-section mt-5">
                     <div className="container">
                         <h3>How Do You Plan To Stream?</h3>
                         <div className="form-check form-check-inline">
