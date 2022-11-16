@@ -22,6 +22,16 @@ const Requests = {
 
         return Requests._sendRequest(url, api_routes.auth_one_time_login.method, data);
     },
+    authForgotPassword : (data) => {
+        let url = Requests._formatApiUrl(api_routes.auth_forgot_password.route);
+
+        return Requests._sendRequest(url, api_routes.auth_forgot_password.method, data);
+    },
+    authResetPassword : (data) => {
+        let url = Requests._formatApiUrl(api_routes.auth_reset_password.route);
+
+        return Requests._sendRequest(url, api_routes.auth_reset_password.method, data);
+    },
     //Account
     updateAccount : (data) => {
 
@@ -87,6 +97,34 @@ const Requests = {
         url = url.replace('{recording_id}', recording_id);
 
         return Requests._sendRequest(url, api_routes.recordings_update.method, data);
+    },
+    eventsSetToBroadcastMode: (event_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.events_set_broadcast_mode.route);
+
+        url = url.replace('{event_id}', event_id);
+
+        return Requests._sendRequest(url, api_routes.events_set_broadcast_mode.method, data);
+    },
+    eventsSetToLivestreamMode: (event_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.events_set_livestream_mode.route);
+
+        url = url.replace('{event_id}', event_id);
+
+        return Requests._sendRequest(url, api_routes.events_set_livestream_mode.method , data);
+    },
+    eventsSyncAsLive: (event_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.events_sync_as_live.route);
+
+        url = url.replace('{event_id}', event_id);
+
+        return Requests._sendRequest(url, api_routes.events_sync_as_live.method , data);
+    },
+    eventsSendInvite : (event_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.events_send_invite.route);
+
+        url = url.replace('{event_id}', event_id);
+
+        return Requests._sendRequest(url, api_routes.events_send_invite.method , data);
     },
 
     //User(s)

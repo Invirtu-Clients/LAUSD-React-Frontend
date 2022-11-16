@@ -13,9 +13,9 @@ import Session from "../../util/Session";
 import Storage from "../../util/Storage";
 import withRouter from "../../util/withRouter";
 
-const title = "Forgot Password";
+const title = "Reset Password";
 
-class ForgotPassword extends Component {
+class ResetPassword extends Component {
     
     constructor(props){
         super(props);
@@ -29,15 +29,27 @@ class ForgotPassword extends Component {
 
         event.preventDefault();
 
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
+       
+        let token = params.token;
+
+        let email= params.email;
+
         let data = {
-            email : this.state.email,
+            new_password : this.state.password,
+            token : token,
+            email : email
         };
 
-        Requests.authForgotPassword(data).then((response) => {
+        Requests.authResetPassword(data).then((response) => {
             
-            alert("You have been sent an email to reset your password.");
+            alert("Your password has been reset");
 
-            this.setState({email : ''})
+            this.setState({password : ''});
+
+            this.props.router.navigate(Navigate.authLogin());
 
         }).catch((error) => {
 
@@ -58,21 +70,21 @@ class ForgotPassword extends Component {
         return (
             <Fragment>
                 <Header />
-                <PageHeader title={'FORGOT PASSWORD'} curPage={'Forgot Password'} />
+                <PageHeader title={'RESET PASSWORD'} curPage={'Reset Password'} />
                 <div className="login-section padding-top padding-bottom">
                     <div className=" container">
                         <div className="account-wrapper">
                             <h3 className="title">{title}</h3>
-                            <p>Enter your email address to get an email to reset your password.</p>
+                            <p>Enter a new password for your account here.</p>
                             <form className="account-form">
                                 <div className="form-group">
                                     <input
-                                        type="text"
+                                        type="password"
                                         name="name"
                                         id="item01"
-                                        value={this.state.email}
-                                        onChange={(e)=>{this.setState({email: e.target.value});}}
-                                        placeholder="Email *"
+                                        value={this.state.password}
+                                        onChange={(e)=>{this.setState({password : e.target.value});}}
+                                        placeholder="Enter A New Password"
                                     />
                                 </div>
                                 
@@ -92,4 +104,4 @@ class ForgotPassword extends Component {
     }
 }
  
-export default withRouter(ForgotPassword);
+export default withRouter(ResetPassword);

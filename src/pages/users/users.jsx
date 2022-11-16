@@ -1,4 +1,5 @@
 import { Component, Fragment } from "react";
+import Footer from "../../component/layout/footer";
 import Header from "../../component/layout/header";
 import PageHeader from "../../component/layout/pageheader";
 import ProfileHeader from "../../component/section/profile";
@@ -49,6 +50,7 @@ class UsersPage extends Component {
                 </div>
 
                 {this.state.events}
+                <Footer />
             </Fragment>
         );
     }

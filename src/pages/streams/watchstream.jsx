@@ -1,6 +1,7 @@
 import { Broadcasting } from "invirtu-react-widgets";
 import { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
+import Footer from "../../component/layout/footer";
 import Header from "../../component/layout/header";
 import VideoSection from "../../component/section/video";
 import Navigate from "../../util/Navigate";
@@ -95,7 +96,7 @@ class StreamsWatchPage extends Component {
                         </ul>
                     </div>
                 </section>
-
+                <Footer />
             </Fragment>
         );
     }

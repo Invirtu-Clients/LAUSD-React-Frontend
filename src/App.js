@@ -13,16 +13,14 @@ import GameListSection from "./pages/gamelist";
 import GameListTwoSection from "./pages/gamelisttwo";
 import HomePage from './pages/home';
 
-import LogIn from "./pages/auth/login";
 import PartnerPage from "./pages/partner";
 import ShopPage from "./pages/shop";
 import ShopCart from "./pages/shopcart";
 import ShopDetails from "./pages/shopdetails";
-import SignUp from "./pages/auth/signup";
-import ForgotPassword from "./pages/auth/forgotpassword";
+
 import TeamPage from "./pages/team";
 import TeamSinglePage from "./pages/team-single";
-import ErrorPage from "./pages/errorpage";
+import ErrorPage from "./pages/misc/errorpage";
 import Navigate from "./util/Navigate";
 
 import StreamsPage from "./pages/streams/streams";
@@ -35,6 +33,10 @@ import ManageRecordingPage from "./pages/streams/managerecording";
 import AuthFacebook from "./pages/auth/auth_facebook";
 import AuthTwitch from "./pages/auth/auth_twitch";
 import AuthYoutube from "./pages/auth/auth_youtube";
+import SignUp from "./pages/auth/signup";
+import ForgotPassword from "./pages/auth/forgotpassword";
+import ResetPassword from "./pages/auth/resetpassword";
+import LogIn from "./pages/auth/login";
 
 import AccountUpdatePage from "./pages/account/profile";
 
@@ -59,6 +61,7 @@ import 'moment-timezone';
 
 
 function App() {
+  console.log(Navigate.authForgotPassword());
 	return (
 		// <div className="App">
 		// 	<ShopPage />
@@ -79,7 +82,8 @@ function App() {
 
           <Route path={Navigate.authLogin()} element={<LogIn />} />
           <Route path={Navigate.authRegister()} element={<SignUp />} />
-          <Route path={Navigate.authForgotPassword()} elememt={<ForgotPassword />}/>
+          <Route path={Navigate.authForgotPassword()} element={<ForgotPassword />} />
+          <Route path={Navigate.authResetPassword()} element={<ResetPassword />} />
           <Route path={Navigate.authFacebook()} element={<AuthFacebook />} />
           <Route path={Navigate.authTwitch()} element={<AuthTwitch />} />
           <Route path={Navigate.authYoutube()} element={<AuthYoutube />} />

@@ -17,8 +17,12 @@ const api_routes = {
         route :'/auth/oneTimeLoginWithToken',
         method : 'POST'
     },
-    auth_forgot_password : {
-        route : '/auth/forgotpassword',
+    auth_forgot_password : { 
+        route :'/auth/forgotpassword',
+        method : 'POST'
+    },
+    auth_reset_password : { 
+        route :'/auth/resetpassword',
         method : 'POST'
     },
 
@@ -57,6 +61,22 @@ const api_routes = {
     },
     events_upload_main_banner : {
         route : '/events/{event_id}/uploadBannerImage',
+        method : 'POST'
+    },
+    events_set_broadcast_mode : {
+        route : '/events/{event_id}/enableBroadcastMode',
+        method : 'POST'
+    },
+    events_set_livestream_mode : {
+        route : '/events/{event_id}/enableLivestreamMode',
+        method : 'POST'
+    },
+    events_sync_as_live : {
+        route : '/events/{event_id}/syncAsLive',
+        method : 'POST'
+    },
+    events_send_invite : {
+        route : '/events/{event_id}/sendInvite',
         method : 'POST'
     },
 

@@ -15,7 +15,8 @@
     //authentication
     auth_login : '/login',
     auth_register : '/register',
-    auth_forgot_password : '/forgotpassword',
+    auth_forgot_password : '/auth/forgotpassword',
+    auth_reset_password : '/auth/resetpassword',
     auth_facebook : '/auth/facebook',
     auth_youtube : '/auth/youtube',
     auth_twitch : '/auth/twitch',

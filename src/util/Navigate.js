@@ -49,6 +49,9 @@ const Navigate = {
     authForgotPassword : () => {
         return app_routes.auth_forgot_password;
     },
+    authResetPassword : () => {
+        return app_routes.auth_reset_password;
+    },
 
     //Account Page
     accountMainPage : () => {

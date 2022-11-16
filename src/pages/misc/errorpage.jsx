@@ -1,8 +1,8 @@
 import { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
-import Footer from "../component/layout/footer";
-import Header from "../component/layout/header";
-import PageHeader from "../component/layout/pageheader";
+import Footer from "../../component/layout/footer";
+import Header from "../../component/layout/header";
+import PageHeader from "../../component/layout/pageheader";
 
 const title = 'Oops! This Page Not Found';
 const desc = 'We are Really Sorry But the Page you Requested is Missing';
@@ -20,7 +20,7 @@ class ErrorPage extends Component {
                         <div className="section-wrapper">
                             <div className="zero-item">
                                 <div className="zero-thumb">
-                                    <img src="assets/images/404.png" alt="404" />
+                                    <img src="/assets/images/404.png" alt="404" />
                                 </div>
                                 <div className="zero-content">
                                     <h2>{title}</h2>
