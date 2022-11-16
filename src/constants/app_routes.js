@@ -24,6 +24,7 @@
 
     //accounts route
     account_update : '/accounts/update',
+    acount_register_page_2 : '/accounts/register/step2',
 
     //streams route
     streams : '/streams',

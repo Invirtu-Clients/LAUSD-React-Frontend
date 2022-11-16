@@ -68,6 +68,7 @@ class ProfileUpdateHeader extends Component {
 
         Requests.updateAccount(data).then(response => {
             console.log(response);
+            alert("Bio Has Been Updated.");
         }).catch(error => {
 
             let jsonErrors = Response.parseJSONFromError(error);

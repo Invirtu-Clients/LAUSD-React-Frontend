@@ -98,7 +98,7 @@ class SignUp extends Component {
         if(iscohost) {
             this.props.router.navigate(Navigate.streamsCohostWatch(stream_id));
         } else {
-            this.props.router.navigate(Navigate.streamsPage());
+            this.props.router.navigate(Navigate.accountRegisterStep2());
         }
 
     }

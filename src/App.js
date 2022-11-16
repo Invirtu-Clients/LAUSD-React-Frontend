@@ -40,6 +40,7 @@ import ResetPassword from "./pages/auth/resetpassword";
 import LogIn from "./pages/auth/login";
 
 import AccountUpdatePage from "./pages/account/profile";
+import RegisterStep2 from "./pages/account/register_step2";
 
 import UsersPage from "./pages/users/users";
 import UserProfilePage from "./pages/users/profile";
@@ -54,6 +55,7 @@ import AccessDeniedPage from "./pages/misc/accessdenied";
 
 import Moment from 'react-moment';
 import 'moment-timezone';
+
 
 
 
@@ -83,6 +85,7 @@ function App() {
           <Route path={Navigate.accessDeniedPage()} element={<AccessDeniedPage />} />
 
           <Route path={Navigate.accountMainPage()} element={<AccountUpdatePage />} />
+          <Route path={Navigate.accountRegisterStep2()} element={<RegisterStep2 />} />
 
           <Route path={Navigate.authLogin()} element={<LogIn />} />
           <Route path={Navigate.authRegister()} element={<SignUp />} />

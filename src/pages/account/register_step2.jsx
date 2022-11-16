@@ -12,48 +12,92 @@ import Response from "../../util/Response";
 import Session from "../../util/Session";
 import Storage from "../../util/Storage";
 import withRouter from "../../util/withRouter";
+import ImageUploading from 'react-images-uploading';
+import Data from "../../util/Data";
+import Textarea from "../../component/form/textarea";
 
-const title = "Login";
+
+const title = "Complete Your Profile";
 
 class RegisterStep2 extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
+
         this.state = {
-            email: '',
-            password: '',
-            errors : []
+            bio: '',
+            user : {},
+            errors: [],
+            images: [],
         };
+
     }
 
-    login(event) {
+    componentDidMount() {
 
+        Requests.userMe().then(response => {
+
+            this.setState({
+                user: response.data,
+            });
+
+        }).catch(error => {
+            console.log(error);
+        });
+    }
+
+    updateAccount(event) {
         event.preventDefault();
 
         let data = {
-            email : this.state.email,
-            password : this.state.password,
+            bio: this.state.bio
         };
 
-        Requests.authLogin(data).then((response) => {
-            Storage.setAuthToken(response.data.token.access_token);
-            Storage.set('user_id', response.data.id);
-
-            Session.processAuthentication(response.data);
+        Requests.updateAccount(data).then(response => {
+            console.log(response);
+            this.props.router.navigate(Navigate.streamsPage());
+        }).catch(error => {
 
             this.props.router.navigate(Navigate.streamsPage());
-        }).catch((error) => {
+            /*let jsonErrors = Response.parseJSONFromError(error);
 
-            this.setState({errors : ['Invalid username and password']});
+            if (jsonErrors) {
+                this.setState({ errors: jsonErrors });
 
-            setTimeout(() =>{
-                this.setState({errors : []});
-            }, timeouts.error_message_timeout)
+                setTimeout(() => {
+                    this.setState({ errors: {} });
+                }, timeouts.error_message_timeout)
+            }*/
+        })
+    }
+
+    imageOnChange = (imageList, addUpdateIndex) => {
+
+        this.setState({ images: imageList });
+
+    };
+
+    saveImage = (event, index) => {
+
+        event.preventDefault();
+
+        let image = this.state.images[index];
+
+        const blob = Data.dataURItoBlob(image.data_url);
+
+        const formData = new FormData();
+
+        formData.append('image', blob, 'screenshot.png');
+
+        Requests.userUploadAvatar(formData).then(response => {
+            this.setState({ user: response.data, images: [] });
+        }).catch(error => {
+            console.log(error)
         });
 
     }
-    
-    render() { 
+
+    render() {
         return (
             <Fragment>
                 <Header />
@@ -62,24 +106,74 @@ class RegisterStep2 extends Component {
                     <div className=" container">
                         <div className="account-wrapper">
                             <h3 className="title">{title}</h3>
+                            <hr />
                             <form className="account-form">
-                                <div className="form-group">
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        id="item01"
-                                        value={this.state.email}
-                                        onChange={(e)=>{this.setState({email: e.target.value});}}
-                                        placeholder="User Name *"
-                                    />
+
+                                <img src={(this.state.user.avatar) ? this.state.user.avatar : "/assets/images/blog/author/01.jpg"} />
+
+                                <ImageUploading
+                                    multiple
+                                    value={this.state.images}
+                                    onChange={this.imageOnChange}
+                                    maxNumber={1}
+                                    dataURLKey="data_url"
+                                >
+                                    {({
+                                        imageList,
+                                        onImageUpload,
+                                        onImageRemoveAll,
+                                        onImageUpdate,
+                                        onImageRemove,
+                                        isDragging,
+                                        dragProps,
+                                    }) => (
+                                        // write your building UI
+                                        <div className="upload__image-wrapper">
+                                            <button
+                                                type="button"
+                                                className="btn btn-warning"
+                                                style={isDragging ? { color: 'red' } : undefined}
+                                                onClick={onImageUpload}
+                                                {...dragProps}
+                                            >
+                                                Upload New Image
+                                            </button>
+                                            &nbsp;
+
+                                            {imageList.map((image, index) => (
+                                                <div key={index} className="image-item">
+                                                    <img src={image['data_url']} alt="" width="400" />
+                                                    <div className="image-item__btn-wrapper">
+                                                        <button type="button" className="btn btn-success" onClick={(e) => this.saveImage(e, index)}>Save Image</button>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </ImageUploading>
+
+                                <h3 className="title">Bio</h3>
+
+                                <div className="row">
+                                    <div className="col-12">
+
+                                        <div className="form-group">
+                                            <Textarea name="description" onChange={(e) => { this.setState({ bio: e.target.value }); }} placeholder="Enter your bio that describes you." >{this.state.bio}</Textarea>
+                                            {this.state.errors && this.state.errors.bio && this.state.errors.bio.map(function (name, index) {
+                                                return <Danger message={name} key={index} />;
+                                            })}
+                                        </div>
+
+                                    </div>
+
                                 </div>
-                                
-                                
-                                {this.state.errors &&  this.state.errors.map(function(name, index){
-                                        return <Danger message={name} key={index} />;
+
+
+                                {this.state.errors && this.state.errors.map(function (name, index) {
+                                    return <Danger message={name} key={index} />;
                                 })}
                                 <div className="form-group">
-                                    <button type="button" className="d-block default-button" onClick={(e => {this.login(e)})}><span>Login</span></button>
+                                    <button type="button" className="d-block default-button" onClick={(e => { this.updateAccount(e) })}><span>Start Gaming!</span></button>
                                 </div>
                             </form>
 
@@ -91,5 +185,5 @@ class RegisterStep2 extends Component {
         );
     }
 }
- 
+
 export default withRouter(RegisterStep2);

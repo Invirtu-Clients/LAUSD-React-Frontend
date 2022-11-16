@@ -38,7 +38,6 @@ const Requests = {
         let url = Requests._formatApiUrl(api_routes.users_update.route);
 
         return Requests._sendRequest(url, api_routes.users_update.method, data);
-
     },
     //Events
     eventsList : (query) => {

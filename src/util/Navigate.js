@@ -60,6 +60,9 @@ const Navigate = {
     accountMainPage : () => {
         return app_routes.account_update;
     },
+    accountRegisterStep2 : () => {
+        return app_routes.acount_register_page_2;
+    },
 
     //Stream Pages
     streamsPage : () => {
