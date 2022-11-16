@@ -46,6 +46,9 @@ const Navigate = {
     authYoutube : () => {
         return app_routes.auth_youtube;
     },
+    authForgotPassword : () => {
+        return app_routes.auth_forgot_password;
+    },
 
     //Account Page
     accountMainPage : () => {

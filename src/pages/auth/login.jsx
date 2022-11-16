@@ -89,7 +89,8 @@ class LogIn extends Component {
                                             <input type="checkbox" name="remember" id="remember" />
                                             <label htmlFor="remember">Remember Me</label>
                                         </div>
-                                        <a href="#">Forget Password?</a>
+                                        {/*<a href="#">Forget Password?</a>*/}
+                                        <Link to={Navigate.authForgotPassword()}>Forgot Password</Link>
                                     </div>
                                 </div>
                                 {this.state.errors &&  this.state.errors.map(function(name, index){

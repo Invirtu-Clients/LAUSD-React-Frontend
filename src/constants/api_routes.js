@@ -17,6 +17,10 @@ const api_routes = {
         route :'/auth/oneTimeLoginWithToken',
         method : 'POST'
     },
+    auth_forgot_password : {
+        route : '/auth/forgotpassword',
+        method : 'POST'
+    },
 
     //Events
     events_list : {

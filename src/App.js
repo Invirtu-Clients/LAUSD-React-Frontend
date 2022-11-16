@@ -19,6 +19,7 @@ import ShopPage from "./pages/shop";
 import ShopCart from "./pages/shopcart";
 import ShopDetails from "./pages/shopdetails";
 import SignUp from "./pages/auth/signup";
+import ForgotPassword from "./pages/auth/forgotpassword";
 import TeamPage from "./pages/team";
 import TeamSinglePage from "./pages/team-single";
 import ErrorPage from "./pages/errorpage";
@@ -78,6 +79,7 @@ function App() {
 
           <Route path={Navigate.authLogin()} element={<LogIn />} />
           <Route path={Navigate.authRegister()} element={<SignUp />} />
+          <Route path={Navigate.authForgotPassword()} elememt={<ForgotPassword />}/>
           <Route path={Navigate.authFacebook()} element={<AuthFacebook />} />
           <Route path={Navigate.authTwitch()} element={<AuthTwitch />} />
           <Route path={Navigate.authYoutube()} element={<AuthYoutube />} />
