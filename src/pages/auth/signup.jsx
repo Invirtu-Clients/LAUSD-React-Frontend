@@ -28,6 +28,25 @@ class SignUp extends Component {
             confirm_password: '',
             errors : {}
         };
+
+    }
+
+    componentDidMount() {
+
+        setTimeout(() =>{
+
+            const params = new Proxy(new URLSearchParams(window.location.search), {
+                get: (searchParams, prop) => searchParams.get(prop),
+            });
+
+            let iscohost = params.iscohost;
+    
+            if(iscohost && Session.isLoggedIn()) {
+                this.goToNextScreen();
+            }
+
+        }, 1000) 
+        
     }
 
     register(event) {
@@ -48,7 +67,7 @@ class SignUp extends Component {
 
             Session.processAuthentication(response.data);
 
-            this.props.router.navigate(Navigate.streamsPage());
+            this.goToNextScreen();
         }).catch((error) => {
 
             let jsonErrors = Response.parseJSONFromError(error);
@@ -61,6 +80,26 @@ class SignUp extends Component {
                 }, timeouts.error_message_timeout)
             }
         });
+
+    }
+
+    goToNextScreen() {
+
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
+       
+        let iscohost = params.iscohost;
+
+        let stream_id = params.stream;
+
+        let token = params.token;
+
+        if(iscohost) {
+            this.props.router.navigate(Navigate.streamsCohostWatch(stream_id));
+        } else {
+            this.props.router.navigate(Navigate.streamsPage());
+        }
 
     }
 

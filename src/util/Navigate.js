@@ -105,6 +105,30 @@ const Navigate = {
 
         return path;
     },
+    streamsCohostPassword : (event_id, passcode) => {
+
+        let path = app_routes.streams_cohost_password;
+
+        if(event_id){
+            path = path.replace(':id', event_id)
+        }
+
+        if(passcode){
+            path = path.replace(':passcode', passcode)
+        }
+
+        return path;
+    },
+    streamsCohostWatch : (event_id) => {
+
+        let path = app_routes.streams_cohost_watch;
+
+        if(event_id){
+            path = path.replace(':id', event_id)
+        }
+
+        return path;
+    },
     streamsWatchRecordingPage: (event_id, recording_id) => {
 
         let path = app_routes.streams_recording_watch;

@@ -29,6 +29,7 @@ import StreamsBroadcastPage from "./pages/streams/broadcaststream";
 import StreamsWatchPage from "./pages/streams/watchstream";
 import WatchRecordingPage from "./pages/streams/watchrecording";
 import ManageRecordingPage from "./pages/streams/managerecording";
+import CohostWatchStream from "./pages/streams/cohostwatchstream";
 
 import AuthFacebook from "./pages/auth/auth_facebook";
 import AuthTwitch from "./pages/auth/auth_twitch";
@@ -52,6 +53,7 @@ import GDPRPage from "./pages/misc/gdpr";
 
 import Moment from 'react-moment';
 import 'moment-timezone';
+
 
 
 // import Footer from "./component/layout/footer";
@@ -94,6 +96,7 @@ function App() {
           <Route path={Navigate.streamsBroadcastPage()} element={<StreamsBroadcastPage />} />
           <Route path={Navigate.streamsWatchRecordingPage()} element={<WatchRecordingPage />} />
           <Route path={Navigate.streamsManageRecordingPage()} element={<ManageRecordingPage />} />
+          <Route path={Navigate.streamsCohostWatch()} element={<CohostWatchStream />} />
 
           <Route path={Navigate.usersList()} element={<UsersPage />} />
           <Route path={Navigate.usersProfilePage()} element={<UserProfilePage />} />
