@@ -11,6 +11,7 @@
     contact : '/contact',
     dataremoval : '/dataremoval',
     gdpr : '/gdpr',
+    access_denied : '/accessdenied',
 
     //authentication
     auth_login : '/login',

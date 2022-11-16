@@ -10,6 +10,10 @@ import modes from "../../constants/modes";
 import Navigate from "../../util/Navigate";
 import Requests from "../../util/Requests";
 import withRouter from "../../util/withRouter";
+import { Beforeunload } from 'react-beforeunload';
+import HasAccess from "../../util/HasAccess";
+import Session from "../../util/Session";
+
 
 class StreamsBroadcastPage extends Component {
 
@@ -37,6 +41,10 @@ class StreamsBroadcastPage extends Component {
             let userData = response.data;
 
             Requests.eventsView(id).then(response => {
+
+                if(!HasAccess.userInList(Session.getID(), response.data.admins)){
+                    this.props.router.navigate(Navigate.accessDeniedPage());
+                }
 
                 if (response.data.invirtu_id) {
 
@@ -164,6 +172,7 @@ class StreamsBroadcastPage extends Component {
                 <div style={{ paddingTop: '155px' }}>
                     {this.state.video_conference_widget}
                 </div>
+                <Beforeunload onBeforeunload={() => 'Are you sure you want to leave this page?'} />
 
                 <section className="about-section mt-5">
                     <div className="container">

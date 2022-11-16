@@ -2,13 +2,23 @@ import Storage from "./Storage";
 
 const HasAccess = {
     
-    isLoggedIn :() => {
+    userInList(user_id, listOfUsers) {
 
-        if(Storage.getAuthToken()){
-            return true;
+        let found = false; 
+
+        if(listOfUsers) {
+
+           
+            listOfUsers.forEach((user) => {
+
+                if(user.id == user_id){
+                    found= true;
+                    
+                }
+            });
         }
 
-        return false;
+        return found;
     }
 }
 

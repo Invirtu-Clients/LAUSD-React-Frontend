@@ -11,6 +11,8 @@ import Session from "../../util/Session";
 import withRouter from "../../util/withRouter";
 import PageHeader from "../../component/layout/pageheader";
 import Footer from "../../component/layout/footer";
+import HasAccess from "../../util/HasAccess";
+import Navigate from "../../util/Navigate";
 
 class ManageRecordingPage extends Component {
 
@@ -48,6 +50,10 @@ class ManageRecordingPage extends Component {
         let id = this.props.router.params.id;
 
         Requests.eventsView(id).then(response => {
+
+            if(!HasAccess.userInList(Session.getID(), response.data.speakers)){
+                this.props.router.navigate(Navigate.accessDeniedPage());
+            }
 
             if (response.data.invirtu_id) {
                 let auth_token = null;

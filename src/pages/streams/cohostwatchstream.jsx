@@ -7,8 +7,10 @@ import Header from "../../component/layout/header";
 import PageHeader from "../../component/layout/pageheader";
 import VideoSection from "../../component/section/video";
 import modes from "../../constants/modes";
+import HasAccess from "../../util/HasAccess";
 import Navigate from "../../util/Navigate";
 import Requests from "../../util/Requests";
+import Session from "../../util/Session";
 import withRouter from "../../util/withRouter";
 
 class CohostWatchStreamPage extends Component {
@@ -37,6 +39,10 @@ class CohostWatchStreamPage extends Component {
             let userData = response.data;
 
             Requests.eventsView(id).then(response => {
+
+                if(!HasAccess.userInList(Session.getID(), response.data.speakers)){
+                    this.props.router.navigate(Navigate.accessDeniedPage());
+                }
 
                 if (response.data.invirtu_id) {
 

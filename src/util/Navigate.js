@@ -29,6 +29,9 @@ const Navigate = {
     gdprPage : () => {
         return app_routes.gdpr;
     },
+    accessDeniedPage : () => {
+        return app_routes.gdpr;
+    },
 
     //Authentication
     authLogin : () => {
