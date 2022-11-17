@@ -30,7 +30,7 @@ const Navigate = {
         return app_routes.gdpr;
     },
     accessDeniedPage : () => {
-        return app_routes.gdpr;
+        return app_routes.access_denied;
     },
 
     //Authentication
