@@ -18,6 +18,8 @@ import Loading from "../../component/alerts/Loading";
 import Danger from "../../component/alerts/Danger";
 import timeouts from "../../constants/timeouts";
 import Response from "../../util/Response";
+import Moment from 'react-moment';
+import Data from "../../util/Data";
 
 
 class StreamsBroadcastPage extends Component {
@@ -483,7 +485,7 @@ class StreamsBroadcastPage extends Component {
                                 <br />
                                 <ul className="indent">
                                     {this.state.event && this.state.event.recordings && this.state.event.recordings.map((recording, index) => {
-                                        return <li key={index}><Link to={Navigate.streamsManageRecordingPage(this.state.event.id, recording.id)}>{recording.title}</Link></li>;
+                                        return <li key={index}><Link to={Navigate.streamsManageRecordingPage(this.state.event.id, recording.id)}>{recording.title} (Duration: {Data.convertToHHMMSS(recording.runtime)})</Link></li>;
                                     })}
                                 </ul>
                             </div>

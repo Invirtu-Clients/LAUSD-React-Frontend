@@ -9,6 +9,12 @@ import Requests from "../../util/Requests";
 import Session from "../../util/Session";
 import Storage from "../../util/Storage";
 import withRouter from "../../util/withRouter";
+import Moment from 'react-moment';
+import Data from "../../util/Data";
+import Success from "../../component/alerts/Success";
+import Danger from "../../component/alerts/Danger";
+import Warning from "../../component/alerts/Warning";
+import PageHeader from "../../component/layout/pageheader";
 
 class StreamsWatchPage extends Component {
 
@@ -18,7 +24,8 @@ class StreamsWatchPage extends Component {
             events: [],
             errors: {},
             stream: {},
-            broadcast_widget: ''
+            broadcast_widget: '',
+            isLive : '',
         };
     }
 
@@ -47,6 +54,16 @@ class StreamsWatchPage extends Component {
 
         Requests.eventsView(id).then(response => {
 
+            if(response.data.is_live) {
+                this.setState({isLive : <Success message={"Is Live"} />});
+            } else {
+                if(response.data.recordings && response.data.recordings.length > 0) {
+                    this.setState({isLive : <Warning message={"Not Live - Has Recordings!"} />});
+                } else {
+                    this.setState({isLive : <Danger message={"Not Live - No Recordings"} />});
+                }
+            }
+
             if (response.data.invirtu_id) {
                 let auth_token = null;
 
@@ -70,11 +87,13 @@ class StreamsWatchPage extends Component {
         return (
             <Fragment>
                 <Header />
+                <PageHeader title={'Watch Stream'} curPage={'Stream'} />
                 <section className="about-section">
                     <div className="container">
                         <div className="section-wrapper padding-top">
                             <div className="row">
                                 <div className="col-12">
+                                    {this.state.isLive}
                                     {this.state.broadcast_widget}
                                 </div>
                             </div>
@@ -90,7 +109,7 @@ class StreamsWatchPage extends Component {
                         <ul className="indent">
                             {this.state.event && this.state.event.recordings && this.state.event.recordings.map((recording, index) => {
                                 return <li key={index}>
-                                    <Link to={Navigate.streamsWatchRecordingPage(this.state.event.id, recording.id)}>{recording.title}</Link>
+                                    <Link to={Navigate.streamsWatchRecordingPage(this.state.event.id, recording.id)}>{recording.title} (Duration: {Data.convertToHHMMSS(recording.runtime)})</Link>
                                 </li>;
                             })}
                         </ul>
