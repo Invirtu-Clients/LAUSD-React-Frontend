@@ -1,6 +1,7 @@
 import { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import Danger from "../../component/alerts/Danger";
+import Loading from "../../component/alerts/Loading";
 import Footer from "../../component/layout/footer";
 import Header from "../../component/layout/header";
 import PageHeader from "../../component/layout/pageheader";
@@ -22,6 +23,7 @@ class LogIn extends Component {
         this.state = {
             email: '',
             password: '',
+            isLoading : false,
             errors : []
         };
     }
@@ -53,16 +55,20 @@ class LogIn extends Component {
             password : this.state.password,
         };
 
+        this.setState({isLoading : true});
+
         Requests.authLogin(data).then((response) => {
             Storage.setAuthToken(response.data.token.access_token);
             Storage.set('user_id', response.data.id);
 
             Session.processAuthentication(response.data);
 
+            this.setState({isLoading : false});
+
             this.goToNextScreen();
         }).catch((error) => {
 
-            this.setState({errors : ['Invalid username and password']});
+            this.setState({errors : ['Invalid username and password'], isLoading : false});
 
             setTimeout(() =>{
                 this.setState({errors : []});
@@ -135,7 +141,7 @@ class LogIn extends Component {
                                         return <Danger message={name} key={index} />;
                                 })}
                                 <div className="form-group">
-                                    <button type="button" className="d-block default-button" onClick={(e => {this.login(e)})}><span>Login</span></button>
+                                    <button type="button" className="d-block default-button" onClick={(e => {this.login(e)})}> <span>{this.state.isLoading ? <Loading /> : ''} Login</span></button>
                                 </div>
                             </form>
                             <div className="account-bottom">

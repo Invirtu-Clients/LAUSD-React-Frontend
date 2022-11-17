@@ -1,6 +1,7 @@
 import { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import Danger from "../../component/alerts/Danger";
+import Loading from "../../component/alerts/Loading";
 import Footer from "../../component/layout/footer";
 import Header from "../../component/layout/header";
 import PageHeader from "../../component/layout/pageheader";
@@ -20,7 +21,8 @@ class ForgotPassword extends Component {
     constructor(props){
         super(props);
         this.state = {
-            errors : []
+            errors : [],
+            isLoading : false,
         };
         console.log("I am here");
     }
@@ -33,9 +35,13 @@ class ForgotPassword extends Component {
             email : this.state.email,
         };
 
+        this.setState({isLoading : true});
+
         Requests.authForgotPassword(data).then((response) => {
             
             alert("You have been sent an email to reset your password.");
+
+            this.setState({isLoading : false});
 
             this.setState({email : ''})
 
@@ -45,7 +51,7 @@ class ForgotPassword extends Component {
 
             let response = Response.parseJSONFromError(error)
 
-            this.setState({errors : [response.message]});
+            this.setState({errors : [response.message], isLoading : false});
 
             setTimeout(() =>{
                 this.setState({errors : []});
@@ -80,7 +86,7 @@ class ForgotPassword extends Component {
                                         return <Danger message={name} key={index} />;
                                 })}
                                 <div className="form-group">
-                                    <button type="button" className="d-block default-button" onClick={(e => {this.resetPassword(e)})}><span>Reset Password</span></button>
+                                    <button type="button" className="d-block default-button" onClick={(e => {this.resetPassword(e)})}><span>{this.state.isLoading ? <Loading /> : ''} Reset Password</span></button>
                                 </div>
                             </form>
                         </div>

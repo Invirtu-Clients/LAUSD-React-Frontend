@@ -8,6 +8,7 @@ import Danger from "../alerts/Danger";
 import ImageUploading from 'react-images-uploading';
 import Data from "../../util/Data";
 import Textarea from "../form/textarea";
+import Loading from "../alerts/Loading";
 
 const Name = "Rajib Ahmed";
 const desc = "Competently conceptualize alternative synergy and technically and niche markets. Efficiently impact technically sound outsourcing rath tnclicks-and-mortar best practices.";
@@ -35,6 +36,8 @@ class ProfileUpdateHeader extends Component {
             youtube_page: props.user.youtube_page,
             errors: {},
             images: [],
+            isLoading : false,
+            isLoadingImage : false,
         };
 
     }
@@ -66,10 +69,17 @@ class ProfileUpdateHeader extends Component {
 
         };
 
+        this.setState({isLoading : true});
+
         Requests.updateAccount(data).then(response => {
-            console.log(response);
-            alert("Bio Has Been Updated.");
+           
+            alert("Account Has Been Updated.");
+
+            this.setState({isLoading : false});
+
         }).catch(error => {
+
+            this.setState({isLoading : false});
 
             let jsonErrors = Response.parseJSONFromError(error);
 
@@ -93,6 +103,8 @@ class ProfileUpdateHeader extends Component {
 
         let image = this.state.images[index];
 
+        this.setState({isLoadingImage : true});
+
         const blob = Data.dataURItoBlob(image.data_url);
 
         const formData = new FormData();
@@ -100,8 +112,10 @@ class ProfileUpdateHeader extends Component {
         formData.append('image', blob, 'screenshot.png');
 
         Requests.userUploadAvatar(formData).then(response => {
-            this.setState({ user: response.data, images: [] });
+            this.setState({ user: response.data, images: [], isLoadingImage : false });
         }).catch(error => {
+
+            this.setState({isLoadingImage : false});
             console.log(error)
         });
 
@@ -154,7 +168,7 @@ class ProfileUpdateHeader extends Component {
                                         <div key={index} className="image-item">
                                             <img src={image['data_url']} alt="" width="400" />
                                             <div className="image-item__btn-wrapper">
-                                                <button className="btn btn-success" onClick={() => this.saveImage(index)}>Save Image</button>
+                                                <button className="btn btn-success" onClick={() => this.saveImage(index)}>{this.state.isLoadingImage ? <Loading /> : ''} Save Image</button>
                                             </div>
                                         </div>
                                     ))}
@@ -388,7 +402,7 @@ class ProfileUpdateHeader extends Component {
                                 </div>
 
                                 <div className="form-group">
-                                    <button className="d-block default-button" onClick={(e => { this.updateAccount(e) })}><span>Update Account</span></button>
+                                    <button className="d-block default-button" onClick={(e => { this.updateAccount(e) })}><span>{this.state.isLoading ? <Loading /> : ''} Update Account</span></button>
                                 </div>
 
 

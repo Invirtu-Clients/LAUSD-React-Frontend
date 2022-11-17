@@ -15,6 +15,7 @@ import withRouter from "../../util/withRouter";
 import ImageUploading from 'react-images-uploading';
 import Data from "../../util/Data";
 import Textarea from "../../component/form/textarea";
+import Loading from "../../component/alerts/Loading";
 
 
 const title = "Complete Your Profile";
@@ -29,6 +30,8 @@ class RegisterStep2 extends Component {
             user : {},
             errors: [],
             images: [],
+            isLoading : false,
+            isLoadingImage : false,
         };
 
     }
@@ -53,10 +56,16 @@ class RegisterStep2 extends Component {
             bio: this.state.bio
         };
 
+        this.setState({isLoading : true});
+
         Requests.updateAccount(data).then(response => {
-            console.log(response);
+            
+            this.setState({isLoading : false});
+
             this.props.router.navigate(Navigate.streamsPage());
         }).catch(error => {
+
+            this.setState({isLoading : false});
 
             this.props.router.navigate(Navigate.streamsPage());
             /*let jsonErrors = Response.parseJSONFromError(error);
@@ -81,6 +90,8 @@ class RegisterStep2 extends Component {
 
         event.preventDefault();
 
+        this.setState({isLoadingImage : true});
+
         let image = this.state.images[index];
 
         const blob = Data.dataURItoBlob(image.data_url);
@@ -90,8 +101,9 @@ class RegisterStep2 extends Component {
         formData.append('image', blob, 'screenshot.png');
 
         Requests.userUploadAvatar(formData).then(response => {
-            this.setState({ user: response.data, images: [] });
+            this.setState({ user: response.data, images: [], isLoadingImage : false });
         }).catch(error => {
+            this.setState({isLoadingImage : false});
             console.log(error)
         });
 
@@ -144,7 +156,7 @@ class RegisterStep2 extends Component {
                                                 <div key={index} className="image-item">
                                                     <img src={image['data_url']} alt="" width="400" />
                                                     <div className="image-item__btn-wrapper">
-                                                        <button type="button" className="btn btn-success" onClick={(e) => this.saveImage(e, index)}>Save Image</button>
+                                                        <button type="button" className="btn btn-success" onClick={(e) => this.saveImage(e, index)}>{this.state.isLoadingImage ? <Loading /> : ''} Save Image</button>
                                                     </div>
                                                 </div>
                                             ))}
@@ -173,7 +185,7 @@ class RegisterStep2 extends Component {
                                     return <Danger message={name} key={index} />;
                                 })}
                                 <div className="form-group">
-                                    <button type="button" className="d-block default-button" onClick={(e => { this.updateAccount(e) })}><span>Start Gaming!</span></button>
+                                    <button type="button" className="d-block default-button" onClick={(e => { this.updateAccount(e) })}><span>{this.state.isLoading ? <Loading /> : ''} Start Gaming!</span></button>
                                 </div>
                             </form>
 

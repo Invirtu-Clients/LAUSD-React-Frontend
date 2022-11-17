@@ -1,6 +1,7 @@
 import { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import Danger from "../../component/alerts/Danger";
+import Loading from "../../component/alerts/Loading";
 import Footer from "../../component/layout/footer";
 import Header from "../../component/layout/header";
 import PageHeader from "../../component/layout/pageheader";
@@ -26,6 +27,7 @@ class SignUp extends Component {
             password: '',
             username : '',
             confirm_password: '',
+            isLoading : false,
             errors : {}
         };
 
@@ -61,14 +63,20 @@ class SignUp extends Component {
             username : this.state.username
         };
 
+        this.setState({isLoading : true});
+
         Requests.authRegister(data).then((response) => {
             Storage.setAuthToken(response.data.token.access_token);
             Storage.set('user_id', response.data.id);
 
             Session.processAuthentication(response.data);
 
+            this.setState({isLoading : false});
+
             this.goToNextScreen();
         }).catch((error) => {
+
+            this.setState({isLoading : false});
 
             let jsonErrors = Response.parseJSONFromError(error);
 
@@ -189,7 +197,7 @@ class SignUp extends Component {
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <button type="button" className="d-block default-button" onClick={(e => {this.register(e)})}><span>Get Started Now</span></button>
+                                    <button type="button" className="d-block default-button" onClick={(e => {this.register(e)})}><span>{this.state.isLoading ? <Loading /> : ''} Get Started Now</span></button>
                                 </div>
                             </div>
                             <div className="account-bottom">

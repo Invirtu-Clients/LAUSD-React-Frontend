@@ -14,6 +14,7 @@ import { Beforeunload } from 'react-beforeunload';
 import HasAccess from "../../util/HasAccess";
 import Session from "../../util/Session";
 import Textarea from "../../component/form/textarea";
+import Loading from "../../component/alerts/Loading";
 
 
 class StreamsBroadcastPage extends Component {
@@ -30,7 +31,11 @@ class StreamsBroadcastPage extends Component {
             onscreen_message : '',
             watch_page: '#',
             video_conference_widget: '',
-            rtmp_source: ''
+            rtmp_source: '',
+            isLoadingRTMPSource : false,
+            isLoadingOnScreenMessage : false,
+            isLoadingAddCohost : false,
+
         };
     }
 
@@ -71,7 +76,11 @@ class StreamsBroadcastPage extends Component {
 
         let id = this.props.router.params.id;
 
+        this.setState({isLoadingRTMPSource : true});
+
         Requests.eventsAddRTMPSource(id, { rtmp_source: this.state.rtmp_source }).then(response => {
+
+            this.setState({isLoadingRTMPSource : false});
 
             this.setState({
                 rtmp_source: '',
@@ -79,6 +88,9 @@ class StreamsBroadcastPage extends Component {
             });
 
         }).catch(error => {
+
+            this.setState({isLoadingRTMPSource : false});
+
             console.log(error);
         })
     }
@@ -144,6 +156,8 @@ class StreamsBroadcastPage extends Component {
 
         let email = this.state.invite_cohost_email;
 
+        this.setState({isLoadingAddCohost : true});
+
         let data = {
             name: name,
             email: email
@@ -156,11 +170,15 @@ class StreamsBroadcastPage extends Component {
 
             this.setState({
                 invite_cohost_name: '',
-                invite_cohost_email: ''
+                invite_cohost_email: '',
+                isLoadingAddCohost : false
             });
 
             this.state.event.invites.push(response.data);
         }).catch(error => {
+
+            this.setState({isLoadingAddCohost : false});
+
             console.log(error);
         });
 
@@ -174,14 +192,20 @@ class StreamsBroadcastPage extends Component {
 
         let id = this.props.router.params.id;
 
+        this.setState({isLoadingOnScreenMessage : true});
+
         let data = {
             type : 'message',
             content : message
         };
 
         Requests.eventsSendOnScreenContent(id, data).then(response => {
-            console.log(response);
+
+            this.setState({onscreen_message : '', isLoadingOnScreenMessage : false});
         }).catch(error => {
+
+            this.setState({isLoadingOnScreenMessage : false});
+
             console.log(error);
         });
 
@@ -200,10 +224,10 @@ class StreamsBroadcastPage extends Component {
                 <section className="about-section mt-5">
                     <div className="container">
                         <nav>
-                            <div className="nav nav-tabs" id="nav-tab" role="tablist">
-                                <button className="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Setup</button>
-                                <button className="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Interaction</button>
-                                <button className="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Recordings</button>
+                            <div className="nav nav-tabs lead" id="nav-tab" role="tablist">
+                                <button className="nav-link active lead" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Setup</button>
+                                <button className="nav-link lead" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Interaction</button>
+                                <button className="nav-link lead" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Recordings</button>
                             </div>
                         </nav>
                         <div className="tab-content" id="nav-tabContent">
@@ -331,7 +355,7 @@ class StreamsBroadcastPage extends Component {
                                         <Input name={"rtmp_src"} value={this.state.rtmp_source} onChange={(e) => { this.setState({ rtmp_source: e.target.value }); }} />
 
                                         <div className="form-group">
-                                            <button className="d-block default-button" onClick={(e => { this.addRTMPSource(e) })}><span>Add Source</span></button>
+                                            <button className="d-block default-button" onClick={(e => { this.addRTMPSource(e) })}><span>{this.state.isLoadingRTMPSource ? <Loading /> : ''} Add Source</span></button>
                                         </div>
                                     </div>
                                 </form>
@@ -375,7 +399,7 @@ class StreamsBroadcastPage extends Component {
 
 
                                 <div className="form-group">
-                                    <button type="button" className="d-block default-button" onClick={(e => {this.sendOnScreenMessage(e)})}><span>Send</span></button>
+                                    <button type="button" className="d-block default-button" onClick={(e => {this.sendOnScreenMessage(e)})}><span>{this.state.isLoadingOnScreenMessage ? <Loading /> : ''} Send</span></button>
                                 </div>
                                 <hr />
                                 <h3>Co-Hosts</h3>
@@ -391,7 +415,7 @@ class StreamsBroadcastPage extends Component {
                                     </div>
 
                                     <div className="col">
-                                        <button type="button" onClick={(e) => { this.inviteCohost(e) }} className="btn btn-success">Invite As Co-Host</button>
+                                        <button type="button" onClick={(e) => { this.inviteCohost(e) }} className="btn btn-success">{this.state.isLoadingAddCohost ? <Loading /> : ''} Invite As Co-Host</button>
                                     </div>
                                 </div>
 

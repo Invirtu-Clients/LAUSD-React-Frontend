@@ -1,6 +1,7 @@
 import { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import Danger from "../../component/alerts/Danger";
+import Loading from "../../component/alerts/Loading";
 import Input from "../../component/form/input";
 import Textarea from "../../component/form/textarea";
 import Footer from "../../component/layout/footer";
@@ -24,7 +25,8 @@ class StreamCreatePage extends Component {
             title : '',
             description : '',
             events: [],
-            errors: {}
+            errors: {},
+            isLoading : false,
         };
 
         if(!Session.isLoggedIn()){
@@ -41,9 +43,16 @@ class StreamCreatePage extends Component {
             description : this.state.description
         };
 
+        this.setState({isLoading : true});
+
         Requests.eventsCreate(data).then(response => {
+
+            this.setState({isLoading : false});
+
             this.props.router.navigate(Navigate.streamsBroadcastPage(response.data.id));
         }).catch(error => {
+
+            this.setState({isLoading : false});
 
             let jsonErrors = Response.parseJSONFromError(error);
 
@@ -88,7 +97,7 @@ class StreamCreatePage extends Component {
 
 
                                 <div className="form-group">
-                                    <button className="d-block default-button" onClick={(e => { this.create(e) })}><span>Create Stream</span></button>
+                                    <button className="d-block default-button" onClick={(e => { this.create(e) })}><span>{this.state.isLoading ? <Loading /> : ''} Create Stream</span></button>
                                 </div>
                             </form>
 
