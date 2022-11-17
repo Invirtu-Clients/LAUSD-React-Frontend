@@ -15,6 +15,9 @@ import HasAccess from "../../util/HasAccess";
 import Session from "../../util/Session";
 import Textarea from "../../component/form/textarea";
 import Loading from "../../component/alerts/Loading";
+import Danger from "../../component/alerts/Danger";
+import timeouts from "../../constants/timeouts";
+import Response from "../../util/Response";
 
 
 class StreamsBroadcastPage extends Component {
@@ -35,7 +38,10 @@ class StreamsBroadcastPage extends Component {
             isLoadingRTMPSource : false,
             isLoadingOnScreenMessage : false,
             isLoadingAddCohost : false,
-
+            rtmpSourceError : '',
+            onScreenMessageError : '',
+            addCohostError : '',
+            addCohostErrorObject : {},
         };
     }
 
@@ -91,7 +97,16 @@ class StreamsBroadcastPage extends Component {
 
             this.setState({isLoadingRTMPSource : false});
 
-            console.log(error);
+            let jsonErrors = Response.parseJSONFromError(error);
+
+            if (jsonErrors) {
+                this.setState({ rtmpSourceError: jsonErrors.message });
+
+                setTimeout(() => {
+                    this.setState({ rtmpSourceError: '' });
+                }, timeouts.error_message_timeout)
+            }
+
         })
     }
 
@@ -166,7 +181,6 @@ class StreamsBroadcastPage extends Component {
         let id = this.props.router.params.id;
 
         Requests.eventsSendInvite(id, data).then(response => {
-            console.log(response);
 
             this.setState({
                 invite_cohost_name: '',
@@ -179,7 +193,21 @@ class StreamsBroadcastPage extends Component {
 
             this.setState({isLoadingAddCohost : false});
 
-            console.log(error);
+            let jsonErrors = Response.parseJSONFromError(error);
+
+            if (jsonErrors && jsonErrors.message) {
+                this.setState({ addCohostError : jsonErrors.message });
+
+                setTimeout(() => {
+                    this.setState({ addCohostError : '' });
+                }, timeouts.error_message_timeout)
+            } else {
+                this.setState({addCohostErrorObject : jsonErrors});
+
+                setTimeout(() =>{
+                    this.setState({addCohostErrorObject : {}});
+                }, timeouts.error_message_timeout)
+            }
         });
 
     }
@@ -206,7 +234,15 @@ class StreamsBroadcastPage extends Component {
 
             this.setState({isLoadingOnScreenMessage : false});
 
-            console.log(error);
+            let jsonErrors = Response.parseJSONFromError(error);
+
+            if (jsonErrors) {
+                this.setState({ onScreenMessageError : jsonErrors.message });
+
+                setTimeout(() => {
+                    this.setState({ onScreenMessageError : '' });
+                }, timeouts.error_message_timeout)
+            }
         });
 
     }
@@ -357,6 +393,7 @@ class StreamsBroadcastPage extends Component {
                                         <div className="form-group">
                                             <button className="d-block default-button" onClick={(e => { this.addRTMPSource(e) })}><span>{this.state.isLoadingRTMPSource ? <Loading /> : ''} Add Source</span></button>
                                         </div>
+                                        {this.state.rtmpSourceError ? <Danger message={this.state.rtmpSourceError} /> : ''}
                                     </div>
                                 </form>
 
@@ -389,6 +426,7 @@ class StreamsBroadcastPage extends Component {
                                 <p>Create interactive experiences with your audience as your stream your content.</p>
 
                                 <hr />
+                                <br />
                                 <h3>Send On-Screen Message</h3>
 
                                 <p>Broadcast a message that will be displayed on-screen to users who are watchings.</p>
@@ -400,8 +438,11 @@ class StreamsBroadcastPage extends Component {
 
                                 <div className="form-group">
                                     <button type="button" className="d-block default-button" onClick={(e => {this.sendOnScreenMessage(e)})}><span>{this.state.isLoadingOnScreenMessage ? <Loading /> : ''} Send</span></button>
+                                    {this.state.onScreenMessageError ? <Danger message={this.state.onScreenMessageError} /> : ''}
                                 </div>
+                                <br />
                                 <hr />
+                                <br />
                                 <h3>Co-Hosts</h3>
 
                                 <p>Invite Co-Hosts to be on-screen with you during your stream.</p>
@@ -409,15 +450,22 @@ class StreamsBroadcastPage extends Component {
                                 <div className="row g-3">
                                     <div className="col">
                                         <input type="text" onChange={(e) => { this.setState({ invite_cohost_name: e.target.value }); }} value={this.state.invite_cohost_name} className="form-control" placeholder="Name" aria-label="Name" />
+                                        {this.state.addCohostErrorObject && this.state.addCohostErrorObject.name && this.state.addCohostErrorObject.name.map(function(name, index){
+                                            return <Danger message={name} key={index} />;
+                                        })}
                                     </div>
                                     <div className="col">
                                         <input type="text" onChange={(e) => { this.setState({ invite_cohost_email: e.target.value }); }} value={this.state.invite_cohost_email} className="form-control" placeholder="Email" aria-label="Email" />
+                                        {this.state.addCohostErrorObject && this.state.addCohostErrorObject.email && this.state.addCohostErrorObject.email.map(function(name, index){
+                                            return <Danger message={name} key={index} />;
+                                        })}
                                     </div>
 
                                     <div className="col">
                                         <button type="button" onClick={(e) => { this.inviteCohost(e) }} className="btn btn-success">{this.state.isLoadingAddCohost ? <Loading /> : ''} Invite As Co-Host</button>
                                     </div>
                                 </div>
+                                {this.state.addCohostError ? <Danger message={this.state.addCohostError} /> : ''}
 
                                 <ul className="indent">
                                     {this.state.event && this.state.event.invites && this.state.event.invites.map((invite, index) => {

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import site from "../../constants/site";
 
 
-const postTitle = "Top jackpot games";
+const postTitle = "Download The Source Code";
 const newsTitle = "Our Newsletter";
 const desc = "Upropriate brand economca sound technolog after covalent technology enable prospective wastng markets whereas propriate and brand economca sound technolog";
 const newsdesc = "Bigamer esports organization supported by community leaders";
@@ -44,6 +44,9 @@ class Footer extends Component {
                                             <h4>{postTitle}</h4>
                                         </div>
                                         <div className="fm-item-content">
+                                            <a target="_blank" href="https://github.com/Glitch-Gaming-Platform">
+                                                <img src="/assets/images/footer/github2.png" className="img-fluid" alt="github" />
+                                            </a>
                                             
                                         </div>
                                     </div>
@@ -94,7 +97,7 @@ class Footer extends Component {
                         <div className="row">
                             <div className="col-12">
                                 <div className="footer-bottom-content text-center">
-                                    <p>&copy;2022 <Link to="/">BiGamer</Link> - eSpost And Gameing React Template.</p>
+                                    <p>{process.env.REACT_APP_COPYRIGHT}</p>
                                 </div>
                             </div>
                         </div>
