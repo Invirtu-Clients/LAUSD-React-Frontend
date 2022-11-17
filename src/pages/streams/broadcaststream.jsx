@@ -13,6 +13,7 @@ import withRouter from "../../util/withRouter";
 import { Beforeunload } from 'react-beforeunload';
 import HasAccess from "../../util/HasAccess";
 import Session from "../../util/Session";
+import Textarea from "../../component/form/textarea";
 
 
 class StreamsBroadcastPage extends Component {
@@ -26,6 +27,7 @@ class StreamsBroadcastPage extends Component {
             event: {},
             invite_cohost_name: '',
             invite_cohost_email: '',
+            onscreen_message : '',
             watch_page: '#',
             video_conference_widget: '',
             rtmp_source: ''
@@ -158,6 +160,27 @@ class StreamsBroadcastPage extends Component {
             });
 
             this.state.event.invites.push(response.data);
+        }).catch(error => {
+            console.log(error);
+        });
+
+    }
+
+    sendOnScreenMessage(event) {
+        
+        event.preventDefault();
+
+        let message = this.state.onscreen_message;
+
+        let id = this.props.router.params.id;
+
+        let data = {
+            type : 'message',
+            content : message
+        };
+
+        Requests.eventsSendOnScreenContent(id, data).then(response => {
+            console.log(response);
         }).catch(error => {
             console.log(error);
         });
@@ -341,7 +364,20 @@ class StreamsBroadcastPage extends Component {
 
                                 <p>Create interactive experiences with your audience as your stream your content.</p>
 
+                                <hr />
+                                <h3>Send On-Screen Message</h3>
 
+                                <p>Broadcast a message that will be displayed on-screen to users who are watchings.</p>
+
+                                <div className="form-group">
+                                    <Textarea value={this.state.onscreen_message} onChange={(e) => { this.setState({ onscreen_message : e.target.value }); }} placeholder="Enter a message to display on-screen."></Textarea>
+                                </div>
+
+
+                                <div className="form-group">
+                                    <button type="button" className="d-block default-button" onClick={(e => {this.sendOnScreenMessage(e)})}><span>Send</span></button>
+                                </div>
+                                <hr />
                                 <h3>Co-Hosts</h3>
 
                                 <p>Invite Co-Hosts to be on-screen with you during your stream.</p>

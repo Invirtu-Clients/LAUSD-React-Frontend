@@ -17,15 +17,15 @@ class StreamsWatchPage extends Component {
         this.state = {
             events: [],
             errors: {},
-            stream : {},
+            stream: {},
             broadcast_widget: ''
         };
     }
 
     componentDidMount() {
 
-        if(Session.isLoggedIn()){
-            
+        if (Session.isLoggedIn()) {
+
             Requests.userMe().then(response => {
 
                 let userData = response.data;
@@ -50,14 +50,14 @@ class StreamsWatchPage extends Component {
             if (response.data.invirtu_id) {
                 let auth_token = null;
 
-                if(user){
+                if (user) {
                     auth_token = user.invirtu_user_jwt_token
                 }
 
-                this.setState({ 
+                this.setState({
                     broadcast_widget: <Broadcasting id={response.data.invirtu_id} auth_token={auth_token} />,
                     event: response.data
-                 })
+                })
             }
         }).catch(error => {
             console.log(error);
@@ -87,11 +87,11 @@ class StreamsWatchPage extends Component {
                         <p>Missed the stream? No problem, watch past recordings of the streams.</p>
 
                         <br />
-                        <ul>
+                        <ul className="indent">
                             {this.state.event && this.state.event.recordings && this.state.event.recordings.map((recording, index) => {
-                                return <li key={ index }>
-                                        <Link to={Navigate.streamsWatchRecordingPage(this.state.event.id, recording.id)}>{recording.title}</Link>
-                                    </li>;
+                                return <li key={index}>
+                                    <Link to={Navigate.streamsWatchRecordingPage(this.state.event.id, recording.id)}>{recording.title}</Link>
+                                </li>;
                             })}
                         </ul>
                     </div>

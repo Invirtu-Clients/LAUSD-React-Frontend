@@ -87,6 +87,13 @@ const Requests = {
 
         return Requests._sendRequest(url, api_routes.events_remove_rtmp_source.method, data);
     },
+    eventsSendOnScreenContent: (event_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.events_send_onscreen_content.route);
+
+        url = url.replace('{event_id}', event_id);
+
+        return Requests._sendRequest(url, api_routes.events_send_onscreen_content.method, data);
+    },
     //Recording
     recordingsUpdate : (event_id, recording_id, data) => {
         let url = Requests._formatApiUrl(api_routes.recordings_update.route);
