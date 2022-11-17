@@ -41,7 +41,7 @@ class CohostWatchStreamPage extends Component {
             Requests.eventsView(id).then(response => {
 
                 if(!HasAccess.userInList(Session.getID(), response.data.speakers)){
-                    this.props.router.navigate(Navigate.accessDeniedPage());
+                    //this.props.router.navigate(Navigate.accessDeniedPage());
                 }
 
                 if (response.data.invirtu_id) {
