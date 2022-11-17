@@ -19,10 +19,8 @@ class StreamsPage extends Component {
     }
 
     componentDidMount() {
-        console.log("Loaded");
 
         Requests.eventsList().then(response => {
-            console.log(response);
             this.setState({events : <VideoSection streams={response.data} ></VideoSection>});
         }).catch(error => {
             console.log(error);

@@ -31,7 +31,7 @@ class VideoSection extends Component {
                                 <div className="video-top">
                                     <div className="row g-4 justify-content-center">
                                         {streams.map((val, i) => (
-                                            <div className="col-lg-6 col-12" key={i}>
+                                            <div className="col-lg-4 col-12" key={i}>
                                                 <div className="video-item">
                                                     <div className="video-inner position-relative">
                                                         <div className="video-thumb position-relative video-overlay">

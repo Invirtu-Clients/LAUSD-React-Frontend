@@ -66,7 +66,7 @@ import 'moment-timezone';
 
 
 function App() {
-  console.log(Navigate.authForgotPassword());
+  
 	return (
 		// <div className="App">
 		// 	<ShopPage />
