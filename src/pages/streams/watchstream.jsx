@@ -15,6 +15,7 @@ import Success from "../../component/alerts/Success";
 import Danger from "../../component/alerts/Danger";
 import Warning from "../../component/alerts/Warning";
 import PageHeader from "../../component/layout/pageheader";
+import RecordingVideo from "../../component/section/recordingvideo";
 
 class StreamsWatchPage extends Component {
 
@@ -71,10 +72,20 @@ class StreamsWatchPage extends Component {
                     auth_token = user.invirtu_user_jwt_token
                 }
 
-                this.setState({
-                    broadcast_widget: <Broadcasting id={response.data.invirtu_id} auth_token={auth_token} />,
-                    event: response.data
-                })
+                if((!response.data.is_live || response.data.is_live == 0) && (response.data.recordings && response.data.recordings.length > 0)) {
+
+                    this.setState({
+                        broadcast_widget: <RecordingVideo video={response.data.recordings[0]} />,
+                        event: response.data
+                    })
+
+                } else {
+
+                    this.setState({
+                        broadcast_widget: <Broadcasting id={response.data.invirtu_id} auth_token={auth_token} />,
+                        event: response.data
+                    })
+                }
             }
         }).catch(error => {
             console.log(error);
