@@ -384,7 +384,7 @@ class StreamsBroadcastPage extends Component {
                                 <ul className="indent">
                                     <li><a target={"_blank"} href="https://youtu.be/OvQCLkCQgTc">Youtube</a></li>
                                     <li><a target={"_blank"} href="https://youtu.be/eSlgz0aZJTs">Facebook</a></li>
-                                    <li><a target={"_blank"} href="https://youtu.be/0-W1E6qtQdM">Twitch</a></li>
+                                    <li><a target={"_blank"} href="https://youtu.be/0-W1E6qtQdM">Twitch</a> (for ingestion endpoints, see: <a target={"_blank"} href="https://stream.twitch.tv/ingests/">Twitch</a>)</li>
                                 </ul>
 
                                 <form>
