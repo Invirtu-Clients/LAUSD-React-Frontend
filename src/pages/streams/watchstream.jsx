@@ -74,8 +74,25 @@ class StreamsWatchPage extends Component {
 
                 if((!response.data.is_live || response.data.is_live == 0) && (response.data.recordings && response.data.recordings.length > 0)) {
 
+                    let recording = response.data.recordings[0];
+
+                    //want to show the longest recording if multiple
+                    if(response.data.recordings.length > 1) {
+
+                        response.data.recordings.forEach((item, index) => {
+
+                            try {
+                                if(item.runtime && recording.runtime && parseFloat(item.runtime) > parseFloat(recording.runtime)) {
+                                    recording = item;
+                                }
+                            } catch(e) {
+                                console.error(e);
+                            }
+
+                        });
+                    }
                     this.setState({
-                        broadcast_widget: <RecordingVideo video={response.data.recordings[0]} />,
+                        broadcast_widget: <RecordingVideo video={recording} />,
                         event: response.data
                     })
 

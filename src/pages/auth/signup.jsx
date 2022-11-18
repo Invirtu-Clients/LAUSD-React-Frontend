@@ -104,7 +104,13 @@ class SignUp extends Component {
         let token = params.token;
 
         if(iscohost) {
-            this.props.router.navigate(Navigate.streamsCohostWatch(stream_id));
+
+            Requests.eventsAcceptInvite(stream_id, {token : token}).then(response => {
+                this.props.router.navigate(Navigate.streamsCohostWatch(stream_id));
+            }).catch(error => {
+                this.props.router.navigate(Navigate.streamsCohostWatch(stream_id));
+            });
+
         } else {
             this.props.router.navigate(Navigate.accountRegisterStep2());
         }

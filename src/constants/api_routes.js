@@ -79,6 +79,10 @@ const api_routes = {
         route : '/events/{event_id}/sendInvite',
         method : 'POST'
     },
+    events_accept_invite : {
+        route : '/events/{event_id}/acceptInvite',
+        method : 'POST'
+    },
     events_send_onscreen_content : {
         route : '/events/{event_id}/sendOnScreenContent',
         method : 'POST'

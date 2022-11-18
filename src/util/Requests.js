@@ -132,6 +132,13 @@ const Requests = {
 
         return Requests._sendRequest(url, api_routes.events_send_invite.method , data);
     },
+    eventsAcceptInvite : (event_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.events_accept_invite.route);
+
+        url = url.replace('{event_id}', event_id);
+
+        return Requests._sendRequest(url, api_routes.events_accept_invite.method , data);
+    },
 
     //User(s)
     userList : (query) => {
