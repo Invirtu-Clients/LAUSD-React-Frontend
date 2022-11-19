@@ -55,12 +55,10 @@ class RecordingVideo extends Component {
 
         return (
 
-            <section className="about-section">
                 <div className="container">
                     <h3>Watch Recording</h3>
                     {video}
                 </div>
-            </section>
 
         );
     }

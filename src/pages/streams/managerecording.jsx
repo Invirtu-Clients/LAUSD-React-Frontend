@@ -51,7 +51,7 @@ class ManageRecordingPage extends Component {
 
         Requests.eventsView(id).then(response => {
 
-            if(!HasAccess.userInList(Session.getID(), response.data.speakers)){
+            if(!HasAccess.userInList(Session.getID(), response.data.admins)){
                 this.props.router.navigate(Navigate.accessDeniedPage());
             }
 

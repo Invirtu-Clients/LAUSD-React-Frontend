@@ -16,6 +16,8 @@ import Danger from "../../component/alerts/Danger";
 import Warning from "../../component/alerts/Warning";
 import PageHeader from "../../component/layout/pageheader";
 import RecordingVideo from "../../component/section/recordingvideo";
+import ProfileHeader from "../../component/section/profile";
+
 
 class StreamsWatchPage extends Component {
 
@@ -25,8 +27,9 @@ class StreamsWatchPage extends Component {
             events: [],
             errors: {},
             stream: {},
+            profile: '',
             broadcast_widget: '',
-            isLive : '',
+            isLive: '',
         };
     }
 
@@ -55,13 +58,19 @@ class StreamsWatchPage extends Component {
 
         Requests.eventsView(id).then(response => {
 
-            if(response.data.is_live) {
-                this.setState({isLive : <Success message={"Is Live"} />});
+            this.setState({ stream: response.data });
+
+            if (response.data.is_live) {
+                this.setState({ isLive: <Success message={"Is Live"} /> });
             } else {
-                if(response.data.recordings && response.data.recordings.length > 0) {
-                    this.setState({isLive : <Warning message={"Not Live - Has Recordings!"} />});
+                if (response.data.recordings && response.data.recordings.length > 0) {
+                    this.setState({ isLive: <Warning message={"Not Live - Has Recordings!"} /> });
                 } else {
-                    this.setState({isLive : <Danger message={"Not Live - No Recordings"} />});
+                    this.setState({ isLive: <Danger message={"Not Live - No Recordings"} /> });
+                }
+
+                if (response.data.admins && response.data.admins.length > 0) {
+                    this.setState({ profile: <div className="authors"><ProfileHeader user={response.data.admins[0]} /></div> });
                 }
             }
 
@@ -72,20 +81,20 @@ class StreamsWatchPage extends Component {
                     auth_token = user.invirtu_user_jwt_token
                 }
 
-                if((!response.data.is_live || response.data.is_live == 0) && (response.data.recordings && response.data.recordings.length > 0)) {
+                if ((!response.data.is_live || response.data.is_live == 0) && (response.data.recordings && response.data.recordings.length > 0)) {
 
                     let recording = response.data.recordings[0];
 
                     //want to show the longest recording if multiple
-                    if(response.data.recordings.length > 1) {
+                    if (response.data.recordings.length > 1) {
 
                         response.data.recordings.forEach((item, index) => {
 
                             try {
-                                if(item.runtime && recording.runtime && parseFloat(item.runtime) > parseFloat(recording.runtime)) {
+                                if (item.runtime && recording.runtime && parseFloat(item.runtime) > parseFloat(recording.runtime)) {
                                     recording = item;
                                 }
-                            } catch(e) {
+                            } catch (e) {
                                 console.error(e);
                             }
 
@@ -123,11 +132,37 @@ class StreamsWatchPage extends Component {
                                 <div className="col-12">
                                     {this.state.isLive}
                                     {this.state.broadcast_widget}
+
+                                    <div className="container">
+                                        <div class="post-item-2">
+                                            <div class="post-inner">
+                                                <div className="post-content">
+                                                    <h2>{this.state.stream.title}</h2>
+                                                    <ul className="lab-ul post-date">
+                                                        <li><span><i className="icofont-ui-calendar"></i> <Moment>{this.state.stream.created_at}</Moment></span></li>
+                                                    </ul>
+                                                    <p>{this.state.stream.description}</p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr />
+                                    <div className="container">
+                                        {this.state.profile}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
+
+
+
+
+
+
                 <section className="about-section">
                     <div className="container">
                         <h3>Recordings</h3>
