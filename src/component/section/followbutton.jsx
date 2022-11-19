@@ -1,7 +1,9 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
+import Alerts from "../../util/Alerts";
 import Requests from "../../util/Requests";
 import Session from "../../util/Session";
+import withRouter from "../../util/withRouter";
 
 
 class FollowButton extends Component {
@@ -38,17 +40,22 @@ class FollowButton extends Component {
     toggleFollow(event) {
         event.preventDefault();
 
-        Requests.userToggleFollow(this.props.user.id).then((response) => {
-            console.log(response);
+        if(Session.isLoggedIn()) {
 
-            if(response.data.unfollowed== true) {
-                this.setState({text : "Follow"});
-            } else {
-                this.setState({text : "Unfollow"});
-            }
-        }).catch(error => {
-            console.log(error);
-        })
+            Requests.userToggleFollow(this.props.user.id).then((response) => {
+
+                if(response.data.unfollowed== true) {
+                    this.setState({text : "Follow"});
+                } else {
+                    this.setState({text : "Unfollow"});
+                }
+            }).catch(error => {
+                console.log(error);
+            });
+
+        } else {
+            Alerts.display('Login Required', 'You must login in order to follow a user.', 'error');
+        }
     }
 
     render() { 

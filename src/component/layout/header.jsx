@@ -91,10 +91,10 @@ class Header extends Component {
 
             loginOrAccountMobile = (<>
                 <li className="d-block d-sm-none" >
-                    <a href={Navigate.usersList()} >Login</a>
+                    <a href={Navigate.authLogin()} >Login</a>
                 </li>
                 <li className="d-block d-sm-none" >
-                    <a href={Navigate.usersList()} >Register</a>
+                    <a href={Navigate.authRegister()} >Register</a>
                 </li>
 
             </>);

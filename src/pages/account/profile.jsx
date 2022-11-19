@@ -34,7 +34,6 @@ class AccountUpdatePage extends Component {
 
         Requests.userMe().then(response => {
 
-            console.log(response.data);
             this.setState({
                 me: response.data,
                 profileHeader: <ProfileUpdateHeader user={response.data} />

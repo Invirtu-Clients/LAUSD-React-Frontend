@@ -9,6 +9,7 @@ import ImageUploading from 'react-images-uploading';
 import Data from "../../util/Data";
 import Textarea from "../form/textarea";
 import Loading from "../alerts/Loading";
+import Alerts from "../../util/Alerts";
 
 const Name = "Rajib Ahmed";
 const desc = "Competently conceptualize alternative synergy and technically and niche markets. Efficiently impact technically sound outsourcing rath tnclicks-and-mortar best practices.";
@@ -73,9 +74,10 @@ class ProfileUpdateHeader extends Component {
 
         Requests.updateAccount(data).then(response => {
            
-            alert("Account Has Been Updated.");
-
             this.setState({isLoading : false});
+
+            Alerts.display("Success", "Your profile has been updated", 'success');
+
 
         }).catch(error => {
 
@@ -125,7 +127,7 @@ class ProfileUpdateHeader extends Component {
 
         return (
             <div className="product-details">
-                <div className="row align-items-center">
+                <div className="row">
                     <div className="col-md-6 col-12">
                         <div className="product-thumb">
                             <div className="swiper-container pro-single-top">
