@@ -27,19 +27,24 @@ class StreamsBroadcastPage extends Component {
             errors: {},
             stream: {},
             event: {},
+            min_fps : 0,
+            max_fps : 0,
+            
             invite_cohost_name: '',
             invite_cohost_email: '',
-            onscreen_message : '',
+            onscreen_message: '',
             watch_page: '#',
             video_conference_widget: '',
             rtmp_source: '',
-            isLoadingRTMPSource : false,
-            isLoadingOnScreenMessage : false,
-            isLoadingAddCohost : false,
-            rtmpSourceError : '',
-            onScreenMessageError : '',
-            addCohostError : '',
-            addCohostErrorObject : {},
+            isLoadingRTMPSource: false,
+            isLoadingOnScreenMessage: false,
+            isLoadingAddCohost: false,
+            isLoadingUpdateFPS : false,
+            rtmpSourceError: '',
+            onScreenMessageError: '',
+            addCohostError: '',
+            addCohostErrorObject: {},
+            fpsErrorObject: {},
         };
     }
 
@@ -53,7 +58,7 @@ class StreamsBroadcastPage extends Component {
 
             Requests.eventsView(id).then(response => {
 
-                if(!HasAccess.userInList(Session.getID(), response.data.admins)){
+                if (!HasAccess.userInList(Session.getID(), response.data.admins)) {
                     this.props.router.navigate(Navigate.accessDeniedPage());
                 }
 
@@ -62,7 +67,9 @@ class StreamsBroadcastPage extends Component {
                     this.setState({
                         video_conference_widget: <VideoConferencing id={response.data.invirtu_id} auth_token={userData.invirtu_user_jwt_token} />,
                         event: response.data,
-                        watch_page: Navigate.streamsWatchPage(response.data.id)
+                        watch_page: Navigate.streamsWatchPage(response.data.id),
+                        min_fps : response.data.invirtu_event.screenshare_frames_per_second_min,
+                        max_fps : response.data.invirtu_event.screenshare_frames_per_second_max,
                     });
                 }
             }).catch(error => {
@@ -80,11 +87,11 @@ class StreamsBroadcastPage extends Component {
 
         let id = this.props.router.params.id;
 
-        this.setState({isLoadingRTMPSource : true});
+        this.setState({ isLoadingRTMPSource: true });
 
         Requests.eventsAddRTMPSource(id, { rtmp_source: this.state.rtmp_source }).then(response => {
 
-            this.setState({isLoadingRTMPSource : false});
+            this.setState({ isLoadingRTMPSource: false });
 
             this.setState({
                 rtmp_source: '',
@@ -93,7 +100,7 @@ class StreamsBroadcastPage extends Component {
 
         }).catch(error => {
 
-            this.setState({isLoadingRTMPSource : false});
+            this.setState({ isLoadingRTMPSource: false });
 
             let jsonErrors = Response.parseJSONFromError(error);
 
@@ -163,13 +170,44 @@ class StreamsBroadcastPage extends Component {
         })
     }
 
+    updateFPS(event) {
+
+        event.preventDefault();
+
+        let id = this.props.router.params.id;
+
+        let data = {
+            screenshare_frames_per_second_max : this.state.max_fps,
+            screenshare_frames_per_second_min : this.state.min_fps
+        };
+
+        this.setState({ isLoadingUpdateFPS: true });
+
+        Requests.eventsUpdateInvirtuEvent(id, data).then(response => {
+
+            this.setState({ isLoadingUpdateFPS: false });
+
+            this.setState({
+                event: response.data,
+                min_fps : response.data.invirtu_event.screenshare_frames_per_second_min,
+                max_fps : response.data.invirtu_event.screenshare_frames_per_second_max,
+            });
+
+        }).catch(error => {
+
+            this.setState({ isLoadingUpdateFPS: false });
+
+            console.log(error);
+        })
+    }
+
     inviteCohost(event) {
 
         let name = this.state.invite_cohost_name;
 
         let email = this.state.invite_cohost_email;
 
-        this.setState({isLoadingAddCohost : true});
+        this.setState({ isLoadingAddCohost: true });
 
         let data = {
             name: name,
@@ -183,27 +221,27 @@ class StreamsBroadcastPage extends Component {
             this.setState({
                 invite_cohost_name: '',
                 invite_cohost_email: '',
-                isLoadingAddCohost : false
+                isLoadingAddCohost: false
             });
 
             this.state.event.invites.push(response.data);
         }).catch(error => {
 
-            this.setState({isLoadingAddCohost : false});
+            this.setState({ isLoadingAddCohost: false });
 
             let jsonErrors = Response.parseJSONFromError(error);
 
             if (jsonErrors && jsonErrors.message) {
-                this.setState({ addCohostError : jsonErrors.message });
+                this.setState({ addCohostError: jsonErrors.message });
 
                 setTimeout(() => {
-                    this.setState({ addCohostError : '' });
+                    this.setState({ addCohostError: '' });
                 }, timeouts.error_message_timeout)
             } else {
-                this.setState({addCohostErrorObject : jsonErrors});
+                this.setState({ addCohostErrorObject: jsonErrors });
 
-                setTimeout(() =>{
-                    this.setState({addCohostErrorObject : {}});
+                setTimeout(() => {
+                    this.setState({ addCohostErrorObject: {} });
                 }, timeouts.error_message_timeout)
             }
         });
@@ -211,34 +249,34 @@ class StreamsBroadcastPage extends Component {
     }
 
     sendOnScreenMessage(event) {
-        
+
         event.preventDefault();
 
         let message = this.state.onscreen_message;
 
         let id = this.props.router.params.id;
 
-        this.setState({isLoadingOnScreenMessage : true});
+        this.setState({ isLoadingOnScreenMessage: true });
 
         let data = {
-            type : 'message',
-            content : message
+            type: 'message',
+            content: message
         };
 
         Requests.eventsSendOnScreenContent(id, data).then(response => {
 
-            this.setState({onscreen_message : '', isLoadingOnScreenMessage : false});
+            this.setState({ onscreen_message: '', isLoadingOnScreenMessage: false });
         }).catch(error => {
 
-            this.setState({isLoadingOnScreenMessage : false});
+            this.setState({ isLoadingOnScreenMessage: false });
 
             let jsonErrors = Response.parseJSONFromError(error);
 
             if (jsonErrors) {
-                this.setState({ onScreenMessageError : jsonErrors.message });
+                this.setState({ onScreenMessageError: jsonErrors.message });
 
                 setTimeout(() => {
-                    this.setState({ onScreenMessageError : '' });
+                    this.setState({ onScreenMessageError: '' });
                 }, timeouts.error_message_timeout)
             }
         });
@@ -262,6 +300,8 @@ class StreamsBroadcastPage extends Component {
                                 <button className="nav-link active lead" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Setup</button>
                                 <button className="nav-link lead" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Interaction</button>
                                 <button className="nav-link lead" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Recordings</button>
+                                <button className="nav-link lead" id="nav-branding-tab" data-bs-toggle="tab" data-bs-target="#nav-branding" type="button" role="tab" aria-controls="nav-branding" aria-selected="false">Branding</button>
+                                <button className="nav-link lead" id="nav-advanced-tab" data-bs-toggle="tab" data-bs-target="#nav-advanced" type="button" role="tab" aria-controls="nav-advanced" aria-selected="false">Advanced</button>
                             </div>
                         </nav>
                         <div className="tab-content" id="nav-tabContent">
@@ -430,12 +470,12 @@ class StreamsBroadcastPage extends Component {
                                 <p>Broadcast a message that will be displayed on-screen to users who are watchings.</p>
 
                                 <div className="form-group">
-                                    <Textarea value={this.state.onscreen_message} onChange={(e) => { this.setState({ onscreen_message : e.target.value }); }} placeholder="Enter a message to display on-screen."></Textarea>
+                                    <Textarea value={this.state.onscreen_message} onChange={(e) => { this.setState({ onscreen_message: e.target.value }); }} placeholder="Enter a message to display on-screen."></Textarea>
                                 </div>
 
 
                                 <div className="form-group">
-                                    <button type="button" className="d-block default-button" onClick={(e => {this.sendOnScreenMessage(e)})}><span>{this.state.isLoadingOnScreenMessage ? <Loading /> : ''} Send</span></button>
+                                    <button type="button" className="d-block default-button" onClick={(e => { this.sendOnScreenMessage(e) })}><span>{this.state.isLoadingOnScreenMessage ? <Loading /> : ''} Send</span></button>
                                     {this.state.onScreenMessageError ? <Danger message={this.state.onScreenMessageError} /> : ''}
                                 </div>
                                 <br />
@@ -448,13 +488,13 @@ class StreamsBroadcastPage extends Component {
                                 <div className="row g-3">
                                     <div className="col">
                                         <input type="text" onChange={(e) => { this.setState({ invite_cohost_name: e.target.value }); }} value={this.state.invite_cohost_name} className="form-control" placeholder="Name" aria-label="Name" />
-                                        {this.state.addCohostErrorObject && this.state.addCohostErrorObject.name && this.state.addCohostErrorObject.name.map(function(name, index){
+                                        {this.state.addCohostErrorObject && this.state.addCohostErrorObject.name && this.state.addCohostErrorObject.name.map(function (name, index) {
                                             return <Danger message={name} key={index} />;
                                         })}
                                     </div>
                                     <div className="col">
                                         <input type="text" onChange={(e) => { this.setState({ invite_cohost_email: e.target.value }); }} value={this.state.invite_cohost_email} className="form-control" placeholder="Email" aria-label="Email" />
-                                        {this.state.addCohostErrorObject && this.state.addCohostErrorObject.email && this.state.addCohostErrorObject.email.map(function(name, index){
+                                        {this.state.addCohostErrorObject && this.state.addCohostErrorObject.email && this.state.addCohostErrorObject.email.map(function (name, index) {
                                             return <Danger message={name} key={index} />;
                                         })}
                                     </div>
@@ -484,6 +524,47 @@ class StreamsBroadcastPage extends Component {
                                         return <li key={index}><Link to={Navigate.streamsManageRecordingPage(this.state.event.id, recording.id)}>{recording.title} (Duration: {Data.convertToHHMMSS(recording.runtime)})</Link></li>;
                                     })}
                                 </ul>
+                            </div>
+                            <div className="tab-pane fade" id="nav-branding" role="tabpanel" aria-labelledby="nav-branding-tab">
+                                <br /><br />
+                                <h3>Recordings</h3>
+                                <p>When a broadcast is started, a recording will be automatically generated. Those recordings can be viewed below.</p>
+
+                                <br />
+                                <ul className="indent">
+                                    {this.state.event && this.state.event.recordings && this.state.event.recordings.map((recording, index) => {
+                                        return <li key={index}><Link to={Navigate.streamsManageRecordingPage(this.state.event.id, recording.id)}>{recording.title} (Duration: {Data.convertToHHMMSS(recording.runtime)})</Link></li>;
+                                    })}
+                                </ul>
+                            </div>
+                            <div className="tab-pane fade" id="nav-advanced" role="tabpanel" aria-labelledby="nav-advanced-tab">
+                                <br /><br />
+                                <h3>Adanced Configuration</h3>
+                                <p>Please ONLY use this tab for advanced configurations and if you know what you are doing when setting this options.</p>
+
+
+                                <br />
+                                <h4>FPS (Framers Per Second)</h4>
+                                <p>For systems that can handle higher throughput, change your FPS settings here. If your FPS is too high, your video sharing will not work.</p>
+
+                                <p><strong>Important:</strong> You must change the frames per second BEFORE you join the session. Afterwards it must be refreshed.</p>
+                                <div className="form-group">
+                                    <label>Minimum FPS</label>
+                                    <input type="number" onChange={(e) => { this.setState({ min_fps : e.target.value }); }} value={this.state.min_fps} className="form-control" placeholder="30" aria-label="30" />
+                                    {this.state.addCohostErrorObject && this.state.fpsErrorObject.name && this.state.fpsErrorObject.name.map(function (name, index) {
+                                        return <Danger message={name} key={index} />;
+                                    })}
+                                </div>
+                                <div className="form-group">
+                                    <label>Maximum FPS</label>
+                                    <input type="number" onChange={(e) => { this.setState({ max_fps : e.target.value }); }} value={this.state.max_fps} className="form-control" placeholder="60" aria-label="60" />
+                                    {this.state.addCohostErrorObject && this.state.fpsErrorObject.name && this.state.fpsErrorObject.name.map(function (name, index) {
+                                        return <Danger message={name} key={index} />;
+                                    })}
+                                </div>
+                                <div className="form-group">
+                                    <button type="button" className="d-block default-button" onClick={(e => { this.updateFPS(e) })}><span>{this.state.isLoadingUpdateFPS ? <Loading /> : ''} Update</span></button>
+                                </div>
                             </div>
                         </div>
                     </div>

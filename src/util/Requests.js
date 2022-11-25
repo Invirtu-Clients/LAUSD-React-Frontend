@@ -64,6 +64,13 @@ const Requests = {
 
         return Requests._sendRequest(url, api_routes.events_update.method, data);
     },
+    eventsUpdateInvirtuEvent : (event_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.events_update_invirtu_event.route);
+
+        url = url.replace('{event_id}', event_id);
+
+        return Requests._sendRequest(url, api_routes.events_update_invirtu_event.method, data);
+    },
     eventsDelete : (event_id) => {
         let url = Requests._formatApiUrl(api_routes.events_delete.route);
 

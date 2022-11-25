@@ -87,6 +87,10 @@ const api_routes = {
         route : '/events/{event_id}/sendOnScreenContent',
         method : 'POST'
     },
+    events_update_invirtu_event : {
+        route : '/events/{event_id}/invirtu',
+        method : 'PUT'
+    },
 
     //Messages
     messages_list : {
