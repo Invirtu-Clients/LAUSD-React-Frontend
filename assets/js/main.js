@@ -1,8 +1,5 @@
-import $ from "jquery";
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-
-    
+(function ($) {
+    "use strict";
     $(window).on('load', function () {
         $('.preloader').fadeOut(1000);
     });
@@ -421,3 +418,4 @@ import { Swiper, SwiperSlide } from 'swiper/react';
         });
     });
 
+}(jQuery));

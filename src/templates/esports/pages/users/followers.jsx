@@ -1,4 +1,7 @@
 import { Component, Fragment } from "react";
+import Requests from "../../../../util/Requests";
+import withRouter from "../../../../util/withRouter";
+import Header from "../../component/layout/header";
 
 class ProfilePage extends Component {
 
