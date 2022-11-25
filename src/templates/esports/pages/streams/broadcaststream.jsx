@@ -178,7 +178,9 @@ class StreamsBroadcastPage extends Component {
 
         let data = {
             screenshare_frames_per_second_max : this.state.max_fps,
-            screenshare_frames_per_second_min : this.state.min_fps
+            screenshare_frames_per_second_min : this.state.min_fps,
+            desktop_frames_per_second_max : this.state.max_fps,
+            desktop_frames_per_second_min : this.state.min_fps,
         };
 
         this.setState({ isLoadingUpdateFPS: true });
