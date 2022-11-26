@@ -27,8 +27,10 @@ class StreamsBroadcastPage extends Component {
             errors: {},
             stream: {},
             event: {},
-            min_fps : 0,
-            max_fps : 0,
+            min_screenshare_fps : 0,
+            max_screenshare_fps : 0,
+            min_desktop_fps : 0,
+            max_desktop_fps : 0,
             
             invite_cohost_name: '',
             invite_cohost_email: '',
@@ -68,8 +70,10 @@ class StreamsBroadcastPage extends Component {
                         video_conference_widget: <VideoConferencing id={response.data.invirtu_id} auth_token={userData.invirtu_user_jwt_token} />,
                         event: response.data,
                         watch_page: Navigate.streamsWatchPage(response.data.id),
-                        min_fps : response.data.invirtu_event.screenshare_frames_per_second_min,
-                        max_fps : response.data.invirtu_event.screenshare_frames_per_second_max,
+                        min_screenshare_fps : response.data.invirtu_event.screenshare_frames_per_second_min,
+                        max_screenshare_fps : response.data.invirtu_event.screenshare_frames_per_second_max,
+                        min_desktop_fps : response.data.invirtu_event.desktop_frames_per_second_min,
+                        max_desktop_fps : response.data.invirtu_event.desktop_frames_per_second_max,
                     });
                 }
             }).catch(error => {
@@ -177,10 +181,10 @@ class StreamsBroadcastPage extends Component {
         let id = this.props.router.params.id;
 
         let data = {
-            screenshare_frames_per_second_max : this.state.max_fps,
-            screenshare_frames_per_second_min : this.state.min_fps,
-            desktop_frames_per_second_max : this.state.max_fps,
-            desktop_frames_per_second_min : this.state.min_fps,
+            screenshare_frames_per_second_max : this.state.max_screenshare_fps,
+            screenshare_frames_per_second_min : this.state.min_screenshare_fps,
+            desktop_frames_per_second_max : this.state.max_desktop_fps,
+            desktop_frames_per_second_min : this.state.min_desktop_fps,
         };
 
         this.setState({ isLoadingUpdateFPS: true });
@@ -191,8 +195,10 @@ class StreamsBroadcastPage extends Component {
 
             this.setState({
                 event: response.data,
-                min_fps : response.data.invirtu_event.screenshare_frames_per_second_min,
-                max_fps : response.data.invirtu_event.screenshare_frames_per_second_max,
+                min_screenshare_fps : response.data.invirtu_event.screenshare_frames_per_second_min,
+                max_screenshare_fps : response.data.invirtu_event.screenshare_frames_per_second_max,
+                min_desktop_fps : response.data.invirtu_event.desktop_frames_per_second_min,
+                max_desktop_fps : response.data.invirtu_event.desktop_frames_per_second_max,
             });
 
         }).catch(error => {
@@ -549,17 +555,31 @@ class StreamsBroadcastPage extends Component {
                                 <h4>FPS (Framers Per Second)</h4>
                                 <p>For systems that can handle higher throughput, change your FPS settings here. If your FPS is too high, your video sharing will not work.</p>
 
-                                <p><strong>Important:</strong> You must change the frames per second BEFORE you join the session. Afterwards it must be refreshed.</p>
+                                <p><strong>Important:</strong> You must change the frames per second BEFORE you join the session. Afterwards, this session must be refreshed.</p>
                                 <div className="form-group">
-                                    <label>Minimum FPS</label>
-                                    <input type="number" onChange={(e) => { this.setState({ min_fps : e.target.value }); }} value={this.state.min_fps} className="form-control" placeholder="30" aria-label="30" />
+                                    <label>Screenshare Minimum FPS</label>
+                                    <input type="number" onChange={(e) => { this.setState({ min_screenshare_fps : e.target.value }); }} value={this.state.min_screenshare_fps} className="form-control" placeholder="30" aria-label="30" />
                                     {this.state.addCohostErrorObject && this.state.fpsErrorObject.name && this.state.fpsErrorObject.name.map(function (name, index) {
                                         return <Danger message={name} key={index} />;
                                     })}
                                 </div>
                                 <div className="form-group">
-                                    <label>Maximum FPS</label>
-                                    <input type="number" onChange={(e) => { this.setState({ max_fps : e.target.value }); }} value={this.state.max_fps} className="form-control" placeholder="60" aria-label="60" />
+                                    <label>Screenshare Maximum FPS</label>
+                                    <input type="number" onChange={(e) => { this.setState({ max_screenshare_fps : e.target.value }); }} value={this.state.max_screenshare_fps} className="form-control" placeholder="60" aria-label="60" />
+                                    {this.state.addCohostErrorObject && this.state.fpsErrorObject.name && this.state.fpsErrorObject.name.map(function (name, index) {
+                                        return <Danger message={name} key={index} />;
+                                    })}
+                                </div>
+                                <div className="form-group">
+                                    <label>Desktop Minimum FPS</label>
+                                    <input type="number" onChange={(e) => { this.setState({ min_desktop_fps : e.target.value }); }} value={this.state.min_desktop_fps} className="form-control" placeholder="30" aria-label="30" />
+                                    {this.state.addCohostErrorObject && this.state.fpsErrorObject.name && this.state.fpsErrorObject.name.map(function (name, index) {
+                                        return <Danger message={name} key={index} />;
+                                    })}
+                                </div>
+                                <div className="form-group">
+                                    <label>Desktop Maximum FPS</label>
+                                    <input type="number" onChange={(e) => { this.setState({ max_desktop_fps : e.target.value }); }} value={this.state.max_desktop_fps} className="form-control" placeholder="60" aria-label="60" />
                                     {this.state.addCohostErrorObject && this.state.fpsErrorObject.name && this.state.fpsErrorObject.name.map(function (name, index) {
                                         return <Danger message={name} key={index} />;
                                     })}
