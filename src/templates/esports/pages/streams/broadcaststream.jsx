@@ -47,6 +47,9 @@ class StreamsBroadcastPage extends Component {
             addCohostError: '',
             addCohostErrorObject: {},
             fpsErrorObject: {},
+
+            overlayImages: [],
+            isLoadingOverlayImage : false,
         };
     }
 
@@ -287,6 +290,61 @@ class StreamsBroadcastPage extends Component {
                     this.setState({ onScreenMessageError: '' });
                 }, timeouts.error_message_timeout)
             }
+        });
+
+    }
+
+    overlayImageOnChange = (imageList, addUpdateIndex) => {
+
+        this.setState({ images: imageList });
+
+    };
+
+    saveOverlayImage = (index) => {
+
+        let image = this.state.images[index];
+
+        this.setState({isLoadingImage : true});
+
+        const blob = Data.dataURItoBlob(image.data_url);
+
+        const formData = new FormData();
+
+        formData.append('image', blob, 'screenshot.png');
+
+        Requests.userUploadAvatar(formData).then(response => {
+            this.setState({ user: response.data, images: [], isLoadingImage : false });
+        }).catch(error => {
+
+            this.setState({isLoadingImage : false});
+            console.log(error)
+        });
+
+    }
+
+    activateOverlay = (event, overlay_id) => {
+
+        event.preventDefault();
+
+        let id = this.props.router.params.id;
+
+        Requests.eventsEnableOverlay(id, overlay_id).then((response) => {
+            console.log(response);
+        }).catch(error => {
+            console.log(error);
+        });
+    }
+
+    deactivateOverlay = (event) => {
+
+        event.preventDefault();
+
+        let id = this.props.router.params.id;
+
+        Requests.eventsDisableOverlay(id).then((response) => {
+            console.log(response);
+        }).catch(error => {
+            console.log(error);
         });
 
     }
@@ -535,13 +593,22 @@ class StreamsBroadcastPage extends Component {
                             </div>
                             <div className="tab-pane fade" id="nav-branding" role="tabpanel" aria-labelledby="nav-branding-tab">
                                 <br /><br />
-                                <h3>Recordings</h3>
-                                <p>When a broadcast is started, a recording will be automatically generated. Those recordings can be viewed below.</p>
+                                <h3>Branding</h3>
+                                <p>Manage your streams branding options below.</p>
 
                                 <br />
-                                <ul className="indent">
-                                    {this.state.event && this.state.event.recordings && this.state.event.recordings.map((recording, index) => {
-                                        return <li key={index}><Link to={Navigate.streamsManageRecordingPage(this.state.event.id, recording.id)}>{recording.title} (Duration: {Data.convertToHHMMSS(recording.runtime)})</Link></li>;
+
+                                <h4>Overlays</h4>
+                                <p>Overlays are images that can placed over the live stream. Manage your overlays here.</p>
+                                <button className="btn btn-danger" onClick={(e) => { this.deactivateOverlay(e) }}>Deactivate Overlay</button>
+                                <ul >
+                                    {this.state.event && this.state.event.overlays && this.state.event.overlays.map((overlay, index) => {
+                                        return <li key={index}><div className="row">
+                                            <div className="col-8">{overlay.label}<br />
+                                            <img className="img-fluid" src={overlay.image_url} />
+                                            </div>
+                                            <div className="col-4"><button className="btn btn-success" onClick={(e) => { this.activateOverlay(e, overlay.id) }}>Activate</button></div></div>
+                                        </li>;
                                     })}
                                 </ul>
                             </div>

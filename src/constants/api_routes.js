@@ -91,6 +91,22 @@ const api_routes = {
         route : '/events/{event_id}/invirtu',
         method : 'PUT'
     },
+    events_add_overlay : {
+        route : '/events/{event_id}/addOverlay',
+        method : 'POST'
+    },
+    events_remove_overlay : {
+        route : '/events/{event_id}/removeOverlay/{overlay_id}',
+        method : 'DELETE'
+    },
+    events_enable_overlay : {
+        route : '/events/{event_id}/enableOverlay/{overlay_id}',
+        method : 'POST'
+    },
+    events_disable_overlay : {
+        route : '/events/{event_id}/disableOverlay',
+        method : 'POST'
+    },
 
     //Messages
     messages_list : {

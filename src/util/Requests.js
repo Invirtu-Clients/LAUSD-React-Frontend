@@ -146,6 +146,38 @@ const Requests = {
 
         return Requests._sendRequest(url, api_routes.events_accept_invite.method , data);
     },
+    eventsAddOverlay : (event_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.events_add_overlay.route);
+
+        url = url.replace('{event_id}', event_id);
+
+        return Requests._sendRequest(url, api_routes.events_add_overlay.method , data);
+    },
+    eventsRemoveOverlay : (event_id, overlay_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.events_remove_overlay.route);
+
+        url = url.replace('{event_id}', event_id);
+
+        url = url.replace('{overlay_id}', overlay_id);
+
+        return Requests._sendRequest(url, api_routes.events_remove_overlay.method , data);
+    },
+    eventsEnableOverlay : (event_id, overlay_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.events_enable_overlay.route);
+
+        url = url.replace('{event_id}', event_id);
+
+        url = url.replace('{overlay_id}', overlay_id);
+
+        return Requests._sendRequest(url, api_routes.events_enable_overlay.method , data);
+    },
+    eventsDisableOverlay : (event_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.events_disable_overlay.route);
+
+        url = url.replace('{event_id}', event_id);
+
+        return Requests._sendRequest(url, api_routes.events_disable_overlay.method , data);
+    },
 
     //User(s)
     userList : (query) => {
