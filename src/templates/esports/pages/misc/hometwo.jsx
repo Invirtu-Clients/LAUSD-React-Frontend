@@ -67,12 +67,12 @@ class HomeTwo extends Component {
                             <div className="blog-item">
                                 <div className="blog-inner d-flex flex-wrap align-items-center">
                                     <div className="blog-thumb w-xl-50 w-100">
-                                        <Link to="/blog-single">
+                                        
                                             <img src={`assets/images/blog/03.jpg`} alt={`Earn Donations`} className="w-100" />
-                                        </Link>
+                                        
                                     </div>
                                     <div className="blog-content p-4 w-xl-50 w-100">
-                                        <Link to="/blog-single"><h3>On-Screen Donations</h3></Link>
+                                        <h3>On-Screen Donations</h3>
 
                                         <p>Get paid by asking your fans for on-screen donations that can be deposited directly into your bank account.</p>
                                     </div>
