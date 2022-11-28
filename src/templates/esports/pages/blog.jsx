@@ -8,7 +8,7 @@ let BlogContentListOne = [
     {
         imgUrl: 'assets/images/blog/03.jpg',
         imgAlt: 'Blog Thumb',
-        title: 'Distinctive redefine resource maximizing for',
+        title: 'Distinctive redefine resource maximizing for 123',
         desc: 'Uniquely conceptuaze visionary process ariwith tactical ramatica centered qualitys vectoris with outofthebox scenario is ompelling uthoritatively generate front-end niches after one',
         btnText: 'read more',
         pubDate: '15 May 2022',
