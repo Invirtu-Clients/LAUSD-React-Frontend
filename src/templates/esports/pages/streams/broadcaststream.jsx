@@ -577,7 +577,7 @@ class StreamsBroadcastPage extends Component {
 
                                 <hr />
                                 <h3>Restreams</h3>
-                                <p>Restreams is the ability to stream your broadcast to multiple other sources. Enter the RTMP streams from sources like Facebook, Youtube or Twitch to Restream to those sites. To see how to restream to each one, see the links below:</p>
+                                <p>Restreams is the ability to stream your broadcast to multiple other sources. Enter the RTMP streams from sources like Facebook, Youtube or Twitch to Restream to those sites BEFORE an broadcast or recording has started. To see how to restream to each one, see the links below:</p>
                                 <ul className="indent">
                                     <li><a target={"_blank"} href="https://youtu.be/OvQCLkCQgTc">Youtube</a></li>
                                     <li><a target={"_blank"} href="https://youtu.be/eSlgz0aZJTs">Facebook</a></li>
