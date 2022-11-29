@@ -1,5 +1,6 @@
 //import Template from "./templates/esports";
 import React from "react";
+import ReactGA from 'react-ga';
 import { lazy } from "react";
 
 let Template = null;
@@ -14,6 +15,10 @@ if (template_dir) {
   Template = require('./templates/error').default;
 }
 
+if(process.env.REACT_APP_GA_TRACKING_ID) {
+    ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_ID);
+    ReactGA.pageview(window.location.pathname + window.location.search);
+}
 
 function App() {
 
