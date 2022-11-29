@@ -40,6 +40,7 @@ import CohostWatchStream from "./pages/streams/cohostwatchstream";
 import AuthFacebook from "./pages/auth/auth_facebook";
 import AuthTwitch from "./pages/auth/auth_twitch";
 import AuthYoutube from "./pages/auth/auth_youtube";
+import AuthStripe from "./pages/auth/auth_stripe";
 import SignUp from "./pages/auth/signup";
 import ForgotPassword from "./pages/auth/forgotpassword";
 import ResetPassword from "./pages/auth/resetpassword";
@@ -107,6 +108,7 @@ function Template() {
           <Route path={Navigate.authFacebook()} element={<AuthFacebook />} />
           <Route path={Navigate.authTwitch()} element={<AuthTwitch />} />
           <Route path={Navigate.authYoutube()} element={<AuthYoutube />} />
+          <Route path={Navigate.authStripe()} element={<AuthStripe />} />
 
           <Route path={Navigate.streamsPage()} element={<StreamsPage />} />
           <Route path={Navigate.streamsCreatePage()} element={<StreamsCreatePage />} />

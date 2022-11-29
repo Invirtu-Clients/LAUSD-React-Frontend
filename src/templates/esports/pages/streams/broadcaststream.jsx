@@ -17,6 +17,7 @@ import Danger from "../../component/alerts/Danger";
 import Textarea from "../../component/form/textarea";
 import Data from "../../../../util/Data";
 import Footer from "../../component/layout/footer";
+import Widgets from "../../../../constants/widgets";
 
 class StreamsBroadcastPage extends Component {
 
@@ -27,6 +28,10 @@ class StreamsBroadcastPage extends Component {
             errors: {},
             stream: {},
             event: {},
+            me : {},
+
+            title : '',
+            description : '',
             min_screenshare_fps : 0,
             max_screenshare_fps : 0,
             min_desktop_fps : 0,
@@ -38,10 +43,13 @@ class StreamsBroadcastPage extends Component {
             watch_page: '#',
             video_conference_widget: '',
             rtmp_source: '',
+            isLoading : false,
             isLoadingRTMPSource: false,
             isLoadingOnScreenMessage: false,
             isLoadingAddCohost: false,
             isLoadingUpdateFPS : false,
+            isLoadingOverlay : false,
+            isLoadingDonation : false,
             rtmpSourceError: '',
             onScreenMessageError: '',
             addCohostError: '',
@@ -60,6 +68,8 @@ class StreamsBroadcastPage extends Component {
         Requests.userMe().then(response => {
 
             let userData = response.data;
+
+            this.setState({me : response.data});
 
             Requests.eventsView(id).then(response => {
 
@@ -85,6 +95,39 @@ class StreamsBroadcastPage extends Component {
 
         }).catch(error => {
             console.log(error);
+        });
+    }
+
+    update(event) {
+        event.preventDefault();
+
+        let id = this.props.router.params.id;
+
+        let data = {
+            title : this.state.title,
+            description : this.state.description
+        };
+
+        this.setState({isLoading : true});
+
+        Requests.eventsUpdate(id, data).then(response => {
+
+            this.setState({ event : response.data, isLoading : false});
+
+        }).catch(error => {
+
+            this.setState({isLoading : false});
+
+            let jsonErrors = Response.parseJSONFromError(error);
+
+            if (jsonErrors) {
+                this.setState({ rtmpSourceError: jsonErrors.message });
+
+                setTimeout(() => {
+                    this.setState({ rtmpSourceError: '' });
+                }, timeouts.error_message_timeout)
+            }
+
         });
     }
 
@@ -328,9 +371,14 @@ class StreamsBroadcastPage extends Component {
 
         let id = this.props.router.params.id;
 
+        this.setState({isLoadingOverlay : true});
+
         Requests.eventsEnableOverlay(id, overlay_id).then((response) => {
+
+            this.setState({isLoadingOverlay : false});
             console.log(response);
         }).catch(error => {
+            this.setState({isLoadingOverlay : false});
             console.log(error);
         });
     }
@@ -341,9 +389,56 @@ class StreamsBroadcastPage extends Component {
 
         let id = this.props.router.params.id;
 
+        this.setState({isLoadingOverlay : true});
+
         Requests.eventsDisableOverlay(id).then((response) => {
+            this.setState({isLoadingOverlay : false});
             console.log(response);
         }).catch(error => {
+            this.setState({isLoadingOverlay : false});
+            console.log(error);
+        });
+
+    }
+
+    activateDonations = (event) => {
+
+        event.preventDefault();
+
+        let id = this.props.router.params.id;
+
+        this.setState({isLoadingDonation : true});
+
+        Requests.eventsEnableDonations(id).then((response) => {
+
+            this.setState({
+                event: response.data,
+                isLoadingDonation : false
+            });
+
+        }).catch(error => {
+            this.setState({isLoadingDonation : false});
+            console.log(error);
+        });
+    }
+
+    deactivateDonations = (event) => {
+
+        event.preventDefault();
+
+        let id = this.props.router.params.id;
+
+        this.setState({isLoadingDonation : true});
+
+        Requests.eventsDisableDonations(id).then((response) => {
+            
+            this.setState({
+                event: response.data,
+                isLoadingDonation : false
+            });
+
+        }).catch(error => {
+            this.setState({isLoadingDonation : false});
             console.log(error);
         });
 
@@ -527,7 +622,7 @@ class StreamsBroadcastPage extends Component {
                                 <br /><br />
                                 <h3>Engagement</h3>
 
-                                <p>Create interactive experiences with your audience as your stream your content.</p>
+                                <p className="lead">Create interactive experiences with your audience as your stream your content.</p>
 
                                 <hr />
                                 <br />
@@ -545,6 +640,17 @@ class StreamsBroadcastPage extends Component {
                                     {this.state.onScreenMessageError ? <Danger message={this.state.onScreenMessageError} /> : ''}
                                 </div>
                                 <br />
+
+                                <hr />
+                                <h3>Accept Donations</h3>
+                                <p>With your streams, you are able to accept donations from your fans. Activating your donations will have a blue donation button on the top-right corner of your streams. Enable your donations below.</p>
+
+                                { this.state.me && this.state.me.stripe_donation_purhcase_link_url ? <button type="button" className="btn btn-success" onClick={(e) => {this.activateDonations(e)}}>{this.state.isLoadingDonation ? <Loading /> : ''} Activate Donations</button> : '' }
+
+                                { this.state.me && this.state.me.stripe_donation_purhcase_link_url ?<button type="button" className="btn btn-danger" onClick={(e) => {this.activateDonations(e)}}>{this.state.isLoadingDonation ? <Loading /> : ''} Deactivate Donations</button> : '' }
+
+                                {this.state.me && !this.state.me.stripe_donation_purhcase_link_url ? <><Danger message={"Activation Required"}/> <p>In order to accept donations, you must activate Stripe and activate your <Link to={Navigate.accountMainPage()}>donations page here.</Link></p></> : ''}
+                                
                                 <hr />
                                 <br />
                                 <h3>Co-Hosts</h3>
@@ -582,7 +688,7 @@ class StreamsBroadcastPage extends Component {
                             <div className="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                                 <br /><br />
                                 <h3>Recordings</h3>
-                                <p>When a broadcast is started, a recording will be automatically generated. Those recordings can be viewed below.</p>
+                                <p className="lead">When a broadcast is started, a recording will be automatically generated. Those recordings can be viewed below.</p>
 
                                 <br />
                                 <ul className="indent">
@@ -594,20 +700,41 @@ class StreamsBroadcastPage extends Component {
                             <div className="tab-pane fade" id="nav-branding" role="tabpanel" aria-labelledby="nav-branding-tab">
                                 <br /><br />
                                 <h3>Branding</h3>
-                                <p>Manage your streams branding options below.</p>
+                                <p className="lead">Manage your streams branding options below.</p>
 
                                 <br />
 
+                                <h3 className="title">Update Stream Information</h3>
+                                <form className="account-form">
+                                    <div className="form-group">
+                                        <Input type="text" name="title" value={this.state.title} onChange={(e) => { this.setState({ title: e.target.value }); }} placeholder="Give the stream a title" />
+                                        {this.state.errors && this.state.errors.title && this.state.errors.title.map(function (name, index) {
+                                            return <Danger message={name} key={index} />;
+                                        })}
+                                    </div>
+                                    <div className="form-group">
+                                        <Textarea name="description" onChange={(e) => { this.setState({ description: e.target.value }); }} placeholder="Describe what the stream will be about" >{this.state.description}</Textarea>
+                                        {this.state.errors && this.state.errors.description && this.state.errors.description.map(function (name, index) {
+                                            return <Danger message={name} key={index} />;
+                                        })}
+                                    </div>
+
+
+                                    <div className="form-group">
+                                        <button className="d-block default-button" onClick={(e => { this.update(e) })}><span>{this.state.isLoading ? <Loading /> : ''} Update Stream</span></button>
+                                    </div>
+                                </form>
+
                                 <h4>Overlays</h4>
                                 <p>Overlays are images that can placed over the live stream. Manage your overlays here.</p>
-                                <button className="btn btn-danger" onClick={(e) => { this.deactivateOverlay(e) }}>Deactivate Overlay</button>
+                                <button className="btn btn-danger" onClick={(e) => { this.deactivateOverlay(e) }}>{this.state.isLoadingOverlay ? <Loading /> : ''} Deactivate Overlay</button>
                                 <ul >
                                     {this.state.event && this.state.event.overlays && this.state.event.overlays.map((overlay, index) => {
                                         return <li key={index}><div className="row">
                                             <div className="col-8">{overlay.label}<br />
                                             <img className="img-fluid" src={overlay.image_url} />
                                             </div>
-                                            <div className="col-4"><button className="btn btn-success" onClick={(e) => { this.activateOverlay(e, overlay.id) }}>Activate</button></div></div>
+                                            <div className="col-4"><button className="btn btn-success" onClick={(e) => { this.activateOverlay(e, overlay.id) }}>{this.state.isLoadingOverlay ? <Loading /> : ''} Activate</button></div></div>
                                         </li>;
                                     })}
                                 </ul>
@@ -615,7 +742,7 @@ class StreamsBroadcastPage extends Component {
                             <div className="tab-pane fade" id="nav-advanced" role="tabpanel" aria-labelledby="nav-advanced-tab">
                                 <br /><br />
                                 <h3>Adanced Configuration</h3>
-                                <p>Please ONLY use this tab for advanced configurations and if you know what you are doing when setting this options.</p>
+                                <p className="lead">Please ONLY use this tab for advanced configurations and if you know what you are doing when setting this options.</p>
 
 
                                 <br />

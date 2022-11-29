@@ -46,6 +46,9 @@ const Navigate = {
     authTwitch : () => {
         return app_routes.auth_twitch;
     },
+    authStripe : () => {
+        return app_routes.auth_stripe;
+    },
     authYoutube : () => {
         return app_routes.auth_youtube;
     },

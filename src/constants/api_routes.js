@@ -107,6 +107,14 @@ const api_routes = {
         route : '/events/{event_id}/disableOverlay',
         method : 'POST'
     },
+    events_enable_donations : {
+        route : '/events/{event_id}/enableDonations',
+        method : 'POST'
+    },
+    events_disable_donations : {
+        route : '/events/{event_id}/disableDonations',
+        method : 'POST'
+    },
 
     //Messages
     messages_list : {
@@ -183,6 +191,10 @@ const api_routes = {
     },
     users_upload_banner : {
         route: '/users/uploadBannerImage',
+        method : 'POST'
+    },
+    users_create_donation_page : {
+        route: '/users/createDonationPage',
         method : 'POST'
     },
 

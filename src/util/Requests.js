@@ -178,6 +178,20 @@ const Requests = {
 
         return Requests._sendRequest(url, api_routes.events_disable_overlay.method , data);
     },
+    eventsEnableDonations : (event_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.events_enable_donations.route);
+
+        url = url.replace('{event_id}', event_id);
+
+        return Requests._sendRequest(url, api_routes.events_enable_donations.method , data);
+    },
+    eventsDisableDonations : (event_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.events_disable_donations.route);
+
+        url = url.replace('{event_id}', event_id);
+
+        return Requests._sendRequest(url, api_routes.events_disable_donations.method , data);
+    },
 
     //User(s)
     userList : (query) => {
@@ -225,6 +239,11 @@ const Requests = {
         let url = Requests._formatApiUrl(api_routes.users_upload_banner.route);
 
         return Requests._sendRequest(url, api_routes.users_upload_banner.method, data, query);
+    },
+    userCreateDonationsPage : (data, query) => {
+        let url = Requests._formatApiUrl(api_routes.users_create_donation_page.route);
+
+        return Requests._sendRequest(url, api_routes.users_create_donation_page.method, data, query);
     },
     userToggleFollow : (user_id, data,query) => {
         let url = Requests._formatApiUrl(api_routes.users_toggle_follow.route);

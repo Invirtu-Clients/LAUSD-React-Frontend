@@ -21,6 +21,7 @@
     auth_facebook : '/auth/facebook',
     auth_youtube : '/auth/youtube',
     auth_twitch : '/auth/twitch',
+    auth_stripe : '/auth/stripe',
 
     //accounts route
     account_update : '/accounts/update',
