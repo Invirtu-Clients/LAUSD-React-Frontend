@@ -1,6 +1,8 @@
 
 
 # Glitch Gaming Platform React Frontend
+##### Powered By Invirtu
+
 This repository holds the frontend code for the Glitch Gaming Platform, which is written in Javascript and React. The Glitch Gaming Platform is an open-source project to help people easily create their own esports and live streaming websites.
 
 ## Understanding the Basics
