@@ -22,6 +22,9 @@
     auth_youtube : '/auth/youtube',
     auth_twitch : '/auth/twitch',
     auth_stripe : '/auth/stripe',
+    auth_google : '/auth/google',
+    auth_microsoft : '/auth/microsoft',
+    auth_microsoft_teams : '/auth/teams',
 
     //accounts route
     account_update : '/accounts/update',

@@ -52,6 +52,15 @@ const Navigate = {
     authYoutube : () => {
         return app_routes.auth_youtube;
     },
+    authGoogle : () => {
+        return app_routes.auth_google;
+    },
+    authMicrosoft : () => {
+        return app_routes.auth_microsoft;
+    },
+    authMicrosoftTeams : () => {
+        return app_routes.auth_microsoft_teams;
+    },
     authForgotPassword : () => {
         return app_routes.auth_forgot_password;
     },
