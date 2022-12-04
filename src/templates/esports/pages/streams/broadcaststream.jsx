@@ -30,6 +30,8 @@ class StreamsBroadcastPage extends Component {
             event: {},
             me : {},
 
+            toggleRTMPAdvanced: {},
+
             title : '',
             description : '',
             min_screenshare_fps : 0,
@@ -50,6 +52,7 @@ class StreamsBroadcastPage extends Component {
             isLoadingUpdateFPS : false,
             isLoadingOverlay : false,
             isLoadingDonation : false,
+            isLoadingRTMPAdvanced : false,
             rtmpSourceError: '',
             onScreenMessageError: '',
             addCohostError: '',
@@ -104,8 +107,8 @@ class StreamsBroadcastPage extends Component {
         let id = this.props.router.params.id;
 
         let data = {
-            title : this.state.title,
-            description : this.state.description
+            title : this.state.event.title,
+            description : this.state.event.description
         };
 
         this.setState({isLoading : true});
@@ -165,6 +168,20 @@ class StreamsBroadcastPage extends Component {
         })
     }
 
+    toggleRTMPAdvanced(e, stream_id) {
+
+        e.preventDefault();
+
+        if(!this.state.toggleRTMPAdvanced[stream_id]) {
+
+            this.setState({toggleRTMPAdvanced  : { [stream_id] : true}});
+        } else {
+            this.setState({toggleRTMPAdvanced  : { [stream_id] : !this.state.toggleRTMPAdvanced}});
+        }
+
+
+    }
+
     switchToBroadcastMode(event) {
 
         event.preventDefault();
@@ -201,6 +218,38 @@ class StreamsBroadcastPage extends Component {
 
     handleModeChange(event) {
         console.log("Handle Change");
+    }
+
+    updateRTMPSource(event, index, stream_id) {
+
+        event.preventDefault();
+
+        console.log(this.state.event.restreams[index]);
+
+        this.setState({isLoadingRTMPAdvanced : true});
+
+        let restream = this.state.event.restreams[index];
+
+        let data = {
+            fps: restream.fps,
+            gop : restream.gop,
+            bitrate : restream.bitrate,
+            max_bitrate : restream.max_bitrate
+        };
+
+        let id = this.props.router.params.id;
+
+        Requests.eventsUpdateRTMPSource(id, stream_id, data).then(response => {
+
+            this.setState({
+                event: response.data,
+                isLoadingRTMPAdvanced : false
+            });
+
+        }).catch(error => {
+            this.setState({isLoadingRTMPAdvanced : false});
+            console.log(error);
+        });
     }
 
     removeRTMPSource(event, stream_id) {
@@ -599,7 +648,24 @@ class StreamsBroadcastPage extends Component {
                                 <br />
                                 <ul className="indent">
                                     {this.state.event && this.state.event.restreams && this.state.event.restreams.map((restream, index) => {
-                                        return <li key={index}>{restream.stream_url} <button onClick={(e => { this.removeRTMPSource(e, restream.id) })}>X</button></li>;
+                                        return <li key={index}>
+                                            {restream.stream_url} <button onClick={(e => { this.removeRTMPSource(e, restream.id) })}>X</button>
+                                            <div><a href="#" onClick={(e) => { this.toggleRTMPAdvanced(e, restream.id)}}>Advanced Options</a></div>
+                                            {this.state.toggleRTMPAdvanced[restream.id] ? 
+                                                <div className="form-group">
+                                                    <p>Set optional advanced options here. Please only modify if you know what you are doing.</p>
+                                                    <label>FPS</label>
+                                                    <input type={"number"} className="form-control" value={restream.fps} onChange={(e) => { let restreams = this.state.event.restreams; restreams[index].fps = e.target.value; this.setState({ event : { ...this.state.event, restreams : restreams } }); }} /> 
+                                                    <label>GOP</label>
+                                                    <input type={"number"} className="form-control" value={restream.gop}  onChange={(e) => { let restreams = this.state.event.restreams; restreams[index].gop = e.target.value; this.setState({ event : { ...this.state.event, restreams : restreams } }); }}  />
+                                                    <label>Bitrate</label>
+                                                    <input type={"number"} className="form-control" value={restream.bitrate}  onChange={(e) => { let restreams = this.state.event.restreams; restreams[index].bitrate = e.target.value; this.setState({ event : { ...this.state.event, restreams : restreams } }); }} />
+                                                    <label>Max Bitrate</label>
+                                                    <input type={"number"} className="form-control" value={restream.max_bitrate}  onChange={(e) => { let restreams = this.state.event.restreams; restreams[index].max_bitrate = e.target.value; this.setState({ event : { ...this.state.event, restreams : restreams } }); }}  />
+                                                    <button className="btn btn-success btn-sm" type="button" onClick={(e) => {this.updateRTMPSource(e, index, restream.id)}}>{this.state.isLoadingRTMPAdvanced ? <Loading /> : ''} Update</button>
+                                                </div>
+                                            : ''}
+                                            </li>;
                                     })}
                                 </ul>
 
@@ -707,13 +773,13 @@ class StreamsBroadcastPage extends Component {
                                 <h3 className="title">Update Stream Information</h3>
                                 <form className="account-form">
                                     <div className="form-group">
-                                        <Input type="text" name="title" value={this.state.title} onChange={(e) => { this.setState({ title: e.target.value }); }} placeholder="Give the stream a title" />
+                                        <Input type="text" name="title" value={this.state.event.title} onChange={(e) => { this.setState({ event : {...this.state.event, title: e.target.value }}); }} placeholder="Give the stream a title" />
                                         {this.state.errors && this.state.errors.title && this.state.errors.title.map(function (name, index) {
                                             return <Danger message={name} key={index} />;
                                         })}
                                     </div>
                                     <div className="form-group">
-                                        <Textarea name="description" onChange={(e) => { this.setState({ description: e.target.value }); }} placeholder="Describe what the stream will be about" >{this.state.description}</Textarea>
+                                        <Textarea name="description" onChange={(e) => { this.setState({ event : {...this.state.event, description: e.target.value }}); }} placeholder="Describe what the stream will be about" >{this.state.event.description}</Textarea>
                                         {this.state.errors && this.state.errors.description && this.state.errors.description.map(function (name, index) {
                                             return <Danger message={name} key={index} />;
                                         })}

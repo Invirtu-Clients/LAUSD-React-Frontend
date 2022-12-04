@@ -85,6 +85,15 @@ const Requests = {
 
         return Requests._sendRequest(url, api_routes.events_add_rtmp_source.method, data);
     },
+    eventsUpdateRTMPSource: (event_id, stream_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.events_update_rtmp_source.route);
+
+        url = url.replace('{event_id}', event_id);
+
+        url = url.replace('{stream_id}', stream_id);
+
+        return Requests._sendRequest(url, api_routes.events_update_rtmp_source.method, data);
+    },
     eventsRemoveRTMPSource: (event_id, stream_id, data) => {
         let url = Requests._formatApiUrl(api_routes.events_remove_rtmp_source.route);
 

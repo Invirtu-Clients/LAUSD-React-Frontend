@@ -51,6 +51,10 @@ const api_routes = {
         route : '/events/{event_id}/addRTMPSource',
         method : 'POST'
     },
+    events_update_rtmp_source : {
+        route : '/events/{event_id}/updateRTMPSource/{stream_id}',
+        method : 'PUT'
+    },
     events_remove_rtmp_source : {
         route : '/events/{event_id}/removeRTMPSource/{stream_id}',
         method : 'DELETE'
