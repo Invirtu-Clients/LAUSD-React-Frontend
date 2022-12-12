@@ -26,6 +26,141 @@ const api_routes = {
         method : 'POST'
     },
 
+    //Competitions
+    competitions_list : {
+        route: '/competitions',
+        method : 'GET'
+    },
+    competitions_create : {
+        route : '/competitions',
+        method : 'POST'
+    },
+    competitions_view : {
+        route : '/competitions/{competition_id}',
+        method : 'GET'
+    },
+    competitions_update : {
+        route : '/competitions/{competition_id}',
+        method : 'PUT'
+    },
+    competitions_delete : {
+        route : '/competitions/{competition_id}',
+        method : 'DELETE'
+    },
+    competitions_register_team : {
+        route : '/competitions/{competition_id}/registerTeam',
+        method : 'POST'
+    },
+    competitions_register_individual : {
+        route : '/competitions/{competition_id}/registerUser',
+        method : 'POST'
+    },
+    competitions_rounds_list : {
+        route: '/competitions/{competition_id}/rounds',
+        method : 'GET'
+    },
+    competitions_rounds_create : {
+        route : '/competitions/{competition_id}/rounds',
+        method : 'POST'
+    },
+    competitions_rounds_view : {
+        route : '/competitions/{competition_id}/rounds/{round_id}',
+        method : 'GET'
+    },
+    competitions_rounds_update : {
+        route : '/competitions/{competition_id}/rounds/{round_id}',
+        method : 'PUT'
+    },
+    competitions_rounds_delete : {
+        route : '/competitions/{competition_id}/rounds/{round_id}',
+        method : 'DELETE'
+    },
+    competitions_teams_list : {
+        route: '/competitions/{competition_id}/teams',
+        method : 'GET'
+    },
+    competitions_teams_create : {
+        route : '/competitions/{competition_id}/teams',
+        method : 'POST'
+    },
+    competitions_teams_view : {
+        route : '/competitions/{competition_id}/teams/{team_id}',
+        method : 'GET'
+    },
+    competitions_teams_update : {
+        route : '/competitions/{competition_id}/teams/{team_id}',
+        method : 'PUT'
+    },
+    competitions_teams_delete : {
+        route : '/competitions/{competition_id}/teams/{team_id}',
+        method : 'DELETE'
+    },
+    competitions_teams_list : {
+        route: '/competitions/{competition_id}/teams',
+        method : 'GET'
+    },
+    competitions_users_create : {
+        route : '/competitions/{competition_id}/users',
+        method : 'POST'
+    },
+    competitions_users_view : {
+        route : '/competitions/{competition_id}/users/{user_id}',
+        method : 'GET'
+    },
+    competitions_users_update : {
+        route : '/competitions/{competition_id}/users/{user_id}',
+        method : 'PUT'
+    },
+    competitions_users_delete : {
+        route : '/competitions/{competition_id}/users/{user_id}',
+        method : 'DELETE'
+    },
+    competitions_venues_list : {
+        route: '/competitions/{competition_id}/venues',
+        method : 'GET'
+    },
+    competitions_venues_create : {
+        route : '/competitions/{competition_id}/venues',
+        method : 'POST'
+    },
+    competitions_venues_view : {
+        route : '/competitions/{competition_id}/venues/{venue_id}',
+        method : 'GET'
+    },
+    competitions_venues_update : {
+        route : '/competitions/{competition_id}/venues/{venue_id}',
+        method : 'PUT'
+    },
+    competitions_venues_delete : {
+        route : '/competitions/{competition_id}/venues/{venue_id}',
+        method : 'DELETE'
+    },
+    competitions_round_brackets_list : {
+        route: '/competitions/{competition_id}/rounds/{round_id}/brackets',
+        method : 'GET'
+    },
+    competitions_round_brackets_create : {
+        route : '/competitions/{competition_id}/rounds/{round_id}/brackets',
+        method : 'POST'
+    },
+    competitions_round_brackets_view : {
+        route : '/competitions/{competition_id}/rounds/{round_id}/brackets/{bracket_id}',
+        method : 'GET'
+    },
+    competitions_round_brackets_update : {
+        route : '/competitions/{competition_id}/rounds/{round_id}/brackets/{bracket_id}',
+        method : 'PUT'
+    },
+    competitions_round_brackets_delete : {
+        route : '/competitions/{competition_id}/rounds/{round_id}/brackets/{bracket_id}',
+        method : 'DELETE'
+    },
+
+
+
+
+
+
     //Events
     events_list : {
         route: '/events',
@@ -143,6 +278,44 @@ const api_routes = {
     },
     messages_delete : {
         route: '/messages/{message_id}',
+        method : 'DELETE'
+    },
+
+    //Teams
+    teams_list : {
+        route: '/teams',
+        method : 'GET'
+    },
+    teams_create : {
+        route : '/teams',
+        method : 'POST'
+    },
+    teams_view : {
+        route : '/teams/{event_id}',
+        method : 'GET'
+    },
+    teams_update : {
+        route : '/teams/{event_id}',
+        method : 'PUT'
+    },
+    teams_delete : {
+        route : '/teams/{event_id}',
+        method : 'DELETE'
+    },
+    teams_users_create : {
+        route : '/teams/{competition_id}/users',
+        method : 'POST'
+    },
+    teams_users_view : {
+        route : '/teams/{competition_id}/users/{user_id}',
+        method : 'GET'
+    },
+    teams_users_update : {
+        route : '/teams/{competition_id}/users/{user_id}',
+        method : 'PUT'
+    },
+    teams_users_delete : {
+        route : '/teams/{competition_id}/users/{user_id}',
         method : 'DELETE'
     },
 

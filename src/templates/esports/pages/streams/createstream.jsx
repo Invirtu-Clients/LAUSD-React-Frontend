@@ -60,7 +60,7 @@ class StreamCreatePage extends Component {
                     this.setState({errors : {}});
                 }, timeouts.error_message_timeout)
             }
-        })
+        });
     }
 
     componentDidMount() {

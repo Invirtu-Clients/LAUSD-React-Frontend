@@ -140,8 +140,13 @@ class HeaderTwo extends Component {
                                             </li>
 
                                             <li >
-                                                <a href={Navigate.usersList()} >Users</a>
+                                                <a href={Navigate.teamsList()} >Teams</a>
                                             </li>
+                                            
+                                            <li >
+                                                <a href={Navigate.tournamentsList()} >Tournaments</a>
+                                            </li>
+
 
                                             {process.env.REACT_APP_DISCORD_LINK ? <li><a href={process.env.REACT_APP_DISCORD_LINK} >Discord</a></li>: '' }
 

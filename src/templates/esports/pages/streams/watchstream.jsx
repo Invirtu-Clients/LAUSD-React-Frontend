@@ -136,8 +136,8 @@ class StreamsWatchPage extends Component {
                                     {this.state.broadcast_widget}
 
                                     <div className="container">
-                                        <div class="post-item-2">
-                                            <div class="post-inner">
+                                        <div className="post-item-2">
+                                            <div className="post-inner">
                                                 <div className="post-content">
                                                     <h2>{this.state.stream.title}</h2>
                                                     <ul className="lab-ul post-date">

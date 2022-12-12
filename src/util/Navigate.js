@@ -176,6 +176,199 @@ const Navigate = {
         return path;
     },
 
+    //Teams Page
+    teamsList : () => {
+
+        let path = app_routes.teams;
+
+        return path;
+        
+    },
+    teamsCreate : () => {
+
+        let path = app_routes.teams_create;
+
+        return path;
+        
+    },
+    teamsUpdate : (team_id) => {
+
+        let path = app_routes.teams_update;
+
+        if(team_id){
+            path = path.replace(':id', team_id)
+        }
+
+        return path;
+        
+    },
+    teamsView : (team_id) => {
+
+        let path = app_routes.teams_view;
+
+        if(team_id){
+            path = path.replace(':id', team_id)
+        }
+
+        return path;
+        
+    },
+    teamsDelete : (team_id) => {
+
+        let path = app_routes.teams_delete;
+
+        if(team_id){
+            path = path.replace(':id', team_id)
+        }
+
+        return path;
+        
+    },
+    teamsRegister : (team_id) => {
+
+        let path = app_routes.teams_register;
+
+        if(team_id){
+            path = path.replace(':id', team_id)
+        }
+
+        return path;
+        
+    },
+
+    //Tourmanents
+    tournamentsList : () => {
+
+        let path = app_routes.tournaments;
+
+        return path;
+        
+    },
+    tournamentsCreate : () => {
+
+        let path = app_routes.tournaments_create;
+
+        return path;
+        
+    },
+    tournamentsUpdate : (tournament_id) => {
+
+        let path = app_routes.tournaments_update;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        return path;
+        
+    },
+    tournamentsView : (tournament_id) => {
+
+        let path = app_routes.tournaments_view;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        return path;
+        
+    },
+    tournamentsDelete : (tournament_id) => {
+
+        let path = app_routes.tournaments_delete;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        return path;
+        
+    },
+    tournamentsRegister : (tournament_id) => {
+
+        let path = app_routes.tournaments_register;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        return path;
+    },
+    tournamentsManage : (tournament_id) => {
+
+        let path = app_routes.tournaments_manage;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        return path;
+    },
+    tournamentsVenuesList : (tournament_id) => {
+
+        let path = app_routes.tournaments_venues;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        return path;
+    },
+    tournamentsVenuesCreate : (tournament_id) => {
+
+        let path = app_routes.tournaments_venues_create;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        return path;
+    },
+    tournamentsVenuesUpdate : (tournament_id, venue_id) => {
+
+        let path = app_routes.tournaments_venues_update;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        if(venue_id){
+            path = path.replace(':venue_id', venue_id)
+        }
+
+        return path;
+    },
+    tournamentsVenuesView : (tournament_id, venue_id) => {
+
+        let path = app_routes.tournaments_venues_view;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        if(venue_id){
+            path = path.replace(':venue_id', venue_id)
+        }
+
+        return path;
+    },
+    tournamentsVenuesDelete : (tournament_id, venue_id) => {
+
+        let path = app_routes.tournaments_venues_delete;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        if(venue_id){
+            path = path.replace(':venue_id', venue_id)
+        }
+
+        return path;
+    },
+
+
+
     //Users
     usersList : () => {
 

@@ -72,7 +72,7 @@ class AccountUpdatePage extends Component {
 
             stripeData = <><Warning message={"Activate Donation Page"} />
                 <p>To finalize your ability to accept donations, you must activate your donation page.</p>
-                <div class="form-group text-center"><button class="d-block default-button" onClick={(e) => {this.activateDonations()}}><span> Activate</span></button></div>
+                <div className="form-group text-center"><button className="d-block default-button" onClick={(e) => {this.activateDonations()}}><span> Activate</span></button></div>
 
             </>
 

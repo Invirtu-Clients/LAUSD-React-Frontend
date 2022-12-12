@@ -49,6 +49,16 @@ import ForgotPassword from "./pages/auth/forgotpassword";
 import ResetPassword from "./pages/auth/resetpassword";
 import LogIn from "./pages/auth/login";
 
+import CompetitionsCreatePage from "./pages/competitions/competition_admin_create";
+import CompetitionsUpdatePage from "./pages/competitions/competition_admin_update";
+import CompetitionsManagePage from "./pages/competitions/competition_admin_manage";
+import CompetitionsListPage from './pages/competitions/competition_list';
+
+import CompetitionsVenuesCreate from './pages/competitions/venues_create';
+import CompetitionsVenuesUpdate from './pages/competitions/venues_update';
+import CompetitionsVenuesList from './pages/competitions/venues';
+
+
 import AccountUpdatePage from "./pages/account/profile";
 import RegisterStep2 from "./pages/account/register_step2";
 
@@ -72,6 +82,7 @@ import 'moment-timezone';
 //import '././assets/css/style.min.css';
 //import'./assets/sass/style.scss';
 import Navigate from "../../util/Navigate";
+
 
 
 
@@ -123,6 +134,15 @@ function Template() {
           <Route path={Navigate.streamsWatchRecordingPage()} element={<WatchRecordingPage />} />
           <Route path={Navigate.streamsManageRecordingPage()} element={<ManageRecordingPage />} />
           <Route path={Navigate.streamsCohostWatch()} element={<CohostWatchStream />} />
+
+          <Route path={Navigate.tournamentsList()} element={<CompetitionsListPage />} />
+          <Route path={Navigate.tournamentsCreate()} element={<CompetitionsCreatePage />} />
+          <Route path={Navigate.tournamentsUpdate()} element={<CompetitionsUpdatePage />} />
+          <Route path={Navigate.tournamentsManage()} element={<CompetitionsManagePage />} />
+
+          <Route path={Navigate.tournamentsVenuesList()} element={<CompetitionsVenuesList />} />
+          <Route path={Navigate.tournamentsVenuesCreate()} element={<CompetitionsVenuesCreate />} />
+          <Route path={Navigate.tournamentsVenuesUpdate()} element={<CompetitionsVenuesUpdate />} />
 
           <Route path={Navigate.usersList()} element={<UsersPage />} />
           <Route path={Navigate.usersProfilePage()} element={<UserProfilePage />} />

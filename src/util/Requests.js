@@ -202,6 +202,349 @@ const Requests = {
         return Requests._sendRequest(url, api_routes.events_disable_donations.method , data);
     },
 
+    //Teams
+    teamsList : (query) => {
+        let url = Requests._formatApiUrl(api_routes.teams_list.route);
+
+        return Requests._sendRequest(url, api_routes.teams_list.method, null, query);
+    },
+    teamsCreate : (data) => {
+        let url = Requests._formatApiUrl(api_routes.teams_create.route);
+
+        return Requests._sendRequest(url, api_routes.teams_create.method, data);
+    },
+    teamsView : (team_id, query) => {
+        let url = Requests._formatApiUrl(api_routes.teams_view.route);
+
+        url = url.replace('{team_id}', team_id);
+
+        return Requests._sendRequest(url, api_routes.teams_view.method, null, query);
+    },
+    teamsUpdate : (team_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.teams_update.route);
+
+        url = url.replace('{team_id}', team_id);
+
+        return Requests._sendRequest(url, api_routes.teams_update.method, data);
+    },
+    teamsDelete : (team_id) => {
+        let url = Requests._formatApiUrl(api_routes.teams_delete.route);
+
+        url = url.replace('{team_id}', team_id);
+
+        return Requests._sendRequest(url, api_routes.teams_delete.method, {});
+    },
+    teamsJoin : (team_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.teams_delete.route);
+
+        url = url.replace('{team_id}', team_id);
+
+        return Requests._sendRequest(url, api_routes.teams_delete.method, data);
+    },
+    teamsUserList : (team_id, query) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_users_list.route);
+
+        url = url.replace('{team_id}', team_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_users_list.method, null, query);
+    },
+    teamsUserCreate : (team_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_users_create.route);
+
+        url = url.replace('{team_id}', team_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_users_create.method, data);
+    },
+    teamsUserView : (team_id, user_id, query) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_users_view.route);
+
+        url = url.replace('{team_id}', team_id);
+
+        url = url.replace('{user_id}', user_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_users_view.method, null, query);
+    },
+    teamsUserUpdate : (team_id, user_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_users_update.route);
+
+        url = url.replace('{team_id}', team_id);
+
+        url = url.replace('{user_id}', user_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_users_update.method, data);
+    },
+    teamsUserDelete : (team_id, user_id) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_users_delete.route);
+
+        url = url.replace('{team_id}', team_id);
+
+        url = url.replace('{user_id}', user_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_users_delete.method, {});
+    },
+
+    //Tournaments
+    tournamentsList : (query) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_list.route);
+
+        return Requests._sendRequest(url, api_routes.competitions_list.method, null, query);
+    },
+    tournamentsCreate : (data) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_create.route);
+
+        return Requests._sendRequest(url, api_routes.competitions_create.method, data);
+    },
+    tournamentsView : (competition_id, query) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_view.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_view.method, null, query);
+    },
+    tournamentsUpdate : (competition_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_update.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_update.method, data);
+    },
+    tournamentsDelete : (competition_id) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_delete.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_delete.method, {});
+    },
+    tournamentsRegisterTeam : (competition_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_register_team.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_register_teae.method, data);
+    },
+    tournamentsRegisterUser : (competition_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_register_user.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_register_user.method, data);
+    },
+    tournamentsRoundsList : (competition_id, query) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_rounds_list.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_rounds_list.method, null, query);
+    },
+    tournamentsRoundsCreate : (competition_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_rounds_create.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_rounds_create.method, data);
+    },
+    tournamentsRoundsView : (competition_id, round_id, query) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_rounds_view.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        url = url.replace('{round_id}', round_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_rounds_view.method, null, query);
+    },
+    tournamentsRoundsUpdate : (competition_id, round_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_rounds_update.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        url = url.replace('{round_id}', round_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_rounds_update.method, data);
+    },
+    tournamentsRoundsDelete : (competition_id, round_id) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_rounds_delete.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        url = url.replace('{round_id}', round_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_rounds_delete.method, {});
+    },
+    tournamentsVenueList : (competition_id, query) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_venues_list.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_venues_list.method, null, query);
+    },
+    tournamentsVenueCreate : (competition_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_venues_create.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_venues_create.method, data);
+    },
+    tournamentsVenueView : (competition_id, venue_id, query) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_venues_view.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        url = url.replace('{venue_id}', venue_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_venues_view.method, null, query);
+    },
+    tournamentsVenueUpdate : (competition_id, venue_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_venues_update.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        url = url.replace('{venue_id}', venue_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_venues_update.method, data);
+    },
+    tournamentsVenueDelete : (competition_id, venue_id) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_venues_delete.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        url = url.replace('{venue_id}', venue_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_venues_delete.method, {});
+    },
+    tournamentsTeamsList : (competition_id, query) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_teams_list.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_teams_list.method, null, query);
+    },
+    tournamentsTeamsCreate : (competition_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_teams_create.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_teams_create.method, data);
+    },
+    tournamentsTeamsView : (competition_id, team_id, query) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_teams_view.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        url = url.replace('{team_id}', team_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_teams_view.method, null, query);
+    },
+    tournamentsTeamsUpdate : (competition_id, team_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_teams_update.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        url = url.replace('{team_id}', team_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_teams_update.method, data);
+    },
+    tournamentsTeamsDelete : (competition_id, team_id) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_teams_delete.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        url = url.replace('{team_id}', team_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_teams_delete.method, {});
+    },
+    tournamentsUserList : (competition_id, query) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_users_list.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_users_list.method, null, query);
+    },
+    tournamentsUserCreate : (competition_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_users_create.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_users_create.method, data);
+    },
+    tournamentsUserView : (competition_id, user_id, query) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_users_view.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        url = url.replace('{user_id}', user_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_users_view.method, null, query);
+    },
+    tournamentsUserUpdate : (competition_id, user_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_users_update.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        url = url.replace('{user_id}', user_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_users_update.method, data);
+    },
+    tournamentsUserDelete : (competition_id, user_id) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_users_delete.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        url = url.replace('{user_id}', user_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_users_delete.method, {});
+    },
+    tournamentsRoundBracketsList : (competition_id, round_id, query) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_round_brackets_list.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        url = url.replace('{round_id}', round_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_round_brackets_list.method, null, query);
+    },
+    tournamentsRoundBracketsCreate : (competition_id, round_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_round_brackets_create.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        url = url.replace('{round_id}', round_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_round_brackets_create.method, data);
+    },
+    tournamentsRoundBracketsView : (competition_id, round_id, bracket_id, query) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_round_brackets_view.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        url = url.replace('{round_id}', round_id);
+
+        url = url.replace('{bracket_id}', bracket_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_round_brackets_view.method, null, query);
+    },
+    tournamentsRoundBracketsUpdate : (competition_id, round_id, bracket_id, data) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_round_brackets_update.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        url = url.replace('{round_id}', round_id);
+
+        url = url.replace('{bracket_id}', bracket_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_round_brackets_update.method, data);
+    },
+    tournamentsRoundBracketsDelete : (competition_id, round_id, bracket_id) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_round_brackets_delete.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        url = url.replace('{round_id}', round_id);
+
+        url = url.replace('{bracket_id}', bracket_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_round_brackets_delete.method, {});
+    },
+
     //User(s)
     userList : (query) => {
         let url = Requests._formatApiUrl(api_routes.users_list.route);
