@@ -28,7 +28,7 @@ export default function CompetitionBrackets({ tournament, is_admin }) {
 
                     return (
                         <ul className={'round round-' + (index + 1)} key={index}>
-                            <li className="text-center">
+                            <li className="text-center" key={"g" + index}>
                                 <h5>Round {index + 1}</h5>
                                 { (is_admin) ? <Link to={Navigate.tournamentsRoundBracketsCreate(round.competition_id, round.round)} className="btn btn-primary btn-sm">Add Bracket</Link> : ''}
                             </li>
@@ -72,7 +72,7 @@ export default function CompetitionBrackets({ tournament, is_admin }) {
                                 return (
                                     <>
                                         {spacer}
-                                        <li className={competitorClass}>
+                                        <li className={competitorClass} key={"r" + bracket.bracket + index}>
                                             {competitor_name} 
                                             {(is_admin) ? <Link to={Navigate.tournamentsRoundBracketsUpdate(round.competition_id, round.round, bracket.id)}><small><FontAwesomeIcon icon={faPencil} /></small></Link> : '' }
                                             <span>{bracket.points_awarded}</span>

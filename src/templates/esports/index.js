@@ -53,6 +53,7 @@ import LogIn from "./pages/auth/login";
 import CompetitionsCreatePage from "./pages/competitions/competition_admin_create";
 import CompetitionsUpdatePage from "./pages/competitions/competition_admin_update";
 import CompetitionsManagePage from "./pages/competitions/competition_admin_manage";
+import CompetitionsWaiversPage from "./pages/competitions/competition_admin_waivers";
 import CompetitionsListPage from './pages/competitions/competition_list';
 import CompetitionsInfoPage from './pages/competitions/competition_info';
 import CompetitionsRegisterUserPage from './pages/competitions/competition_user_register';
@@ -148,6 +149,7 @@ function Template() {
           <Route path={Navigate.tournamentsList()} element={<CompetitionsListPage />} />
           <Route path={Navigate.tournamentsCreate()} element={<CompetitionsCreatePage />} />
           <Route path={Navigate.tournamentsUpdate()} element={<CompetitionsUpdatePage />} />
+          <Route path={Navigate.tournamentsUpdateWaivers()} element={<CompetitionsWaiversPage />} />
           <Route path={Navigate.tournamentsManage()} element={<CompetitionsManagePage />} />
           <Route path={Navigate.tournamentsView()} element={<CompetitionsInfoPage />} />
           <Route path={Navigate.tournamentsRegisterUser()} element={<CompetitionsRegisterUserPage />} />

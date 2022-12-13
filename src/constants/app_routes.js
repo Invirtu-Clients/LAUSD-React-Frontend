@@ -61,6 +61,7 @@
     tournaments_create : '/tournaments/create',
     tournaments_view : '/tournmanets/:id/view',
     tournaments_update : '/tournmanets/:id/update',
+    tournaments_update_waivers : '/tournmanets/:id/waivers',
     tournaments_delete : '/tournmanets/:id/delete',
     tournaments_register_user : '/tournmanets/:id/registerUser',
     tournaments_register_team : '/tournmanets/:id/registerTeam',

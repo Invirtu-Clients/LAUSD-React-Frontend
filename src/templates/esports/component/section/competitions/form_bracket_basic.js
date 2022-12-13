@@ -10,6 +10,8 @@ export default function BracketFormBasicInfo({ bracketValue, bracketOnChange, st
     return (
         <>
             <h3>Basic Information</h3>
+            <p className="lead">Create information for a bracket that will be associated with the round.</p>
+
             <div className="form-group text-left">
                 <label>Bracket #</label>
                 <Input type="number" name="name" value={bracketValue} onChange={bracketOnChange} />

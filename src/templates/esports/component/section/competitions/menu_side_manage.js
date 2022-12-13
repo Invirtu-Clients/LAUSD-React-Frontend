@@ -13,22 +13,25 @@ export default function SidebarManageMenu({ competition_id }) {
             <ul className="lab-ul widget-wrapper list-bg-none">
 
                 <li key={0}>
-                    <Link className="d-flex flex-wrap justify-content-between" to={Navigate.tournamentsUpdate(competition_id)}><span><i className="icofont-rounded-double-right"></i>Update</span></Link>
+                    <Link className="d-flex flex-wrap justify-content-between" to={Navigate.tournamentsManage(competition_id)}><span><i className="icofont-rounded-double-right"></i>Overview</span></Link>
                 </li>
                 <li key={1}>
-                    <Link className="d-flex flex-wrap justify-content-between" to={Navigate.tournamentsVenuesList(competition_id)}><span><i className="icofont-rounded-double-right"></i>Venues</span></Link>
+                    <Link className="d-flex flex-wrap justify-content-between" to={Navigate.tournamentsUpdate(competition_id)}><span><i className="icofont-rounded-double-right"></i>Update</span></Link>
                 </li>
                 <li key={2}>
-                    <Link className="d-flex flex-wrap justify-content-between" to={Navigate.tournamentsRoundsList(competition_id)}><span><i className="icofont-rounded-double-right"></i>Rounds & Brackets</span></Link>
+                    <Link className="d-flex flex-wrap justify-content-between" to={Navigate.tournamentsVenuesList(competition_id)}><span><i className="icofont-rounded-double-right"></i>Venues</span></Link>
                 </li>
                 <li key={3}>
-                    <a href="#" className="d-flex flex-wrap justify-content-between"><span><i className="icofont-rounded-double-right"></i>Admins & Moderators</span></a>
+                    <Link className="d-flex flex-wrap justify-content-between" to={Navigate.tournamentsRoundsList(competition_id)}><span><i className="icofont-rounded-double-right"></i>Rounds & Brackets</span></Link>
                 </li>
                 <li key={4}>
-                    <a href="#" className="d-flex flex-wrap justify-content-between"><span><i className="icofont-rounded-double-right"></i>Teams</span></a>
+                    <a href="#" className="d-flex flex-wrap justify-content-between"><span><i className="icofont-rounded-double-right"></i>Admins & Moderators</span></a>
                 </li>
                 <li key={5}>
-                    <a href="#" className="d-flex flex-wrap justify-content-between"><span><i className="icofont-rounded-double-right"></i>Waivers</span></a>
+                    <a href="#" className="d-flex flex-wrap justify-content-between"><span><i className="icofont-rounded-double-right"></i>Teams</span></a>
+                </li>
+                <li key={6}>
+                    <Link className="d-flex flex-wrap justify-content-between" to={Navigate.tournamentsUpdateWaivers(competition_id)}><span><i className="icofont-rounded-double-right"></i>Rules & Waivers</span></Link>
                 </li>
 
             </ul>

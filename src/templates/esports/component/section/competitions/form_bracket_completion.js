@@ -10,6 +10,7 @@ export default function BracketFormCompletion({  isWinnerValue, isWinnerOnChange
     return (
         <>
             <h3>On Round Completion Input</h3>
+            <p className="lead">Once the round is completed, use the fields below to set the winner and points information.</p>
 
             <div className="form-group-time mb-2">
                 <Input type={"checkbox"} className={"form-checkbox"} name="is_finished" value={isFinishedValue} onChange={isFinishedOnChange} />

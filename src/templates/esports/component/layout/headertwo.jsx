@@ -138,10 +138,6 @@ class HeaderTwo extends Component {
                                             <li >
                                                 <a href={Navigate.streamsPage()} >Streams</a>
                                             </li>
-
-                                            <li >
-                                                <a href={Navigate.teamsList()} >Teams</a>
-                                            </li>
                                             
                                             <li >
                                                 <a href={Navigate.tournamentsList()} >Tournaments</a>

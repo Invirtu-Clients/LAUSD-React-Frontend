@@ -39,6 +39,11 @@ export default function TournamentOverview({ tournament, is_admin }) {
                 <li className="nav-item" role="presentation">
                     <button className="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Overview</button>
                 </li>
+                {tournament.rules ?
+                    <li className="nav-item" role="presentation">
+                        <button className="nav-link" id="rules-tab" data-bs-toggle="tab" data-bs-target="#rules" type="button" role="tab" aria-controls="rules" aria-selected="false">Rules</button>
+                    </li>
+                : '' }
                 <li className="nav-item" role="presentation">
                     <button className="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Venue(s)</button>
                 </li>
@@ -52,6 +57,7 @@ export default function TournamentOverview({ tournament, is_admin }) {
                         <button className="nav-link" id="teams-tab" data-bs-toggle="tab" data-bs-target="#teams" type="button" role="tab" aria-controls="teams" aria-selected="false">Teams</button>
                     </li>
                 : '' }
+
                 <li className="nav-item" role="presentation">
                     <button className="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
                 </li>
@@ -115,6 +121,12 @@ export default function TournamentOverview({ tournament, is_admin }) {
                         );
                     })}
                 </div>
+
+                <div className="tab-pane fade" id="rules" role="tabpanel" aria-labelledby="rules-tab">
+                    <h3>Rules</h3>
+                    {tournament.rules}
+                </div>
+
                 <div className="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
             </div>
         </article>

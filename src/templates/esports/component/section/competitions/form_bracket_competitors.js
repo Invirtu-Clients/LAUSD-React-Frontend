@@ -12,11 +12,12 @@ export default function BracketFormParticipants({  users, userValue, userOnChang
     return (
         <>
             <h3>Competitors</h3>
+            <p className="lead">A competitor that will be placed into this bracket. Either a user OR a team is required.</p>
 
             <div className="form-group-time mb-2">
                 <label>User</label>
                 <Select name="user_id"  onChange={userOnChange} value={userValue}>
-                    <option value={""}>Select An Individual User To Compete</option>
+                    <option value={""}>Select An Individual User That Will Compete</option>
                     {users && Array.isArray(users) && users.map(function (user, index) {
                         return <option key={index} value={user.id}>{user.username} ({user.first_name} {user.last_name})</option>
                     })}
@@ -30,7 +31,7 @@ export default function BracketFormParticipants({  users, userValue, userOnChang
             <div className="form-group-time mb-2">
                 <label>Team</label>
                 <Select name="team_id" onChange={teamOnChange} value={teamValue}>
-                    <option value={""}>Select A Team Compete</option>
+                    <option value={""}>Select A Team That Will Compete</option>
                     {teams && Array.isArray(teams) &&  teams.map(function (team, index) {
                         return <option key={index} value={team.id}>{team.name}</option>
                     })}
