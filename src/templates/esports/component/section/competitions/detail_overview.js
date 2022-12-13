@@ -13,8 +13,13 @@ export default function TournamentOverview({ tournament, is_admin }) {
     let registerIndividualButton = '';
 
     if(!is_admin) {
-        registerTeamButton = <Link className="btn btn-info mr-2" to={Navigate.tournamentsRegisterTeam(tournament.id)}>Register As Team</Link>
-        registerIndividualButton = <Link className="btn btn-info mr-2" to={Navigate.tournamentsRegisterUser(tournament.id)}>Register As Individual</Link>
+        if(tournament.allow_team_signup) {
+            registerTeamButton = <Link className="btn btn-info mr-2" to={Navigate.tournamentsRegisterTeam(tournament.id)}>Register As Team</Link>
+        }
+
+        if(tournament.allow_individual_signup) {
+            registerIndividualButton = <Link className="btn btn-info mr-2" to={Navigate.tournamentsRegisterUser(tournament.id)}>Register As Individual</Link>
+        }
     }
 
     return (
@@ -37,12 +42,16 @@ export default function TournamentOverview({ tournament, is_admin }) {
                 <li className="nav-item" role="presentation">
                     <button className="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Venue(s)</button>
                 </li>
-                <li className="nav-item" role="presentation">
-                    <button className="nav-link" id="contestants-tab" data-bs-toggle="tab" data-bs-target="#contestants" type="button" role="tab" aria-controls="contestants" aria-selected="false">Contestants</button>
-                </li>
-                <li className="nav-item" role="presentation">
-                    <button className="nav-link" id="teams-tab" data-bs-toggle="tab" data-bs-target="#teams" type="button" role="tab" aria-controls="teams" aria-selected="false">Teams</button>
-                </li>
+                {tournament.allow_individual_signup ?
+                    <li className="nav-item" role="presentation">
+                        <button className="nav-link" id="contestants-tab" data-bs-toggle="tab" data-bs-target="#contestants" type="button" role="tab" aria-controls="contestants" aria-selected="false">Contestants</button>
+                    </li> 
+                : '' }
+                {tournament.allow_team_signup ?
+                    <li className="nav-item" role="presentation">
+                        <button className="nav-link" id="teams-tab" data-bs-toggle="tab" data-bs-target="#teams" type="button" role="tab" aria-controls="teams" aria-selected="false">Teams</button>
+                    </li>
+                : '' }
                 <li className="nav-item" role="presentation">
                     <button className="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
                 </li>
@@ -50,20 +59,43 @@ export default function TournamentOverview({ tournament, is_admin }) {
             </ul>
             <div className="tab-content" id="myTabContent">
                 <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <h3>Format</h3>
-                    <MatchType type={tournament.type} />
 
-                    <h3>Dates</h3>
-                    {tournament.start_date ? <Moment>{tournament.start_date}</Moment> : ''}
+                    <div className="section mb-2">
+                        <h5>Elimination Format</h5>
+                        <MatchType type={tournament.type} />
+                    </div>
 
-                    {tournament.start_date && tournament.end_date ? <> to <Moment>{tournament.end_date}</Moment></> : ''}
+                   
+                    <div className="section mb-2">
+                        <h4>Dates</h4>
+                        {tournament.start_date ? <Moment format="LLL">{tournament.start_date}</Moment> : ''}
+
+                        {tournament.start_date && tournament.end_date ? <> to <Moment format="LLL" >{tournament.end_date}</Moment></> : ''}
+                    </div>
+
+                    {(tournament.registration_start_date) ? 
+                        <div className="section mb-2">
+                            <br />
+                            <h4>Registration Dates</h4>
+                            {tournament.registration_start_date ? <Moment format="LLL">{tournament.registration_start_date}</Moment> : ''}
+
+                            {tournament.registration_start_date && tournament.end_date ? <> to <Moment format="LLL" >{tournament.registration_end_date}</Moment></> : ''}
+                        </div>
+
+
+                    : ''}
+
 
                 </div>
                 <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
                     {tournament && tournament.venues && tournament.venues.map(function (venue, index) {
                         return (
-                            <VenueItem key={index} venue={venue} />
+                            <>
+                                <VenueItem key={index} venue={venue} />
+                                <hr />
+                            </>
+
                         );
                     })}
                 </div>

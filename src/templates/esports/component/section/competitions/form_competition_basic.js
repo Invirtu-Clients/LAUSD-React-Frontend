@@ -24,16 +24,16 @@ export default function CompetitionFormBasicInfo({ nameValue, nameOnChange, desc
                 })}
             </div>
 
-            <div className="form-group-time mb-2">
-                <label>Start Date</label>
+            <div className="form-group-time mb-5">
+                <label style={{marginRight: "10px"}} >Start Date</label>
                 <DateTimePicker onChange={startDateOnChange} value={startDateValue} />
                 {errors && errors.start_date && errors.start_date.map(function (name, index) {
                     return <Danger message={name} key={index} />;
                 })}
             </div>
 
-            <div className="form-group-time mb-2">
-                <label>End Date</label>
+            <div className="form-group-time mb-5">
+                <label style={{marginRight: "16px"}} >End Date</label>
                 <DateTimePicker onChange={endDateOnChange} value={endDateValue} />
                 {errors && errors.end_date && errors.end_date.map(function (name, index) {
                     return <Danger message={name} key={index} />;

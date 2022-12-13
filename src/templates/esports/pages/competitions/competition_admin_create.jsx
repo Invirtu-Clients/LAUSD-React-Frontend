@@ -106,9 +106,9 @@ class CompetitionsCreatePage extends Component {
 
                                 <CompetitionFormSignupDetails
                                     allowTeamSignupValue={this.state.data.allow_team_signup}
-                                    allowTeamSignupOnChange={(e) => { this.setState({ data: { ...this.state.data, allow_team_signup: e.target.value } }); }}
+                                    allowTeamSignupOnChange={(e) => { this.setState({ data: { ...this.state.data, allow_team_signup: e.target.checked } }); }}
                                     allowUserSignupValue={this.state.data.allow_individual_signup}
-                                    allowUserSignupOnChange={(e) => { this.setState({ data: { ...this.state.data, allow_individual_signup: e.target.value } }); }}
+                                    allowUserSignupOnChange={(e) => { this.setState({ data: { ...this.state.data, allow_individual_signup: e.target.checked } }); }}
                                     maxTeamsValue={this.state.data.max_registration_for_teams}
                                     maxTeamsOnChange={(e) => { this.setState({ data: { ...this.state.data, max_registration_for_teams: e.target.value } }); }}
                                     maxUsersValue={this.state.data.max_registration_for_users}
@@ -121,6 +121,8 @@ class CompetitionsCreatePage extends Component {
                                     registrationStartDateOnChange={(e) => { this.setState({ data: { ...this.state.data, registration_start_date : e } }); }}
                                     registrationEndDateValue={this.state.data.registration_end_date} 
                                     registrationEndDateOnChange={(e) => { this.setState({ data: { ...this.state.data, registration_end_date : e} }); }}
+                                    enableCheckinValue={(this.state.data.checkin_enabled === 'true' || this.state.data.checkin_enabled == true)}
+                                    enableCheckinOnChange={(e) => { this.setState({ data: { ...this.state.data, checkin_enabled : e.target.checked } }); }}
                                     errors={this.state.errors}
                                 />
 
@@ -149,6 +151,7 @@ class CompetitionsCreatePage extends Component {
 
 
 
+                                {(Object.keys(this.state.errors).length >0 ) ? <Danger message={"There are errors in your registration. Please check the form above."} /> : ''}
 
                                 <div className="form-group">
                                     <button className="d-block default-button" onClick={(e => { this.create(e) })}><span>{this.state.isLoading ? <Loading /> : ''} Create Tournament</span></button>

@@ -12,8 +12,8 @@ export default function BracketFormCompletion({  isWinnerValue, isWinnerOnChange
             <h3>On Round Completion Input</h3>
 
             <div className="form-group-time mb-2">
+                <Input type={"checkbox"} className={"form-checkbox"} name="is_finished" value={isFinishedValue} onChange={isFinishedOnChange} />
                 <label>Is Finished</label>
-                <Input type={"checkbox"} name="is_finished" value={isFinishedValue} onChange={isFinishedOnChange} />
                 <p className="small">Once the match is done, market is has finished.</p>
                 {errors && errors.is_finished && errors.is_finished.map(function (name, index) {
                     return <Danger message={name} key={index} />;
@@ -21,8 +21,8 @@ export default function BracketFormCompletion({  isWinnerValue, isWinnerOnChange
             </div>
 
             <div className="form-group-time mb-2">
+                <Input type={"checkbox"} className={"form-checkbox"} name="is_winner" value={isWinnerValue} onChange={isWinnerOnChange} />
                 <label>Is Winner</label>
-                <Input type={"checkbox"} name="is_winner" value={isWinnerValue} onChange={isWinnerOnChange} />
                 <p className="small">Select if the team/user is the winner.</p>
                 {errors && errors.is_winner && errors.is_winner.map(function (name, index) {
                     return <Danger message={name} key={index} />;

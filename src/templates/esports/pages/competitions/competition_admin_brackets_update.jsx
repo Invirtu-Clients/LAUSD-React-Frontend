@@ -110,24 +110,23 @@ class CompetitionsUpdateBracketsPage extends Component {
         return (
             <Fragment>
                 <Header />
-                <PageHeader title={'Create A Tournamnet Bracket'} curPage={'Compete'} />
+                <PageHeader title={'Update Tournamnet Bracket'} curPage={'Compete'} />
                 <div className=" padding-top padding-bottom">
                     <div className=" container">
                         <div className="stream-wrapper">
-                            <h3 className="title">Create A Tournament Bracket</h3>
+                            <h3 className="title">Update Tournament Bracket</h3>
                             <form className="account-form text-left" style={{ textAlign: "left" }}>
 
 
                                 <BracketFormBasicInfo
                                     bracketValue={this.state.data.bracket}
                                     bracketOnChange={(e) => { this.setState({ data: { ...this.state.data, bracket: e.target.value } }); }}
-                                    startDateValue={this.state.data.bracket_start_date}
+                                    startDateValue={(typeof this.state.data.bracket_start_date === "string") ? new Date(this.state.data.bracket_start_date) : this.state.data.bracket_start_date}
                                     startDateOnChange={(e) => { this.setState({ data: { ...this.state.data, bracket_start_date: e.target.value } }); }}
-                                    endDateValue={this.state.data.bracket_end_date}
+                                    endDateValue={(typeof this.state.data.bracket_end_date === "string") ? new Date(this.state.data.bracket_end_date) : this.state.data.bracket_end_date}
                                     endDateOnChange={(e) => { this.setState({ data: { ...this.state.data, bracket_end_date: e.target.value } }); }}
-                                    checkinEnableValue={this.state.data.checked_in}
-                                    checkEnabledOnChange={(e) => { this.setState({ data: { ...this.state.data, checked_in: e.target.value } }); }}
-
+                                    checkinEnableValue={(this.state.data.checked_in === 'true' || this.state.data.checked_in == true)}
+                                    checkEnabledOnChange={(e) => { this.setState({ data: { ...this.state.data, checked_in: e.target.checked } }); }}
                                     errors={this.state.errors}
                                 />
 
@@ -138,23 +137,23 @@ class CompetitionsUpdateBracketsPage extends Component {
                                     teams={this.state.tournament.teams}
                                     teamValue={this.state.data.team_id}
                                     teamOnChange={(e) => { this.setState({ data: { ...this.state.data, team_id : e.target.value } }); }}
-
                                     errors={this.state.errors}
                                 />
 
                                 <BracketFormCompletion
-                                    isWinnerValue={this.state.data.is_winner}
-                                    isWinnerOnChange={(e) => { this.setState({ data: { ...this.state.data, is_winner: e.target.value } }); }}
-                                    isFinishedValue={this.state.data.is_finished}
-                                    isFinishedOnChange={(e) => { this.setState({ data: { ...this.state.data, is_finished: e.target.value } }); }}
+                                    isWinnerValue={(this.state.data.is_winner === 'true' || this.state.data.is_winner == true)}
+                                    isWinnerOnChange={(e) => { this.setState({ data: { ...this.state.data, is_winner: e.target.checked } }); }}
+                                    isFinishedValue={(this.state.data.is_finished === 'true' || this.state.data.is_finished == true)}
+                                    isFinishedOnChange={(e) => { this.setState({ data: { ...this.state.data, is_finished: e.target.checked } }); }}
                                     pointsValue={this.state.data.points_awarded}
                                     pointsOnChange={(e) => { this.setState({ data: { ...this.state.data, points_awarded: e.target.value } }); }}
                                     cashValue={this.state.data.cash_awarded}
                                     cashOnChange={(e) => { this.setState({ data: { ...this.state.data, cash_awarded: e.target.value } }); }}
-
                                     errors={this.state.errors}
                                 />
 
+
+                                {(Object.keys(this.state.errors).length >0 ) ? <Danger message={"There are errors in updating the bracket. Please check the form above."} /> : ''}
 
                                 <div className="form-group">
                                     <button className="d-block default-button" onClick={(e => { this.update(e) })}><span>{this.state.isLoading ? <Loading /> : ''} Update Bracket</span></button>

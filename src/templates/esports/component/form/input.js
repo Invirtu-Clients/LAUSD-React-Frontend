@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Input({ children, type, name, placeholder, className, value, id, onChange, defaultValue, step }) {
+export default function Input({ children, type, name, placeholder, className, value, id, onChange, defaultValue, step, checked }) {
 
     if(!type){
         type = 'text';
@@ -18,6 +18,7 @@ export default function Input({ children, type, name, placeholder, className, va
                 defaultValue={defaultValue}
                 onChange={onChange}
                 step={step}
+                checked={checked}
                 />
 
         </>

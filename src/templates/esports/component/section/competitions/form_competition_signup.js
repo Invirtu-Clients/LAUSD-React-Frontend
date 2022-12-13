@@ -8,34 +8,39 @@ export default function CompetitionFormSignupDetails({ allowTeamSignupValue, all
 
     return (
         <>
-            <h3 className="title">Registration Details</h3>
+            <h3 >Registration Details</h3>
+            <p className="lead">Configure how individuals and team can register for the tournament.</p>
 
             <div className="form-group-checkbox">
+                <Input type="checkbox" className={"form-checkbox mr-5 pr-5"} name="allow_team_signup" checked={allowTeamSignupValue} onChange={allowTeamSignupOnChange} />
+
                 <label>Allow Teams To Sign-Up</label>
-                <Input type="checkbox" name="allow_team_signup" value={allowTeamSignupValue} onChange={allowTeamSignupOnChange} />
                 {errors && errors.allow_team_signup && errors.allow_team_signup.map(function (name, index) {
                     return <Danger message={name} key={index} />;
                 })}
             </div>
 
-            <div className="form-group-checkbox">
+            <div className="form-group-checkbox mb-5">
+                <Input type="checkbox" className={"form-checkbox"} name="allow_individual_signup" checked={allowUserSignupValue} onChange={allowUserSignupOnChange} />
+
                 <label>Allow Individuals To Sign-Up</label>
-                <Input type="checkbox" name="allow_individual_signup" value={allowUserSignupValue} onChange={allowUserSignupOnChange} />
                 {errors && errors.allow_individual_signup && errors.allow_individual_signup.map(function (name, index) {
                     return <Danger message={name} key={index} />;
                 })}
+                <br />
             </div>
 
-            <div className="form-group-time mb-2">
-                <label>Registration Start Date</label>
+            <div className="form-group-time mb-5">
+                <label style={{marginRight: "10px"}}>Registration Start Date</label>
                 <DateTimePicker onChange={registrationStartDateOnChange} value={registrationStartDateValue} />
                 {errors && errors.registration_start_date && errors.registration_start_date.map(function (name, index) {
                     return <Danger message={name} key={index} />;
                 })}
+                <br />
             </div>
 
-            <div className="form-group-time mb-2">
-                <label>Registration End Date</label>
+            <div className="form-group-time mb-5">
+                <label style={{marginRight: "16px"}}>Registration End Date</label>
                 <DateTimePicker onChange={registrationEndDateOnChange} value={registrationEndDateValue} />
                 {errors && errors.registration_end_date && errors.registration_end_date.map(function (name, index) {
                     return <Danger message={name} key={index} />;
@@ -78,9 +83,11 @@ export default function CompetitionFormSignupDetails({ allowTeamSignupValue, all
                 })}
             </div>
 
-            <div className="form-group">
+            <div className="form-group-checkbox">
+                <Input type="checkbox" className={"form-checkbox"} name="allow_individual_signup" checked={enableCheckinValue} onChange={enableCheckinOnChange} />
                 <label>Enable Check-in</label>
-                <Input type="checkbox" name="allow_individual_signup" value={enableCheckinValue} onChange={enableCheckinOnChange} />
+
+                <p className="small">Have a check-in that will allow users and teams to check-in to the tournament.</p>
                 {errors && errors.allow_individual_signup && errors.allow_individual_signup.map(function (name, index) {
                     return <Danger message={name} key={index} />;
                 })}

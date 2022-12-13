@@ -20,6 +20,8 @@ import Instagram from "../../component/sidebar/instagram";
 import RecentPost from "../../component/sidebar/recentpost";
 import SearchBar from "../../component/sidebar/search";
 import Tags from "../../component/sidebar/tags";
+import CompetitionBrackets from "../../component/section/competitions/detail_bracket";
+
 
 
 class CompetitionsManagePage extends Component {
@@ -64,7 +66,14 @@ class CompetitionsManagePage extends Component {
                         <div className="section-wrapper">
                             <div className="row justify-content-center pb-15">
                                 <div className="col-lg-8 col-12">
-                                    <TournamentOverview tournament={this.state.tournament} />
+                                    <TournamentOverview tournament={this.state.tournament} is_admin={true} />
+
+                                    <hr/>
+
+                                    <h3>Rounds & Brackets</h3>
+
+                                    <CompetitionBrackets tournament={this.state.tournament} is_admin={true} />
+
                                 </div>
                                 <div className="col-lg-4 col-md-7 col-12">
                                     <aside className="ps-lg-4">

@@ -3495,6 +3495,9 @@ button {
       .contact-form .form-group {
         margin-bottom: 20px; } }
 
+        .form-checkbox {
+          width: 20px;
+        }
 .form-message {
   font-size: 1rem; }
   .form-message.success {

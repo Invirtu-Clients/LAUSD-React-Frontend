@@ -19,16 +19,16 @@ export default function BracketFormBasicInfo({ bracketValue, bracketOnChange, st
                 })}
             </div>
 
-            <div className="form-group-time mb-2">
-                <label>Start Date (Optional)</label>
+            <div className="form-group-time mb-5">
+                <label style={{marginRight: "10px"}}>Start Date (Optional)</label>
                 <DateTimePicker onChange={startDateOnChange} value={startDateValue} />
                 {errors && errors.bracket_start_date && errors.bracket_start_date.map(function (name, index) {
                     return <Danger message={name} key={index} />;
                 })}
             </div>
 
-            <div className="form-group-time mb-2">
-                <label>End Date (Optional)</label>
+            <div className="form-group-time mb-5">
+                <label style={{marginRight: "16px"}} >End Date (Optional)</label>
                 <DateTimePicker onChange={endDateOnChange} value={endDateValue} />
                 {errors && errors.bracket_end_date && errors.bracket_end_date.map(function (name, index) {
                     return <Danger message={name} key={index} />;
@@ -36,8 +36,9 @@ export default function BracketFormBasicInfo({ bracketValue, bracketOnChange, st
             </div>
 
             <div className="form-group-time mb-2">
+                
+                <Input type={"checkbox"} className="form-checkbox" value={checkinEnableValue} onChange={checkEnabledOnChange} />
                 <label>Checked In</label>
-                <Input type={"checkbox"} value={checkinEnableValue} onChange={checkEnabledOnChange} />
                 <p className="small">Mark once the user or team has checked in.</p>
                 {errors && errors.checked_in && errors.checked_in.map(function (name, index) {
                     return <Danger message={name} key={index} />;

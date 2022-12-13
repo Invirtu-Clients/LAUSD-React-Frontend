@@ -96,9 +96,9 @@ class CompetitionsUpdatePage extends Component {
                                     nameOnChange={(e) => { this.setState({ data: { ...this.state.data, name: e.target.value } }); }}
                                     descriptionValue={this.state.data.description}
                                     descriptionOnChange={(e) => { this.setState({ data: { ...this.state.data, description: e.target.value } }); }}
-                                    startDateValue={this.state.data.start_date}
+                                    startDateValue={(typeof this.state.data.start_date === "string") ? new Date(this.state.data.start_date) : this.state.data.start_date}
                                     startDateOnChange={(e) => { this.setState({ data: { ...this.state.data, start_date : e } }); }}
-                                    endDateValue={this.state.data.end_date} 
+                                    endDateValue={(typeof this.state.data.end_date === "string") ? new Date(this.state.data.end_date)  :this.state.data.end_date} 
                                     endDateOnChange={(e) => { this.setState({ data: { ...this.state.data, end_date: e} }); }}
                                     errors = {this.state.errors}
                                 />
@@ -119,9 +119,9 @@ class CompetitionsUpdatePage extends Component {
 
                                 <CompetitionFormSignupDetails
                                     allowTeamSignupValue={(this.state.data.allow_team_signup === 'true' || this.state.data.allow_team_signup == true)}
-                                    allowTeamSignupOnChange={(e) => { this.setState({ data: { ...this.state.data, allow_team_signup: e.target.value } }); }}
+                                    allowTeamSignupOnChange={(e) => { this.setState({ data: { ...this.state.data, allow_team_signup: e.target.checked } }); }}
                                     allowUserSignupValue={(this.state.data.allow_individual_signup === 'true' || this.state.data.allow_individual_signup == true)}
-                                    allowUserSignupOnChange={(e) => { this.setState({ data: { ...this.state.data, allow_individual_signup: e.target.value } }); }}
+                                    allowUserSignupOnChange={(e) => { this.setState({ data: { ...this.state.data, allow_individual_signup: e.target.checked } }); }}
                                     maxTeamsValue={this.state.data.max_registration_for_teams}
                                     maxTeamsOnChange={(e) => { this.setState({ data: { ...this.state.data, max_registration_for_teams: e.target.value } }); }}
                                     maxUsersValue={this.state.data.max_registration_for_users}
@@ -130,10 +130,12 @@ class CompetitionsUpdatePage extends Component {
                                     teamRegistrationPriceOnChange={(e) => { this.setState({ data: { ...this.state.data, team_registration_price: e.target.value } }); }}
                                     userRegistrationPriceValue={this.state.data.individual_registration_price}
                                     userRegistrationPriceOnChange={(e) => { this.setState({ data: { ...this.state.data, individual_registration_price: e.target.value } }); }}
-                                    registrationStartDateValue={this.state.data.registration_start_date}
+                                    registrationStartDateValue={(typeof this.state.data.registration_start_date === "string") ? new Date(this.state.data.registration_start_date)  : this.state.data.registration_start_date}
                                     registrationStartDateOnChange={(e) => { this.setState({ data: { ...this.state.data, registration_start_date : e } }); }}
-                                    registrationEndDateValue={this.state.data.registration_end_date} 
+                                    registrationEndDateValue={(typeof this.state.data.registration_end_date === "string") ? new Date(this.state.data.registration_end_date)  : this.state.data.registration_end_date} 
                                     registrationEndDateOnChange={(e) => { this.setState({ data: { ...this.state.data, registration_end_date : e} }); }}
+                                    enableCheckinValue={(this.state.data.checkin_enabled === 'true' || this.state.data.checkin_enabled == true)}
+                                    enableCheckinOnChange={(e) => { this.setState({ data: { ...this.state.data, checkin_enabled : e.target.checked } }); }}
                                     errors={this.state.errors}
                                 />
 
@@ -160,8 +162,7 @@ class CompetitionsUpdatePage extends Component {
                                 />
 
 
-
-
+                                {(Object.keys(this.state.errors).length >0 ) ? <Danger message={"There are errors in your update. Please check the form above."} /> : ''}
 
                                 <div className="form-group">
                                     <button className="d-block default-button" onClick={(e => { this.update(e) })}><span>{this.state.isLoading ? <Loading /> : ''} Update Tournament</span></button>

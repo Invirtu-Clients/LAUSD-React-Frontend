@@ -7,6 +7,8 @@ import withRouter from "../../../../util/withRouter";
 import Header from "../../component/layout/header";
 import PageHeader from "../../component/layout/pageheader";
 import TournamentItem from "../../component/section/competitions/detail_tournament_item";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 
 class CompetitionsListPage extends Component {
@@ -51,13 +53,16 @@ class CompetitionsListPage extends Component {
                     <div className="tab-content mt-3" id="myTabContent">
 
                         <div className="container text-right">
-                            <Link className="btn btn-success" to={Navigate.tournamentsCreate()}>Manage Tournament</Link>
 
-                            {this.state.tournaments && this.state.tournaments.map(function (tournament, index) {
-                                return (
-                                    <TournamentItem key={index} tournament={tournament} />
-                                );
-                            })}
+                            <Link className="btn btn-success mb-5" to={Navigate.tournamentsCreate()}><FontAwesomeIcon icon={faPlus} /> Create A Tournament</Link>
+
+                            <div className="row g-4 match-grid GameListStyleTwo">
+                                {this.state.tournaments && this.state.tournaments.map(function (tournament, index) {
+                                    return (
+                                        <TournamentItem key={index} tournament={tournament} />
+                                    );
+                                })}
+                            </div>
 
                         </div>
 

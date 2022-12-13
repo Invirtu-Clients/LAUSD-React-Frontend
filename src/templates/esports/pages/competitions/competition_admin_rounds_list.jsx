@@ -8,7 +8,9 @@ import Header from "../../component/layout/header";
 import PageHeader from "../../component/layout/pageheader";
 import CompetitionBrackets from "../../component/section/competitions/detail_bracket";
 import TournamentItem from "../../component/section/competitions/detail_tournament_item";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import SidebarManageMenu from "../../component/section/competitions/menu_side_manage";
 
 class CompetitionsRoundsListPage extends Component {
 
@@ -48,20 +50,28 @@ class CompetitionsRoundsListPage extends Component {
                 <Header />
                 <PageHeader title={'Tourmanet Rounds'} curPage={'Find A Tournamnet'} />
 
-                <div className="container">
+                <div className="blog-section blog-single padding-top padding-bottom aside-bg">
+                    
+                    <div className="container">
+                        <div className="section-wrapper">
+                            <div className="row justify-content-center pb-15">
+                                <div className="col-lg-8 col-12">
+                                    <Link className="btn btn-success" to={Navigate.tournamentsRoundsCreate(this.state.tournament.id)}><FontAwesomeIcon icon={faPlus} /> Add A Round</Link>
+                                    <br />
+                                    <h2>Manage Rounds and Brackets</h2>
+                                    <p className="lead">Manage the rounds and brackets for reach round below.</p>
 
-                    <div className="tab-content mt-3" id="myTabContent">
+                                    <CompetitionBrackets tournament={this.state.tournament} is_admin={true} />
 
-                        <div className="container text-right">
-                            <Link className="btn btn-success" to={Navigate.tournamentsRoundsCreate(this.state.tournament.id)}>Add A Round</Link>
-
-                            <hr />
-                            <br />
-
-                            <CompetitionBrackets tournament={this.state.tournament} is_admin={true} />
-
+                                </div>
+                                <div className="col-lg-4 col-md-7 col-12">
+                                    <aside className="ps-lg-4">
+                                        <SidebarManageMenu competition_id={this.state.tournament.id} />
+                                       
+                                    </aside>
+                                </div>
+                            </div>
                         </div>
-
                     </div>
                 </div>
 

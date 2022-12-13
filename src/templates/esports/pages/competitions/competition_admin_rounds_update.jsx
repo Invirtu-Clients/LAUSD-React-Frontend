@@ -19,7 +19,7 @@ import CompetitionFormSocial from "../../component/section/competitions/form_com
 import RoundFormBasicInfo from "../../component/section/competitions/form_round_basic";
 
 
-class CompetitionsCreateRoundsPage extends Component {
+class CompetitionsUpdateRoundsPage extends Component {
 
     constructor(props) {
         super(props);
@@ -50,7 +50,21 @@ class CompetitionsCreateRoundsPage extends Component {
         });
     }
 
-    create(event) {
+    loadRound() {
+
+        let id = this.props.router.params.id;
+
+        let round_id = this.props.router.params.round_id;
+
+        Requests.tournamentsRoundsView(id, round_id).then(response => {
+            this.setState({ tournament : response.data });
+        }).catch(error => {
+
+        });
+    }
+
+
+    update(event) {
 
         event.preventDefault();
 
@@ -60,7 +74,9 @@ class CompetitionsCreateRoundsPage extends Component {
 
         let id = this.props.router.params.id;
 
-        Requests.tournamentsRoundsCreate(id, data).then(response => {
+        let round_id = this.props.router.params.round_id;
+
+        Requests.tournamentsRoundsUpdate(id, round_id, data).then(response => {
 
             this.setState({ isLoading: false });
 
@@ -87,12 +103,11 @@ class CompetitionsCreateRoundsPage extends Component {
         return (
             <Fragment>
                 <Header />
-                <PageHeader title={'Create A Tournamnet Round'} curPage={'Compete'} />
-                
+                <PageHeader title={'Update Tournamnet Round'} curPage={'Compete'} />
                 <div className=" padding-top padding-bottom">
                     <div className=" container">
                         <div className="stream-wrapper">
-                            <h3 className="title">Create A Tournament Round</h3>
+                            <h3 className="title">Update Tournament Round</h3>
                             <form className="account-form text-left" style={{ textAlign: "left" }}>
                                 
 
@@ -103,11 +118,11 @@ class CompetitionsCreateRoundsPage extends Component {
                                     titleOnChange={(e) => { this.setState({ data: { ...this.state.data, title : e.target.value } }); }} 
                                     overviewValue={this.state.data.overview} 
                                     overviewOnChange={(e) => { this.setState({ data: { ...this.state.data, overview: e.target.value } }); }} 
-                                    startDateValue={this.state.data.round_start_date} 
+                                    startDateValue={(typeof this.state.data.round_start_date === "string") ? new Date(this.state.data.round_start_date) : this.state.data.round_start_date} 
                                     startDateOnChange={(e) => { this.setState({ data: { ...this.state.data, round_start_date : e.target.value } }); }} 
-                                    endDateValue={this.state.data.round_end_date} 
+                                    endDateValue={(typeof this.state.data.round_end_date === "string") ? new Date(this.state.data.round_end_date) : this.state.data.round_end_date} 
                                     endDateOnChange={(e) => { this.setState({ data: { ...this.state.data, round_end_date : e.target.value } }); }} 
-                                    checkinEnableValue={this.state.data.checkin_enabled} 
+                                    checkinEnableValue={(this.state.data.checkin_enabled === 'true' || this.state.data.checkin_enabled == true)} 
                                     checkEnabledOnChange={(e) => { this.setState({ data: { ...this.state.data, checkin_enabled : e.target.checked } }); }}
                                     checkinPriorValue={this.state.data.checkin_mintues_prior} 
                                     checkinPriorOnChange={(e) => { this.setState({ data: { ...this.state.data, checkin_mintues_prior : e.target.value } }); }}
@@ -121,7 +136,7 @@ class CompetitionsCreateRoundsPage extends Component {
                                 {(Object.keys(this.state.errors).length >0 ) ? <Danger message={"There are errors in creating the round. Please check the form above."} /> : ''}
 
                                 <div className="form-group">
-                                    <button className="d-block default-button" onClick={(e => { this.create(e) })}><span>{this.state.isLoading ? <Loading /> : ''} Create Round</span></button>
+                                    <button className="d-block default-button" onClick={(e => { this.create(e) })}><span>{this.state.isLoading ? <Loading /> : ''} Update Round</span></button>
                                 </div>
                             </form>
 
@@ -135,4 +150,4 @@ class CompetitionsCreateRoundsPage extends Component {
 
 }
 
-export default withRouter(CompetitionsCreateRoundsPage);
+export default withRouter(CompetitionsUpdateRoundsPage);

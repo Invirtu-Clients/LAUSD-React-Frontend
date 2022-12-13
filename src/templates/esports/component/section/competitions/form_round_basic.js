@@ -3,6 +3,7 @@ import DateTimePicker from "react-datetime-picker";
 import TournamentTypes from "../../../../../constants/tournament_types";
 import Danger from "../../alerts/Danger";
 import Input from "../../form/input";
+import Select from "../../form/select";
 import Textarea from "../../form/textarea";
 
 export default function RoundFormBasicInfo({ roundValue, roundOnChange, titleValue, titleOnChange, overviewValue, overviewOnChange, startDateValue, startDateOnChange, endDateValue, endDateOnChange, checkinEnableValue, checkEnabledOnChange, checkinPriorValue, checkinPriorOnChange, eliminationValue, eliminationOnChange, errors }) {
@@ -37,16 +38,16 @@ export default function RoundFormBasicInfo({ roundValue, roundOnChange, titleVal
                 })}
             </div>
 
-            <div className="form-group-time mb-2">
-                <label>Start Date</label>
+            <div className="form-group-time mb-5">
+                <label style={{marginRight: "10px"}} >Round Start Date (Optional)</label>
                 <DateTimePicker onChange={startDateOnChange} value={startDateValue} />
                 {errors && errors.round_start_date && errors.round_start_date.map(function (name, index) {
                     return <Danger message={name} key={index} />;
                 })}
             </div>
 
-            <div className="form-group-time mb-2">
-                <label>End Date</label>
+            <div className="form-group-time mb-5">
+                <label style={{marginRight: "10px"}}>Round End Date (Optional)</label>
                 <DateTimePicker onChange={endDateOnChange} value={endDateValue} />
                 {errors && errors.round_end_date && errors.round_end_date.map(function (name, index) {
                     return <Danger message={name} key={index} />;
@@ -54,8 +55,9 @@ export default function RoundFormBasicInfo({ roundValue, roundOnChange, titleVal
             </div>
 
             <div className="form-group-time mb-2">
-                <label>Check-in Enabled</label>
-                <Input type={"checkbox"} value={checkinEnableValue} onChange={checkEnabledOnChange} />
+                <Input type={"checkbox"} className={"form-checkbox"} value={checkinEnableValue} onChange={checkEnabledOnChange} />
+                <label >Check-in Enabled</label>
+                <p className="small">Activate if you want users or teams to check-in for this round.</p>
                 {errors && errors.checkin_enabled && errors.checkin_enabled.map(function (name, index) {
                     return <Danger message={name} key={index} />;
                 })}
@@ -72,8 +74,9 @@ export default function RoundFormBasicInfo({ roundValue, roundOnChange, titleVal
             </div>
 
             <div className="form-group text-left">
-                <label>Elimination Type</label>
-                <select name="elimination_type" className="form-control" value={eliminationValue} onChange={eliminationOnChange}>
+                <label>Elimination Type (Optional)</label>
+                <Select name="elimination_type" className="form-control" value={eliminationValue} onChange={eliminationOnChange}>
+                    <option value={""}>Select an optional elimination method.</option>
                     <option value={TournamentTypes.SINGLE_ELIMINATION}>Single Elimination</option>
                     <option value={TournamentTypes.DOUBLE_ELIMINATION}>Double Elimination</option>
                     <option value={TournamentTypes.MULTILEVEL} >Mutlilevel</option>
@@ -83,7 +86,7 @@ export default function RoundFormBasicInfo({ roundValue, roundOnChange, titleVal
                     <option value={TournamentTypes.ROUND_ROBIN_QUADRUPLE_SPLIT}>Round Robin Quadruple Split</option>
                     <option value={TournamentTypes.SEMI_ROUND_ROBINS}>Semi-Round Roins</option>
                     <option value={TournamentTypes.EXTENDED}>Extended</option>
-                </select>
+                </Select>
                 <p className="small">If this round elimination type is different from the tournaments default elimination, you can set the elimination type here just for this round.</p>
                 {errors && errors.elimination_type && errors.elimination_type.map(function (name, index) {
                     return <Danger message={name} key={index} />;

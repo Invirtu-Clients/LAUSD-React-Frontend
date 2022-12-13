@@ -468,7 +468,7 @@ const Navigate = {
     },
     tournamentsRoundBracketsUpdate : (tournament_id, round_id, bracket_id) => {
 
-        let path = app_routes.tournaments_rounds_update;
+        let path = app_routes.tournaments_brackets_update;
 
         if(tournament_id){
             path = path.replace(':id', tournament_id)

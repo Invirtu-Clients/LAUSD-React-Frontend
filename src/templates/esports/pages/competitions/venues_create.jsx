@@ -4,6 +4,7 @@ import Navigate from "../../../../util/Navigate";
 import Requests from "../../../../util/Requests";
 import Response from "../../../../util/Response";
 import withRouter from "../../../../util/withRouter";
+import Danger from "../../component/alerts/Danger";
 import Loading from "../../component/alerts/Loading";
 import Footer from "../../component/layout/footer";
 import Header from "../../component/layout/header";
@@ -120,7 +121,7 @@ class CompetitionsVenuesCreate extends Component {
                                 />
 
 
-
+                                {(Object.keys(this.state.errors).length >0 ) ? <Danger message={"There are errors in creating the venue. Please check the form above."} /> : ''}
 
                                 <div className="form-group">
                                     <button className="d-block default-button" onClick={(e => { this.create(e) })}><span>{this.state.isLoading ? <Loading /> : ''} Add Venue</span></button>

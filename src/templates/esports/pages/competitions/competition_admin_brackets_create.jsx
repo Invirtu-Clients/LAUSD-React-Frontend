@@ -108,7 +108,7 @@ class CompetitionsCreateBracketsPage extends Component {
                                     endDateValue={this.state.data.bracket_end_date}
                                     endDateOnChange={(e) => { this.setState({ data: { ...this.state.data, bracket_end_date: e.target.value } }); }}
                                     checkinEnableValue={this.state.data.checked_in}
-                                    checkEnabledOnChange={(e) => { this.setState({ data: { ...this.state.data, checked_in: e.target.value } }); }}
+                                    checkEnabledOnChange={(e) => { this.setState({ data: { ...this.state.data, checked_in: e.target.checked } }); }}
 
                                     errors={this.state.errors}
                                 />
@@ -126,9 +126,9 @@ class CompetitionsCreateBracketsPage extends Component {
 
                                 <BracketFormCompletion
                                     isWinnerValue={this.state.data.is_winner}
-                                    isWinnerOnChange={(e) => { this.setState({ data: { ...this.state.data, is_winner: e.target.value } }); }}
+                                    isWinnerOnChange={(e) => { this.setState({ data: { ...this.state.data, is_winner: e.target.checked } }); }}
                                     isFinishedValue={this.state.data.is_finished}
-                                    isFinishedOnChange={(e) => { this.setState({ data: { ...this.state.data, is_finished: e.target.value } }); }}
+                                    isFinishedOnChange={(e) => { this.setState({ data: { ...this.state.data, is_finished: e.target.checked } }); }}
                                     pointsValue={this.state.data.points_awarded}
                                     pointsOnChange={(e) => { this.setState({ data: { ...this.state.data, points_awarded: e.target.value } }); }}
                                     cashValue={this.state.data.cash_awarded}
@@ -137,6 +137,8 @@ class CompetitionsCreateBracketsPage extends Component {
                                     errors={this.state.errors}
                                 />
 
+
+                                {(Object.keys(this.state.errors).length >0 ) ? <Danger message={"There are errors in creating a bracket. Please check the form above."} /> : ''}
 
                                 <div className="form-group">
                                     <button className="d-block default-button" onClick={(e => { this.create(e) })}><span>{this.state.isLoading ? <Loading /> : ''} Create Bracket</span></button>

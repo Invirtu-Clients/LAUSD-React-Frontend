@@ -15,7 +15,7 @@ export default function BracketFormParticipants({  users, userValue, userOnChang
 
             <div className="form-group-time mb-2">
                 <label>User</label>
-                <Select name="user_id" onChange={userOnChange} value={userValue}>
+                <Select name="user_id"  onChange={userOnChange} value={userValue}>
                     <option value={""}>Select An Individual User To Compete</option>
                     {users && Array.isArray(users) && users.map(function (user, index) {
                         return <option key={index} value={user.id}>{user.username} ({user.first_name} {user.last_name})</option>

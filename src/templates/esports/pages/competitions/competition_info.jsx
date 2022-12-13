@@ -12,6 +12,7 @@ import Textarea from "../../component/form/textarea";
 import Footer from "../../component/layout/footer";
 import Header from "../../component/layout/header";
 import PageHeader from "../../component/layout/pageheader";
+import CompetitionBrackets from "../../component/section/competitions/detail_bracket";
 import TournamentOverview from "../../component/section/competitions/detail_overview";
 import CompetitionFormBasicInfo from "../../component/section/competitions/form_competition_basic";
 import CompetitionFormMatchDetails from "../../component/section/competitions/form_competition_match";
@@ -87,6 +88,12 @@ class CompetitionsInfoPage extends Component {
                 
                 <div className="container">
                     <TournamentOverview tournament={this.state.tournament} is_admin={false} />
+
+                    <hr />
+
+                    <h3>Rounds And Brackets</h3>
+
+                    <CompetitionBrackets tournament={this.state.tournament} is_admin={false} />
                 </div>
 
                 <Footer />
