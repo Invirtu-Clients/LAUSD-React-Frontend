@@ -6,15 +6,16 @@ import Requests from "../../../../util/Requests";
 import withRouter from "../../../../util/withRouter";
 import Header from "../../component/layout/header";
 import PageHeader from "../../component/layout/pageheader";
+import CompetitionBrackets from "../../component/section/competitions/detail_bracket";
 import TournamentItem from "../../component/section/competitions/detail_tournament_item";
 
 
-class CompetitionsListPage extends Component {
+class CompetitionsRoundsListPage extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            tournaments: [],
+            tournament: {},
             data: {},
             errors: {},
             isLoading: false,
@@ -24,14 +25,15 @@ class CompetitionsListPage extends Component {
     }
 
     componentDidMount() {
-        this.loadTournaments();
+        this.loadTournament();
     }
 
-    loadTournaments() {
+    loadTournament() {
 
-        Requests.tournamentsList().then(response => {
-            this.setState({ tournaments: response.data });
-            console.log(response);
+        let id = this.props.router.params.id;
+
+        Requests.tournamentsView(id).then(response => {
+            this.setState({ tournament : response.data });
         }).catch(error => {
 
         });
@@ -44,20 +46,19 @@ class CompetitionsListPage extends Component {
         return (
             <Fragment>
                 <Header />
-                <PageHeader title={'Tourmanets'} curPage={'Find A Tournamnet'} />
+                <PageHeader title={'Tourmanet Rounds'} curPage={'Find A Tournamnet'} />
 
                 <div className="container">
 
                     <div className="tab-content mt-3" id="myTabContent">
 
                         <div className="container text-right">
-                            <Link className="btn btn-success" to={Navigate.tournamentsCreate()}>Manage Tournament</Link>
+                            <Link className="btn btn-success" to={Navigate.tournamentsRoundsCreate(this.state.tournament.id)}>Add A Round</Link>
 
-                            {this.state.tournaments && this.state.tournaments.map(function (tournament, index) {
-                                return (
-                                    <TournamentItem key={index} tournament={tournament} />
-                                );
-                            })}
+                            <hr />
+                            <br />
+
+                            <CompetitionBrackets tournament={this.state.tournament} is_admin={true} />
 
                         </div>
 
@@ -72,4 +73,4 @@ class CompetitionsListPage extends Component {
 
 }
 
-export default withRouter(CompetitionsListPage);
+export default withRouter(CompetitionsRoundsListPage);

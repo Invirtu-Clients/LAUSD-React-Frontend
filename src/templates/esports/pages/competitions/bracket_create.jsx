@@ -15,7 +15,7 @@ class CompetitionsBracketCreate extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tournament : {},
+            tournament: {},
             venues: [],
             errors: {},
             isLoading: false,
@@ -81,7 +81,7 @@ class CompetitionsBracketCreate extends Component {
                         <div className="stream-wrapper">
                             <h3 className="title">Add A Venue</h3>
                             <form className="account-form text-left" style={{ textAlign: "left" }}>
-                                
+
 
 
 

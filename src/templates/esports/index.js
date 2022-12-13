@@ -4,6 +4,7 @@ import 'bootstrap/scss/bootstrap.scss';
 import './assets/css/icofont.min.css';
 import './assets/css/animate.css';
 import './assets/css/style.css';
+import './assets/css/brackets.css';
 
 
 import {BrowserRouter, Routes, Route } from "react-router-dom";
@@ -53,11 +54,18 @@ import CompetitionsCreatePage from "./pages/competitions/competition_admin_creat
 import CompetitionsUpdatePage from "./pages/competitions/competition_admin_update";
 import CompetitionsManagePage from "./pages/competitions/competition_admin_manage";
 import CompetitionsListPage from './pages/competitions/competition_list';
+import CompetitionsInfoPage from './pages/competitions/competition_info';
+import CompetitionsRegisterUserPage from './pages/competitions/competition_user_register';
 
 import CompetitionsVenuesCreate from './pages/competitions/venues_create';
 import CompetitionsVenuesUpdate from './pages/competitions/venues_update';
 import CompetitionsVenuesList from './pages/competitions/venues';
 
+import CompetitionsRoundsListPage from './pages/competitions/competition_admin_rounds_list';
+import CompetitionsCreateRoundsPage from './pages/competitions/competition_admin_rounds_create';
+
+import CompetitionsCreateBracketsPage from './pages/competitions/competition_admin_brackets_create';
+import CompetitionsUpdateBracketsPage from './pages/competitions/competition_admin_brackets_update';
 
 import AccountUpdatePage from "./pages/account/profile";
 import RegisterStep2 from "./pages/account/register_step2";
@@ -139,10 +147,18 @@ function Template() {
           <Route path={Navigate.tournamentsCreate()} element={<CompetitionsCreatePage />} />
           <Route path={Navigate.tournamentsUpdate()} element={<CompetitionsUpdatePage />} />
           <Route path={Navigate.tournamentsManage()} element={<CompetitionsManagePage />} />
+          <Route path={Navigate.tournamentsView()} element={<CompetitionsInfoPage />} />
+          <Route path={Navigate.tournamentsRegisterUser()} element={<CompetitionsRegisterUserPage />} />
 
           <Route path={Navigate.tournamentsVenuesList()} element={<CompetitionsVenuesList />} />
           <Route path={Navigate.tournamentsVenuesCreate()} element={<CompetitionsVenuesCreate />} />
           <Route path={Navigate.tournamentsVenuesUpdate()} element={<CompetitionsVenuesUpdate />} />
+
+          <Route path={Navigate.tournamentsRoundsList()} element={<CompetitionsRoundsListPage />} />
+          <Route path={Navigate.tournamentsRoundsCreate()} element={<CompetitionsCreateRoundsPage />} />
+
+          <Route path={Navigate.tournamentsRoundBracketsCreate()} element={<CompetitionsCreateBracketsPage />} />
+          <Route path={Navigate.tournamentsRoundBracketsUpdate()} element={<CompetitionsUpdateBracketsPage />} />
 
           <Route path={Navigate.usersList()} element={<UsersPage />} />
           <Route path={Navigate.usersProfilePage()} element={<UserProfilePage />} />

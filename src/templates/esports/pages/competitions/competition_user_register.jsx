@@ -7,15 +7,9 @@ import Session from "../../../../util/Session";
 import withRouter from "../../../../util/withRouter";
 import Danger from "../../component/alerts/Danger";
 import Loading from "../../component/alerts/Loading";
-import Input from "../../component/form/input";
-import Textarea from "../../component/form/textarea";
 import Footer from "../../component/layout/footer";
 import Header from "../../component/layout/header";
 import PageHeader from "../../component/layout/pageheader";
-import CompetitionFormBasicInfo from "../../component/section/competitions/form_competition_basic";
-import CompetitionFormMatchDetails from "../../component/section/competitions/form_competition_match";
-import CompetitionFormSignupDetails from "../../component/section/competitions/form_competition_signup";
-import CompetitionFormSocial from "../../component/section/competitions/form_competition_social";
 
 
 class CompetitionsRegisterUserPage extends Component {
@@ -23,6 +17,7 @@ class CompetitionsRegisterUserPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            error : null,
             data: {},
             errors: {},
             isLoading: false,
@@ -52,7 +47,9 @@ class CompetitionsRegisterUserPage extends Component {
 
         event.preventDefault();
 
-        let data = this.state.data;
+        let data = {
+            user_id : Session.getID()
+        };
 
         this.setState({ isLoading: true });
 
@@ -62,22 +59,22 @@ class CompetitionsRegisterUserPage extends Component {
 
             this.setState({ isLoading: false });
 
-            this.props.router.navigate(Navigate.tournamentsManage(response.data.id));
+            this.props.router.navigate(Navigate.tournamentsView(response.data.id));
         }).catch(error => {
 
             this.setState({ isLoading: false });
 
             let jsonErrors = Response.parseJSONFromError(error);
+            
+            if (jsonErrors && jsonErrors.error) {
 
-            if (jsonErrors) {
-
-                this.setState({ errors: jsonErrors });
+                this.setState({ error: jsonErrors.error });
 
                 setTimeout(() => {
-                    this.setState({ errors: {} });
+                    this.setState({ error: null });
                 }, timeouts.error_message_timeout)
             }
-        })
+        });
     }
 
     render() {
@@ -85,23 +82,20 @@ class CompetitionsRegisterUserPage extends Component {
         return (
             <Fragment>
                 <Header />
-                <PageHeader title={'Update Tournamnet'} curPage={'Compete'} />
+                <PageHeader title={'Register For Tournamnet'} curPage={'Compete'} />
                 <div className=" padding-top padding-bottom">
                     <div className=" container">
                         <div className="stream-wrapper">
                             <h3 className="title">Register Tournament</h3>
                             <form className="account-form text-left" style={{ textAlign: "left" }}>
                                 
-
                                 <h3>Register For Tournament</h3>
 
-                                <p></p>
+                                <p>Register to the tournament as an individual contentest. After logging in, simply register using the button below.</p>
 
-
-
-
+                                { this.state.error ? <Danger message={this.state.error}  /> : ''}
                                 <div className="form-group">
-                                    <button className="d-block default-button" onClick={(e => { this.update(e) })}><span>{this.state.isLoading ? <Loading /> : ''} Update Tournament</span></button>
+                                    <button className="d-block default-button" onClick={(e => { this.register(e) })}><span>{this.state.isLoading ? <Loading /> : ''} Register</span></button>
                                 </div>
                             </form>
 

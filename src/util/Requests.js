@@ -323,11 +323,11 @@ const Requests = {
         return Requests._sendRequest(url, api_routes.competitions_register_teae.method, data);
     },
     tournamentsRegisterUser : (competition_id, data) => {
-        let url = Requests._formatApiUrl(api_routes.competitions_register_user.route);
+        let url = Requests._formatApiUrl(api_routes.competitions_register_individual.route);
 
         url = url.replace('{competition_id}', competition_id);
 
-        return Requests._sendRequest(url, api_routes.competitions_register_user.method, data);
+        return Requests._sendRequest(url, api_routes.competitions_register_individual.method, data);
     },
     tournamentsRoundsList : (competition_id, query) => {
         let url = Requests._formatApiUrl(api_routes.competitions_rounds_list.route);

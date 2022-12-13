@@ -62,7 +62,8 @@
     tournaments_view : '/tournmanets/:id/view',
     tournaments_update : '/tournmanets/:id/update',
     tournaments_delete : '/tournmanets/:id/delete',
-    tournaments_register : '/tournmanets/:id/register',
+    tournaments_register_user : '/tournmanets/:id/registerUser',
+    tournaments_register_team : '/tournmanets/:id/registerTeam',
     tournaments_teams : '/tournmanets/:id/register',
     tournaments_participants : '/tournmanets/:id/register',
     tournaments_manage : '/tournmanets/:id/manage',
@@ -92,11 +93,18 @@
     tournaments_participants_update : '/tournmanets/:id/participants/:user_id/update',
     tournaments_participants_delete : '/tournmanets/:id/participants/:user_id/delete',
 
-    tournaments_rounds : '/tournmanets/:id/users',
-    tournaments_rounds_create : '/tournaments/:id/participants/create',
-    tournaments_rounds_view : '/tournmanets/:id/participants/:user_id/view',
-    tournaments_rounds_update : '/tournmanets/:id/participants/:user_id/update',
-    tournaments_rounds_delete : '/tournmanets/:id/participants/:user_id/delete',
+    tournaments_rounds : '/tournmanets/:id/rounds',
+    tournaments_rounds_create : '/tournaments/:id/rounds/create',
+    tournaments_rounds_view : '/tournmanets/:id/rounds/:round_id/view',
+    tournaments_rounds_update : '/tournmanets/:id/rounds/:round_id/update',
+    tournaments_rounds_delete : '/tournmanets/:id/rounds/:round_id/delete',
+
+
+    tournaments_brackets : '/tournmanets/:id/rounds/:round_id/brackets',
+    tournaments_brackets_create : '/tournaments/:id/rounds/:round_id/brackets/create',
+    tournaments_brackets_view : '/tournmanets/:id/rounds/:round_id/brackets/:bracket_id/view',
+    tournaments_brackets_update : '/tournmanets/:id/rounds/:round_id/brackets/:bracket_id/update',
+    tournaments_brackets_delete : '/tournmanets/:id/rounds/:round_id/brackets/:bracket_id/delete',
 
     //users routes
     users_list : '/users',

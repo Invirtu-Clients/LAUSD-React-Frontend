@@ -2,13 +2,18 @@ import { Link } from "react-router-dom";
 import Navigate from "../../../../../util/Navigate";
 
 
-export default function VenueItem({ venue }) {
+export default function VenueItem({ venue, is_admin }) {
 
 
+    let updateLink = '';
+    
+    if(is_admin) {
+        updateLink = <Link to={Navigate.tournamentsVenuesUpdate(venue.competition_id, venue.id)} className="btn btn-warning">Update</Link>;
+    }
 
     return (
         <div >
-            <Link to={Navigate.tournamentsVenuesUpdate(venue.competition_id, venue.id)} className="btn btn-warning">Update</Link>
+            {updateLink}
             <h3>{venue.venue_name}</h3>
 
             {venue.venue_name}

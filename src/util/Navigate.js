@@ -284,9 +284,19 @@ const Navigate = {
         return path;
         
     },
-    tournamentsRegister : (tournament_id) => {
+    tournamentsRegisterUser : (tournament_id) => {
 
-        let path = app_routes.tournaments_register;
+        let path = app_routes.tournaments_register_user;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        return path;
+    },
+    tournamentsRegisterTeam : (tournament_id) => {
+
+        let path = app_routes.tournaments_register_team;
 
         if(tournament_id){
             path = path.replace(':id', tournament_id)
@@ -362,6 +372,150 @@ const Navigate = {
 
         if(venue_id){
             path = path.replace(':venue_id', venue_id)
+        }
+
+        return path;
+    },
+    tournamentsRoundsList : (tournament_id) => {
+
+        let path = app_routes.tournaments_rounds;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        return path;
+    },
+    tournamentsRoundsCreate : (tournament_id) => {
+
+        let path = app_routes.tournaments_rounds_create;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        return path;
+    },
+    tournamentsRoundsUpdate : (tournament_id, round_id) => {
+
+        let path = app_routes.tournaments_rounds_update;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        if(round_id){
+            path = path.replace(':round_id', round_id)
+        }
+
+        return path;
+    },
+    tournamentsRoundsView : (tournament_id, round_id) => {
+
+        let path = app_routes.tournaments_rounds_view;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        if(round_id){
+            path = path.replace(':round_id', round_id)
+        }
+
+        return path;
+    },
+    tournamentsRoundsDelete : (tournament_id, round_id) => {
+
+        let path = app_routes.tournaments_rounds_delete;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        if(round_id){
+            path = path.replace(':round_id', round_id)
+        }
+
+        return path;
+    },
+    tournamentsRoundBracketsList : (tournament_id, round_id) => {
+
+        let path = app_routes.tournaments_brackets;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        if(round_id){
+            path = path.replace(':round_id', round_id)
+        }
+
+        return path;
+    },
+    tournamentsRoundBracketsCreate : (tournament_id, round_id) => {
+
+        let path = app_routes.tournaments_brackets_create;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        if(round_id){
+            path = path.replace(':round_id', round_id)
+        }
+
+        return path;
+    },
+    tournamentsRoundBracketsUpdate : (tournament_id, round_id, bracket_id) => {
+
+        let path = app_routes.tournaments_rounds_update;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        if(round_id){
+            path = path.replace(':round_id', round_id)
+        }
+
+        if(bracket_id){
+            path = path.replace(':bracket_id', bracket_id)
+        }
+
+        return path;
+    },
+    tournamentsRoundBracketsView : (tournament_id, round_id, bracket_id) => {
+
+        let path = app_routes.tournaments_brackets_view;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        if(round_id){
+            path = path.replace(':round_id', round_id)
+        }
+
+        if(bracket_id){
+            path = path.replace(':bracket_id', bracket_id)
+        }
+
+        return path;
+    },
+    tournamentsRoundBracketsDelete : (tournament_id, round_id, bracket_id) => {
+
+        let path = app_routes.tournaments_brackets_delete;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        if(round_id){
+            path = path.replace(':round_id', round_id)
+        }
+
+        if(bracket_id){
+            path = path.replace(':bracket_id', bracket_id)
         }
 
         return path;
