@@ -56,7 +56,7 @@ export default function TournamentItem({ tournament, is_admin }) {
                                 <div className="match-game-info">
                                     <h4><Link to={Navigate.tournamentsView(tournament.id)}>{tournament.name}</Link></h4>
                                     <p className="d-flex flex-wrap justify-content-center  justify-content-md-start">
-                                        <span className="match-date"> <Moment format="MM/DD/YYYY">{tournament.start_date}</Moment> </span><span className="match-time"><Moment format="hh:mm:ss">{tournament.start_date}</Moment></span>
+                                        <span className="match-date"> <Moment format="MM/DD/YYYY">{tournament.start_date}</Moment> </span><span className="match-time"><Moment format="hh:mm:ss A">{tournament.start_date}</Moment></span>
                                     </p>
                                 </div>
                             </div>
