@@ -4,6 +4,7 @@ import 'bootstrap/scss/bootstrap.scss';
 import './assets/css/icofont.min.css';
 import './assets/css/animate.css';
 import './assets/css/style.css';
+import './assets/css/brackets.css';
 
 
 import {BrowserRouter, Routes, Route } from "react-router-dom";
@@ -49,6 +50,26 @@ import ForgotPassword from "./pages/auth/forgotpassword";
 import ResetPassword from "./pages/auth/resetpassword";
 import LogIn from "./pages/auth/login";
 
+import CompetitionsCreatePage from "./pages/competitions/competition_admin_create";
+import CompetitionsUpdatePage from "./pages/competitions/competition_admin_update";
+import CompetitionsManagePage from "./pages/competitions/competition_admin_manage";
+import CompetitionsWaiversPage from "./pages/competitions/competition_admin_waivers";
+import CompetitionsListPage from './pages/competitions/competition_list';
+import CompetitionsInfoPage from './pages/competitions/competition_info';
+import CompetitionsRegisterUserPage from './pages/competitions/competition_user_register';
+
+import CompetitionsVenuesCreate from './pages/competitions/venues_create';
+import CompetitionsVenuesUpdate from './pages/competitions/venues_update';
+import CompetitionsVenuesList from './pages/competitions/venues';
+
+import CompetitionsRoundsListPage from './pages/competitions/competition_admin_rounds_list';
+import CompetitionsCreateRoundsPage from './pages/competitions/competition_admin_rounds_create';
+import CompetitionsUpdateRoundsPage from './pages/competitions/competition_admin_rounds_update';
+
+
+import CompetitionsCreateBracketsPage from './pages/competitions/competition_admin_brackets_create';
+import CompetitionsUpdateBracketsPage from './pages/competitions/competition_admin_brackets_update';
+
 import AccountUpdatePage from "./pages/account/profile";
 import RegisterStep2 from "./pages/account/register_step2";
 
@@ -72,6 +93,7 @@ import 'moment-timezone';
 //import '././assets/css/style.min.css';
 //import'./assets/sass/style.scss';
 import Navigate from "../../util/Navigate";
+
 
 
 
@@ -123,6 +145,25 @@ function Template() {
           <Route path={Navigate.streamsWatchRecordingPage()} element={<WatchRecordingPage />} />
           <Route path={Navigate.streamsManageRecordingPage()} element={<ManageRecordingPage />} />
           <Route path={Navigate.streamsCohostWatch()} element={<CohostWatchStream />} />
+
+          <Route path={Navigate.tournamentsList()} element={<CompetitionsListPage />} />
+          <Route path={Navigate.tournamentsCreate()} element={<CompetitionsCreatePage />} />
+          <Route path={Navigate.tournamentsUpdate()} element={<CompetitionsUpdatePage />} />
+          <Route path={Navigate.tournamentsUpdateWaivers()} element={<CompetitionsWaiversPage />} />
+          <Route path={Navigate.tournamentsManage()} element={<CompetitionsManagePage />} />
+          <Route path={Navigate.tournamentsView()} element={<CompetitionsInfoPage />} />
+          <Route path={Navigate.tournamentsRegisterUser()} element={<CompetitionsRegisterUserPage />} />
+
+          <Route path={Navigate.tournamentsVenuesList()} element={<CompetitionsVenuesList />} />
+          <Route path={Navigate.tournamentsVenuesCreate()} element={<CompetitionsVenuesCreate />} />
+          <Route path={Navigate.tournamentsVenuesUpdate()} element={<CompetitionsVenuesUpdate />} />
+
+          <Route path={Navigate.tournamentsRoundsList()} element={<CompetitionsRoundsListPage />} />
+          <Route path={Navigate.tournamentsRoundsCreate()} element={<CompetitionsCreateRoundsPage />} />
+          <Route path={Navigate.tournamentsRoundsUpdate()} element={<CompetitionsUpdateRoundsPage />} />
+
+          <Route path={Navigate.tournamentsRoundBracketsCreate()} element={<CompetitionsCreateBracketsPage />} />
+          <Route path={Navigate.tournamentsRoundBracketsUpdate()} element={<CompetitionsUpdateBracketsPage />} />
 
           <Route path={Navigate.usersList()} element={<UsersPage />} />
           <Route path={Navigate.usersProfilePage()} element={<UserProfilePage />} />

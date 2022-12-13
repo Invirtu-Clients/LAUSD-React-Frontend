@@ -12,6 +12,8 @@ import Requests from "../../../../util/Requests";
 import Danger from "../../component/alerts/Danger";
 import Warning from "../../component/alerts/Warning";
 import Success from "../../component/alerts/Success";
+import TournamentItem from "../../component/section/competitions/detail_tournament_item";
+import Footer from "../../component/layout/footer";
 
 
 
@@ -72,7 +74,7 @@ class AccountUpdatePage extends Component {
 
             stripeData = <><Warning message={"Activate Donation Page"} />
                 <p>To finalize your ability to accept donations, you must activate your donation page.</p>
-                <div class="form-group text-center"><button class="d-block default-button" onClick={(e) => {this.activateDonations()}}><span> Activate</span></button></div>
+                <div className="form-group text-center"><button className="d-block default-button" onClick={(e) => {this.activateDonations()}}><span> Activate</span></button></div>
 
             </>
 
@@ -95,6 +97,9 @@ class AccountUpdatePage extends Component {
                         </li>
                         <li className="nav-item" role="presentation">
                             <button className="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Manage Streams</button>
+                        </li>
+                        <li className="nav-item" role="presentation">
+                            <button className="nav-link" id="tournament-tab" data-bs-toggle="tab" data-bs-target="#tournament" type="button" role="tab" aria-controls="tournament" aria-selected="false">Tournaments</button>
                         </li>
                         <li className="nav-item" role="presentation">
                             <button className="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Donations</button>
@@ -154,6 +159,20 @@ class AccountUpdatePage extends Component {
                                 }
                             </div>
                         </div>
+                        <div className="tab-pane fade mt-3" id="tournament" role="tabpanel" aria-labelledby="tournament-tab">
+                            <div className="row g-4 match-grid GameListStyleTwo">
+
+
+                                {
+                                    this.state.me && this.state.me.competitions && this.state.me.competitions.map((tournament, index) => {
+
+                                        return (
+                                            <TournamentItem  tournament={tournament} key={index} is_admin={true} />
+                                        )
+                                    })
+                                }
+                            </div>
+                        </div>
                         <div className="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
 
                             <h3>Accepting Donations</h3>
@@ -165,10 +184,7 @@ class AccountUpdatePage extends Component {
                 </div>
 
 
-                <div className="container">
-
-
-                </div>
+                <Footer />
             </Fragment>
         );
     }

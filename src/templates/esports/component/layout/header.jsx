@@ -102,7 +102,7 @@ class Header extends Component {
 
         return (
             <header className="header-section">
-                <div className="container">
+                <div className="container-fluid">
                     <div className="header-holder d-flex flex-wrap justify-content-between align-items-center">
                         <div className="brand-logo d-none d-lg-inline-block">
                             <div className="logo">
@@ -145,8 +145,9 @@ class Header extends Component {
                                                 <a href={Navigate.streamsPage()} >Streams</a>
                                             </li>
 
+
                                             <li >
-                                                <a href={Navigate.usersList()} >Users</a>
+                                                <a href={Navigate.tournamentsList()} >Tournaments</a>
                                             </li>
 
                                             {process.env.REACT_APP_DISCORD_LINK ? <li><a href={process.env.REACT_APP_DISCORD_LINK} >Discord</a></li>: '' }

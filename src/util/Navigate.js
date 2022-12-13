@@ -176,6 +176,364 @@ const Navigate = {
         return path;
     },
 
+    //Teams Page
+    teamsList : () => {
+
+        let path = app_routes.teams;
+
+        return path;
+        
+    },
+    teamsCreate : () => {
+
+        let path = app_routes.teams_create;
+
+        return path;
+        
+    },
+    teamsUpdate : (team_id) => {
+
+        let path = app_routes.teams_update;
+
+        if(team_id){
+            path = path.replace(':id', team_id)
+        }
+
+        return path;
+        
+    },
+    teamsView : (team_id) => {
+
+        let path = app_routes.teams_view;
+
+        if(team_id){
+            path = path.replace(':id', team_id)
+        }
+
+        return path;
+        
+    },
+    teamsDelete : (team_id) => {
+
+        let path = app_routes.teams_delete;
+
+        if(team_id){
+            path = path.replace(':id', team_id)
+        }
+
+        return path;
+        
+    },
+    teamsRegister : (team_id) => {
+
+        let path = app_routes.teams_register;
+
+        if(team_id){
+            path = path.replace(':id', team_id)
+        }
+
+        return path;
+        
+    },
+
+    //Tourmanents
+    tournamentsList : () => {
+
+        let path = app_routes.tournaments;
+
+        return path;
+        
+    },
+    tournamentsCreate : () => {
+
+        let path = app_routes.tournaments_create;
+
+        return path;
+        
+    },
+    tournamentsUpdate : (tournament_id) => {
+
+        let path = app_routes.tournaments_update;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        return path;
+        
+    },
+    tournamentsUpdateWaivers : (tournament_id) => {
+
+        let path = app_routes.tournaments_update_waivers;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        return path;
+        
+    },
+    tournamentsView : (tournament_id) => {
+
+        let path = app_routes.tournaments_view;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        return path;
+        
+    },
+    tournamentsDelete : (tournament_id) => {
+
+        let path = app_routes.tournaments_delete;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        return path;
+        
+    },
+    tournamentsRegisterUser : (tournament_id) => {
+
+        let path = app_routes.tournaments_register_user;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        return path;
+    },
+    tournamentsRegisterTeam : (tournament_id) => {
+
+        let path = app_routes.tournaments_register_team;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        return path;
+    },
+    tournamentsManage : (tournament_id) => {
+
+        let path = app_routes.tournaments_manage;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        return path;
+    },
+    tournamentsVenuesList : (tournament_id) => {
+
+        let path = app_routes.tournaments_venues;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        return path;
+    },
+    tournamentsVenuesCreate : (tournament_id) => {
+
+        let path = app_routes.tournaments_venues_create;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        return path;
+    },
+    tournamentsVenuesUpdate : (tournament_id, venue_id) => {
+
+        let path = app_routes.tournaments_venues_update;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        if(venue_id){
+            path = path.replace(':venue_id', venue_id)
+        }
+
+        return path;
+    },
+    tournamentsVenuesView : (tournament_id, venue_id) => {
+
+        let path = app_routes.tournaments_venues_view;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        if(venue_id){
+            path = path.replace(':venue_id', venue_id)
+        }
+
+        return path;
+    },
+    tournamentsVenuesDelete : (tournament_id, venue_id) => {
+
+        let path = app_routes.tournaments_venues_delete;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        if(venue_id){
+            path = path.replace(':venue_id', venue_id)
+        }
+
+        return path;
+    },
+    tournamentsRoundsList : (tournament_id) => {
+
+        let path = app_routes.tournaments_rounds;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        return path;
+    },
+    tournamentsRoundsCreate : (tournament_id) => {
+
+        let path = app_routes.tournaments_rounds_create;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        return path;
+    },
+    tournamentsRoundsUpdate : (tournament_id, round_id) => {
+
+        let path = app_routes.tournaments_rounds_update;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        if(round_id){
+            path = path.replace(':round_id', round_id)
+        }
+
+        return path;
+    },
+    tournamentsRoundsView : (tournament_id, round_id) => {
+
+        let path = app_routes.tournaments_rounds_view;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        if(round_id){
+            path = path.replace(':round_id', round_id)
+        }
+
+        return path;
+    },
+    tournamentsRoundsDelete : (tournament_id, round_id) => {
+
+        let path = app_routes.tournaments_rounds_delete;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        if(round_id){
+            path = path.replace(':round_id', round_id)
+        }
+
+        return path;
+    },
+    tournamentsRoundBracketsList : (tournament_id, round_id) => {
+
+        let path = app_routes.tournaments_brackets;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        if(round_id){
+            path = path.replace(':round_id', round_id)
+        }
+
+        return path;
+    },
+    tournamentsRoundBracketsCreate : (tournament_id, round_id) => {
+
+        let path = app_routes.tournaments_brackets_create;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        if(round_id){
+            path = path.replace(':round_id', round_id)
+        }
+
+        return path;
+    },
+    tournamentsRoundBracketsUpdate : (tournament_id, round_id, bracket_id) => {
+
+        let path = app_routes.tournaments_brackets_update;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        if(round_id){
+            path = path.replace(':round_id', round_id)
+        }
+
+        if(bracket_id){
+            path = path.replace(':bracket_id', bracket_id)
+        }
+
+        return path;
+    },
+    tournamentsRoundBracketsView : (tournament_id, round_id, bracket_id) => {
+
+        let path = app_routes.tournaments_brackets_view;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        if(round_id){
+            path = path.replace(':round_id', round_id)
+        }
+
+        if(bracket_id){
+            path = path.replace(':bracket_id', bracket_id)
+        }
+
+        return path;
+    },
+    tournamentsRoundBracketsDelete : (tournament_id, round_id, bracket_id) => {
+
+        let path = app_routes.tournaments_brackets_delete;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        if(round_id){
+            path = path.replace(':round_id', round_id)
+        }
+
+        if(bracket_id){
+            path = path.replace(':bracket_id', bracket_id)
+        }
+
+        return path;
+    },
+
+
+
     //Users
     usersList : () => {
 

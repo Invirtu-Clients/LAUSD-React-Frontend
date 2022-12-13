@@ -687,7 +687,13 @@ input, textarea, select, .player-item, .player-item-2, .product-item .product-in
   max-width: 1170px;
   margin: 0 auto;
   padding-inline: 20px;
-  width: 100%; }
+  width: 100%; 
+}
+
+.container-fluid {
+  margin: 0 auto;
+  width: 100%; 
+}
 
 .hide-text {
   overflow: hidden;
@@ -3105,7 +3111,7 @@ button {
       .widget.widget-category .widget-wrapper li a span {
         font-weight: 500; }
         .widget.widget-category .widget-wrapper li a span:last-child {
-          width: 30px;
+          
           height: 30px;
           line-height: 30px;
           border-radius: 100%;
@@ -3489,6 +3495,9 @@ button {
       .contact-form .form-group {
         margin-bottom: 20px; } }
 
+        .form-checkbox {
+          width: 20px;
+        }
 .form-message {
   font-size: 1rem; }
   .form-message.success {
