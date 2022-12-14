@@ -102,7 +102,7 @@ class CompetitionsVenuesUpdate extends Component {
                     <div className=" container">
                         <div className="stream-wrapper">
                             <h3 className="title">Add A Venue</h3>
-                            <form className="account-form text-left" style={{ textAlign: "left" }}>
+                            <form className="text-left" style={{ textAlign: "left" }}>
                                 
                                 <VenueFormBasic
                                     nameValue={this.state.data.venue_name}
@@ -139,8 +139,8 @@ class CompetitionsVenuesUpdate extends Component {
 
                                 {(Object.keys(this.state.errors).length >0 ) ? <Danger message={"There are errors in updating the venue. Please check the form above."} /> : ''}
 
-                                <div className="form-group">
-                                    <button className="d-block default-button" onClick={(e => { this.update(e) })}><span>{this.state.isLoading ? <Loading /> : ''} Update Venue</span></button>
+                                <div className="form-group text-center">
+                                    <button className="default-button" onClick={(e => { this.update(e) })}><span>{this.state.isLoading ? <Loading /> : ''} Update Venue</span></button>
                                 </div>
                             </form>
 

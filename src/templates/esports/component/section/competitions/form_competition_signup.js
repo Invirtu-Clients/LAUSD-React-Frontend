@@ -31,7 +31,7 @@ export default function CompetitionFormSignupDetails({ allowTeamSignupValue, all
             </div>
 
             <div className="form-group-time mb-5">
-                <label style={{marginRight: "10px"}}>Registration Start Date</label>
+                <label style={{marginRight: "10px"}}>Registration Start Date (Optional)</label>
                 <DateTimePicker onChange={registrationStartDateOnChange} value={registrationStartDateValue} />
                 {errors && errors.registration_start_date && errors.registration_start_date.map(function (name, index) {
                     return <Danger message={name} key={index} />;
@@ -40,7 +40,7 @@ export default function CompetitionFormSignupDetails({ allowTeamSignupValue, all
             </div>
 
             <div className="form-group-time mb-5">
-                <label style={{marginRight: "16px"}}>Registration End Date</label>
+                <label style={{marginRight: "16px"}}>Registration End Date (Optional)</label>
                 <DateTimePicker onChange={registrationEndDateOnChange} value={registrationEndDateValue} />
                 {errors && errors.registration_end_date && errors.registration_end_date.map(function (name, index) {
                     return <Danger message={name} key={index} />;
@@ -48,7 +48,7 @@ export default function CompetitionFormSignupDetails({ allowTeamSignupValue, all
             </div>
 
             <div className="form-group text-left">
-                <label>Maximum Teams That Can Register</label>
+                <label>Maximum Teams That Can Register (Optional)</label>
                 <Input type="number" name="max_registration_for_teams" value={maxTeamsValue} onChange={maxTeamsOnChange}  />
                 <p className="small">Set a limit on how many teams that can register. 0 or blank is infinite amount.</p>
                 {errors && errors.max_registration_for_teams && errors.max_registration_for_teams.map(function (name, index) {
@@ -57,7 +57,7 @@ export default function CompetitionFormSignupDetails({ allowTeamSignupValue, all
             </div>
 
             <div className="form-group text-left">
-                <label>Maximum Users That Can Register</label>
+                <label>Maximum Users That Can Register (Optional)</label>
                 <Input type="number" name="max_registration_for_users" value={maxUsersValue} onChange={maxUsersOnChange}  />
                 <p className="small">Set a limit on how many individual users that can register. 0 or blank is infinite amount.</p>
                 {errors && errors.max_registration_for_users && errors.max_registration_for_users.map(function (name, index) {
@@ -66,7 +66,7 @@ export default function CompetitionFormSignupDetails({ allowTeamSignupValue, all
             </div>
 
             <div className="form-group text-left">
-                <label>Team Registration Price</label>
+                <label>Team Registration Price (Optional)</label>
                 <Input type="number" step="0.01" name="team_registration_price" value={teamRegistrationPriceValue} onChange={teamRegistrationPriceOnChange}  />
                 <p className="small">Set the price for a teamto register. 0 or blank will allow free registration.</p>
                 {errors && errors.team_registration_price && errors.team_registration_price.map(function (name, index) {
@@ -75,7 +75,7 @@ export default function CompetitionFormSignupDetails({ allowTeamSignupValue, all
             </div>
 
             <div className="form-group text-left">
-                <label>User Registration Price</label>
+                <label>User Registration Price (Optional)</label>
                 <Input type="number" step="0.01" name="individual_registration_price" value={userRegistrationPriceValue} onChange={userRegistrationPriceOnChange}  />
                 <p className="small">Set the price for an individual user to register. 0 or blank will allow free registration.</p>
                 {errors && errors.individual_registration_price && errors.individual_registration_price.map(function (name, index) {

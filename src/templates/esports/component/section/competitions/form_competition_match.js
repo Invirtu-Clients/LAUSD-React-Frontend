@@ -34,7 +34,7 @@ export default function CompetitionFormMatchDetails({ competitorsPerMatchValue, 
 
             
             <div className="form-group text-left">
-                <label>Competitors Per Match</label>
+                <label>Competitors Per Match (Optional)</label>
                 <Input type="number" name="competitors_per_match" value={competitorsPerMatchValue} onChange={competitorsPerMatchOnChange} />
                 <p className="small">Competitors per match is the amount of people or teams that will compete against each other in a single bracket/match. The lowest is 2 contestants.</p>
                 {errors && errors.competitors_per_match && errors.competitors_per_match.map(function (name, index) {
@@ -43,7 +43,7 @@ export default function CompetitionFormMatchDetails({ competitorsPerMatchValue, 
             </div>
 
             <div className="form-group text-left">
-                <label>Minimum Team Size</label>
+                <label>Minimum Team Size (Optional)</label>
                 <Input type="number" name="minimum_team_size" value={minimumTeamSizeValue} onChange={minimumTeamSizeOnChange} />
                 <p className="small">If the options for allowing teams to register is active, you can set a minimum team size.</p>
                 {errors && errors.minimum_team_sizeh && errors.minimum_team_size.map(function (name, index) {

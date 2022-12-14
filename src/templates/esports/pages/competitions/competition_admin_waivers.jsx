@@ -91,7 +91,7 @@ class CompetitionsWaiversPage extends Component {
                     <div className=" container">
                         <div className="stream-wrapper">
                             <h3 className="title">Update Tournament Rules & Waivers</h3>
-                            <form className="account-form text-left" style={{ textAlign: "left" }}>
+                            <form className="text-left" style={{ textAlign: "left" }}>
                                 <CompetitionFormWaivers
                                     rulesValue={this.state.data.rules}
                                     rulesOnChange={(e) => { this.setState({ data: { ...this.state.data, rules : e } }); }}
@@ -116,8 +116,8 @@ class CompetitionsWaiversPage extends Component {
 
                                 {(Object.keys(this.state.errors).length >0 ) ? <Danger message={"There are errors in your update. Please check the form above."} /> : ''}
 
-                                <div className="form-group">
-                                    <button className="d-block default-button" onClick={(e => { this.update(e) })}><span>{this.state.isLoading ? <Loading /> : ''} Update Rules and Waiver</span></button>
+                                <div className="form-group text-center">
+                                    <button className="default-button" onClick={(e => { this.update(e) })}><span>{this.state.isLoading ? <Loading /> : ''} Update Rules and Waiver</span></button>
                                 </div>
                             </form>
 

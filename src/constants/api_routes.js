@@ -47,6 +47,14 @@ const api_routes = {
         route : '/competitions/{competition_id}',
         method : 'DELETE'
     },
+    competitions_upload_main_image : {
+        route : '/competitions/{competition_id}/uploadMainImage',
+        method : 'POST'
+    },
+    competitions_upload_main_banner : {
+        route : '/competitions/{competition_id}/uploadBannerImage',
+        method : 'POST'
+    },
     competitions_register_team : {
         route : '/competitions/{competition_id}/registerTeam',
         method : 'POST'

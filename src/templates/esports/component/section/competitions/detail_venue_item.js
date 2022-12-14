@@ -12,7 +12,6 @@ export default function VenueItem({ venue, is_admin }) {
         updateLink = <Link to={Navigate.tournamentsVenuesUpdate(venue.competition_id, venue.id)} className="btn btn-warning">Update</Link>;
     }
 
-
     return (
         <div >
             {updateLink}
