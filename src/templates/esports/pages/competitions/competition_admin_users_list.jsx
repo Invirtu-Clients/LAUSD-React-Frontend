@@ -6,28 +6,30 @@ import Requests from "../../../../util/Requests";
 import withRouter from "../../../../util/withRouter";
 import Header from "../../component/layout/header";
 import PageHeader from "../../component/layout/pageheader";
-import VenueItem from "../../component/section/competitions/detail_venue_item";
-import SidebarManageMenu from "../../component/section/competitions/menu_side_manage";
+import CompetitionBrackets from "../../component/section/competitions/detail_bracket";
+import TournamentItem from "../../component/section/competitions/detail_tournament_item";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import SidebarManageMenu from "../../component/section/competitions/menu_side_manage";
+import UserItem from "../../component/section/competitions/detail_user_item";
 
 
-class CompetitionsVenuesList extends Component {
+class CompetitionsRoundsUsersPage extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             tournament: {},
-            venues: [],
+            data: {},
             errors: {},
             isLoading: false,
+            tournaments: []
         };
 
     }
 
     componentDidMount() {
         this.loadTournament();
-        this.loadVenues();
     }
 
     loadTournament() {
@@ -35,57 +37,47 @@ class CompetitionsVenuesList extends Component {
         let id = this.props.router.params.id;
 
         Requests.tournamentsView(id).then(response => {
-            this.setState({ tournament: response.data });
+            this.setState({ tournament : response.data });
         }).catch(error => {
 
         });
     }
-
-    loadVenues() {
-
-        let id = this.props.router.params.id;
-
-        Requests.tournamentsVenueList(id).then(response => {
-            this.setState({ venues: response.data });
-        }).catch(error => {
-
-        });
-    }
-
 
     render() {
+
+
 
         return (
             <Fragment>
                 <Header />
-                <PageHeader title={'Manage Tourmanets Venues'} curPage={'Find A Tournamnet'} />
+                <PageHeader title={'Tourmanet Users'} curPage={'Manage Tournamnet'} />
 
                 <div className="blog-section blog-single padding-top padding-bottom aside-bg">
+                    
                     <div className="container">
                         <div className="section-wrapper">
                             <div className="row justify-content-center pb-15">
                                 <div className="col-lg-8 col-12">
-                                    <article>
-                                        <Link to={Navigate.tournamentsVenuesCreate(this.state.tournament.id)} className="btn btn-success"><FontAwesomeIcon icon={faPlus} /> Add Venue</Link>
-                                        <h2>{this.state.tournament.name} Venues</h2>
+                                    <Link className="btn btn-success" to={Navigate.tournamentsUsersInvite(this.state.tournament.id)}><FontAwesomeIcon icon={faPlus} /> Invite User</Link>
+                                    <br />
+                                    <h2>Users</h2>
+                                    <p className="lead">Manage the users who have access to the platform.</p>
 
-                                        {this.state.venues && this.state.venues.map(function (venue, index) {
-                                            return (
-                                                <>
-                                                    <VenueItem key={index} venue={venue} is_admin={true} />
-                                                    <hr />
-                                                </>
-                                            );
-                                        })}
+                                    {this.state.tournaments && this.state.tournament.admins && this.state.tournament.admins.map(function (user, index) {
+                                        return (
+                                            <> 
+                                                <UserItem key={index} user={user} />
+                                            </>
+                                        );
+                                    })}
 
+                                    
 
-
-                                    </article>
                                 </div>
                                 <div className="col-lg-4 col-md-7 col-12">
                                     <aside className="ps-lg-4">
                                         <SidebarManageMenu competition_id={this.state.tournament.id} />
-
+                                       
                                     </aside>
                                 </div>
                             </div>
@@ -93,10 +85,12 @@ class CompetitionsVenuesList extends Component {
                     </div>
                 </div>
 
+
+
             </Fragment>
         );
-
     }
+
 }
 
-export default withRouter(CompetitionsVenuesList);
+export default withRouter(CompetitionsRoundsUsersPage);

@@ -531,7 +531,140 @@ const Navigate = {
 
         return path;
     },
+    tournamentsUsersList : (tournament_id) => {
 
+        let path = app_routes.tournaments_users;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        return path;
+    },
+    tournamentsUsersCreate : (tournament_id) => {
+
+        let path = app_routes.tournaments_users_create;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        return path;
+    },
+    tournamentsUsersUpdate : (tournament_id, user_id) => {
+
+        let path = app_routes.tournaments_users_update;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        if(user_id){
+            path = path.replace(':user_id', user_id)
+        }
+
+        return path;
+    },
+    tournamentsUsersView : (tournament_id, user_id) => {
+
+        let path = app_routes.tournaments_users_view;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        if(user_id){
+            path = path.replace(':user_id', user_id)
+        }
+
+        return path;
+    },
+    tournamentsUsersDelete : (tournament_id, user_id) => {
+
+        let path = app_routes.tournaments_users_delete;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        if(user_id){
+            path = path.replace(':user_id', user_id)
+        }
+
+        return path;
+    },
+    tournamentsUsersInvite : (tournament_id) => {
+
+        let path = app_routes.tournaments_invite;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        return path;
+    },
+    tournamentsTeamsList : (tournament_id) => {
+
+        let path = app_routes.tournaments_teams;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        return path;
+    },
+    tournamentsTeamsCreate : (tournament_id) => {
+
+        let path = app_routes.tournaments_teams_create;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        return path;
+    },
+    tournamentsTeamsUpdate : (tournament_id, team_id) => {
+
+        let path = app_routes.tournaments_teams_update;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        if(team_id){
+            path = path.replace(':team_id', team_id)
+        }
+
+        return path;
+    },
+    tournamentsTeamsView : (tournament_id, team_id) => {
+
+        let path = app_routes.tournaments_teams_view;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        if(team_id){
+            path = path.replace(':team_id', team_id)
+        }
+
+        return path;
+    },
+    tournamentsTeamsDelete : (tournament_id, team_id) => {
+
+        let path = app_routes.tournaments_teams_delete;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        if(team_id){
+            path = path.replace(':team_id', team_id)
+        }
+
+        return path;
+    },
 
 
     //Users

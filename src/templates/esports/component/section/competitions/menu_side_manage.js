@@ -25,7 +25,7 @@ export default function SidebarManageMenu({ competition_id }) {
                     <Link className="d-flex flex-wrap justify-content-between" to={Navigate.tournamentsRoundsList(competition_id)}><span><i className="icofont-rounded-double-right"></i>Rounds & Brackets</span></Link>
                 </li>
                 <li key={4}>
-                    <a href="#" className="d-flex flex-wrap justify-content-between"><span><i className="icofont-rounded-double-right"></i>Admins & Moderators</span></a>
+                    <Link className="d-flex flex-wrap justify-content-between" to={Navigate.tournamentsUsersList(competition_id)}><span><i className="icofont-rounded-double-right"></i>Admins & Moderators</span></Link>
                 </li>
                 <li key={5}>
                     <a href="#" className="d-flex flex-wrap justify-content-between"><span><i className="icofont-rounded-double-right"></i>Teams</span></a>

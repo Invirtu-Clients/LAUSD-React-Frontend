@@ -73,7 +73,7 @@ export default function TournamentOverview({ tournament, is_admin }) {
                 
             </ul>
             <div className="tab-content" id="myTabContent">
-                <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div className="tab-pane fade show active mt-4" id="home" role="tabpanel" aria-labelledby="home-tab">
 
                     <div className="section mb-2">
                         <h5>Elimination Format</h5>
@@ -102,12 +102,12 @@ export default function TournamentOverview({ tournament, is_admin }) {
 
 
                 </div>
-                <div className="tab-pane fade" id="brackets" role="tabpanel" aria-labelledby="brackets-tab">
+                <div className="tab-pane fade mt-4" id="brackets" role="tabpanel" aria-labelledby="brackets-tab">
 
                     <CompetitionBrackets tournament={tournament} is_admin={false} />
 
                 </div>
-                <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div className="tab-pane fade mt-4" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
                     {tournament && tournament.venues && tournament.venues.map(function (venue, index) {
                         return (
@@ -119,7 +119,9 @@ export default function TournamentOverview({ tournament, is_admin }) {
                         );
                     })}
                 </div>
-                <div className="tab-pane fade" id="contestants" role="tabpanel" aria-labelledby="contestants-tab">
+                <div className="tab-pane fade mt-4" id="contestants" role="tabpanel" aria-labelledby="contestants-tab">
+
+                    <h3>Registered Contestants</h3>
 
                     {tournament && tournament.contestants && tournament.contestants.map(function (contestant, index) {
                         return (
@@ -127,7 +129,9 @@ export default function TournamentOverview({ tournament, is_admin }) {
                         );
                     })}
                 </div>
-                <div className="tab-pane fade" id="teams" role="tabpanel" aria-labelledby="teams-tab">
+                <div className="tab-pane fade mt-4" id="teams" role="tabpanel" aria-labelledby="teams-tab">
+
+                    <h3>Registered Teams</h3>
 
                     {tournament && tournament.teams && tournament.teams.map(function (team, index) {
                         return (
@@ -136,13 +140,13 @@ export default function TournamentOverview({ tournament, is_admin }) {
                     })}
                 </div>
 
-                <div className="tab-pane fade" id="rules" role="tabpanel" aria-labelledby="rules-tab">
+                <div className="tab-pane fade mt-4" id="rules" role="tabpanel" aria-labelledby="rules-tab">
                     <h3>Rules</h3>
                     <div dangerouslySetInnerHTML={{__html: tournament.rules}} />
 
                 </div>
 
-                <div className="tab-pane fade" id="schedule" role="tabpanel" aria-labelledby="schedule-tab">
+                <div className="tab-pane fade mt-4" id="schedule" role="tabpanel" aria-labelledby="schedule-tab">
                     <h3>Schedule</h3>
                     <div dangerouslySetInnerHTML={{__html: tournament.schedule}} />
 

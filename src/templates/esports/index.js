@@ -66,6 +66,8 @@ import CompetitionsRoundsListPage from './pages/competitions/competition_admin_r
 import CompetitionsCreateRoundsPage from './pages/competitions/competition_admin_rounds_create';
 import CompetitionsUpdateRoundsPage from './pages/competitions/competition_admin_rounds_update';
 
+import CompetitionsRoundsUsersPage from './pages/competitions/competition_admin_users_list';
+
 
 import CompetitionsCreateBracketsPage from './pages/competitions/competition_admin_brackets_create';
 import CompetitionsUpdateBracketsPage from './pages/competitions/competition_admin_brackets_update';
@@ -164,6 +166,8 @@ function Template() {
 
           <Route path={Navigate.tournamentsRoundBracketsCreate()} element={<CompetitionsCreateBracketsPage />} />
           <Route path={Navigate.tournamentsRoundBracketsUpdate()} element={<CompetitionsUpdateBracketsPage />} />
+
+          <Route path={Navigate.tournamentsUsersList()} element={<CompetitionsRoundsUsersPage />} />
 
           <Route path={Navigate.usersList()} element={<UsersPage />} />
           <Route path={Navigate.usersProfilePage()} element={<UserProfilePage />} />
