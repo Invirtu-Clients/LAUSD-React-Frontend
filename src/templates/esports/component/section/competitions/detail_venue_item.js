@@ -18,7 +18,7 @@ export default function VenueItem({ venue, is_admin }) {
 
             <h3>{venue.venue_name}</h3>
 
-            <strong><p className="lead"><VenueHostingType type="venue.type" /></p></strong>
+            <strong><p className="lead"><VenueHostingType type={venue.is_virtual_hybrid_remote} /></p></strong>
 
             {(venue.address_line_1 || venue.address_line_2 || venue.postal_code || venue.locality || venue.province  || venue.country ) ? 
                 <>

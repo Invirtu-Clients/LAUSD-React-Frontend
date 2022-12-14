@@ -9,7 +9,7 @@ export default function VenueHostingType({ type }) {
     } else if(type == VenueType.IN_PERSON) {
         typeText = 'In-Person';
     } else if(type == VenueType.VIRTUAL) {
-        typeText = 'Virtual';
+        typeText = 'Virtual/Online';
     }
 
     return(
