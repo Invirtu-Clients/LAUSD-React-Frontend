@@ -37,6 +37,7 @@ class CompetitionsUpdateRoundsPage extends Component {
 
     componentDidMount() {
         this.loadTournament();
+        this.loadRound();
     }
 
     loadTournament() {
@@ -57,7 +58,7 @@ class CompetitionsUpdateRoundsPage extends Component {
         let round_id = this.props.router.params.round_id;
 
         Requests.tournamentsRoundsView(id, round_id).then(response => {
-            this.setState({ tournament : response.data });
+            this.setState({ data : response.data });
         }).catch(error => {
 
         });
@@ -119,9 +120,9 @@ class CompetitionsUpdateRoundsPage extends Component {
                                     overviewValue={this.state.data.overview} 
                                     overviewOnChange={(e) => { this.setState({ data: { ...this.state.data, overview: e.target.value } }); }} 
                                     startDateValue={(typeof this.state.data.round_start_date === "string") ? new Date(this.state.data.round_start_date) : this.state.data.round_start_date} 
-                                    startDateOnChange={(e) => { this.setState({ data: { ...this.state.data, round_start_date : e.target.value } }); }} 
+                                    startDateOnChange={(e) => { this.setState({ data: { ...this.state.data, round_start_date : e } }); }} 
                                     endDateValue={(typeof this.state.data.round_end_date === "string") ? new Date(this.state.data.round_end_date) : this.state.data.round_end_date} 
-                                    endDateOnChange={(e) => { this.setState({ data: { ...this.state.data, round_end_date : e.target.value } }); }} 
+                                    endDateOnChange={(e) => { this.setState({ data: { ...this.state.data, round_end_date : e } }); }} 
                                     checkinEnableValue={(this.state.data.checkin_enabled === 'true' || this.state.data.checkin_enabled == true)} 
                                     checkEnabledOnChange={(e) => { this.setState({ data: { ...this.state.data, checkin_enabled : e.target.checked } }); }}
                                     checkinPriorValue={this.state.data.checkin_mintues_prior} 
@@ -136,7 +137,7 @@ class CompetitionsUpdateRoundsPage extends Component {
                                 {(Object.keys(this.state.errors).length >0 ) ? <Danger message={"There are errors in creating the round. Please check the form above."} /> : ''}
 
                                 <div className="form-group">
-                                    <button className="d-block default-button" onClick={(e => { this.create(e) })}><span>{this.state.isLoading ? <Loading /> : ''} Update Round</span></button>
+                                    <button className="d-block default-button" onClick={(e => { this.update(e) })}><span>{this.state.isLoading ? <Loading /> : ''} Update Round</span></button>
                                 </div>
                             </form>
 

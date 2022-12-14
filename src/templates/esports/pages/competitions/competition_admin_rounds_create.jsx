@@ -104,9 +104,9 @@ class CompetitionsCreateRoundsPage extends Component {
                                     overviewValue={this.state.data.overview} 
                                     overviewOnChange={(e) => { this.setState({ data: { ...this.state.data, overview: e.target.value } }); }} 
                                     startDateValue={this.state.data.round_start_date} 
-                                    startDateOnChange={(e) => { this.setState({ data: { ...this.state.data, round_start_date : e.target.value } }); }} 
+                                    startDateOnChange={(e) => { this.setState({ data: { ...this.state.data, round_start_date : e } }); }} 
                                     endDateValue={this.state.data.round_end_date} 
-                                    endDateOnChange={(e) => { this.setState({ data: { ...this.state.data, round_end_date : e.target.value } }); }} 
+                                    endDateOnChange={(e) => { this.setState({ data: { ...this.state.data, round_end_date : e } }); }} 
                                     checkinEnableValue={this.state.data.checkin_enabled} 
                                     checkEnabledOnChange={(e) => { this.setState({ data: { ...this.state.data, checkin_enabled : e.target.checked } }); }}
                                     checkinPriorValue={this.state.data.checkin_mintues_prior} 

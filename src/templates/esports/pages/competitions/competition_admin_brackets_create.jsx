@@ -107,9 +107,9 @@ class CompetitionsCreateBracketsPage extends Component {
                                     bracketValue={this.state.data.bracket}
                                     bracketOnChange={(e) => { this.setState({ data: { ...this.state.data, bracket: e.target.value } }); }}
                                     startDateValue={this.state.data.bracket_start_date}
-                                    startDateOnChange={(e) => { this.setState({ data: { ...this.state.data, bracket_start_date: e.target.value } }); }}
+                                    startDateOnChange={(e) => { this.setState({ data: { ...this.state.data, bracket_start_date: e } }); }}
                                     endDateValue={this.state.data.bracket_end_date}
-                                    endDateOnChange={(e) => { this.setState({ data: { ...this.state.data, bracket_end_date: e.target.value } }); }}
+                                    endDateOnChange={(e) => { this.setState({ data: { ...this.state.data, bracket_end_date: e } }); }}
                                     checkinEnableValue={this.state.data.checked_in}
                                     checkEnabledOnChange={(e) => { this.setState({ data: { ...this.state.data, checked_in: e.target.checked } }); }}
 
