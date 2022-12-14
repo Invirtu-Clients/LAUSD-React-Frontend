@@ -86,7 +86,7 @@ class CompetitionsVenuesCreate extends Component {
                     <div className=" container">
                         <div className="stream-wrapper">
                             <h3 className="title">Add A Venue</h3>
-                            <form className="account-form text-left" style={{ textAlign: "left" }}>
+                            <form className="text-left" style={{ textAlign: "left" }}>
                                 
                                 <VenueFormBasic
                                     nameValue={this.state.data.venue_name}
