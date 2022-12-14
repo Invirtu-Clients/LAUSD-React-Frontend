@@ -112,11 +112,11 @@ class CompetitionsVenuesCreate extends Component {
 
                                 <VenueFormAdditional
                                     directionInstructionsValue={this.state.data.venue_direction_instructions}
-                                    directionInstructionsOnChange={(e) => { this.setState({ data: { ...this.state.data, venue_direction_instructions : e.target.value } }); }}
+                                    directionInstructionsOnChange={(e) => { this.setState({ data: { ...this.state.data, venue_direction_instructions : e } }); }}
                                     accessInstructionsValue={this.state.data.venue_access_instructions}
-                                    accessInstructionsOnChange={(e) => { this.setState({ data: { ...this.state.data, venue_access_instructions : e.target.value } }); }}
+                                    accessInstructionsOnChange={(e) => { this.setState({ data: { ...this.state.data, venue_access_instructions : e } }); }}
                                     additionalNotesValue={this.state.data.additional_notes}
-                                    additionalNotesOnChange={(e) => { this.setState({ data: { ...this.state.data, additional_notes : e.target.value } }); }}
+                                    additionalNotesOnChange={(e) => { this.setState({ data: { ...this.state.data, additional_notes : e } }); }}
                                     errors = {this.state.errors}
                                 />
 

@@ -4,11 +4,11 @@ export default function VenueHostingType({ type }) {
 
     let typeText = '';
 
-    if(type = VenueType.HYBRID) {
+    if(type == VenueType.HYBRID) {
         typeText = 'Hybrid (Virtual & In-Person)';
-    } else if(type = VenueType.IN_PERSON) {
+    } else if(type == VenueType.IN_PERSON) {
         typeText = 'In-Person';
-    } else if(type = VenueType.VIRTUAL) {
+    } else if(type == VenueType.VIRTUAL) {
         typeText = 'Virtual';
     }
 

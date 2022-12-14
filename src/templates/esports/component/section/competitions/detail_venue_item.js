@@ -73,14 +73,14 @@ export default function VenueItem({ venue, is_admin }) {
             {(venue.venue_direction_instructions) ? 
                 <>
                     <h5>Direction Instructions</h5>
-                    <p>{venue.venue_direction_instructions}</p>
+                    <div dangerouslySetInnerHTML={{__html: venue.venue_direction_instructions}} />
                 </>
             : ''}
 
             {(venue.venue_access_instructions) ? 
                 <>
                     <h5>Access Instructions</h5>
-                    <p>{venue.venue_access_instructions}</p>
+                    <div dangerouslySetInnerHTML={{__html: venue.venue_access_instructions}} />
                 </>
             : ''}
         </div>
