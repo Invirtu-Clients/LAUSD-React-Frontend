@@ -2,6 +2,7 @@ import Moment from "react-moment";
 import { Link } from "react-router-dom";
 import Navigate from "../../../../../util/Navigate";
 import UserItem from "../user/detail_user_item";
+import CompetitionBrackets from "./detail_bracket";
 import MatchType from "./detail_match_type";
 import VenueItem from "./detail_venue_item";
 
@@ -39,9 +40,17 @@ export default function TournamentOverview({ tournament, is_admin }) {
                 <li className="nav-item" role="presentation">
                     <button className="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Overview</button>
                 </li>
+                <li className="nav-item" role="presentation">
+                    <button className="nav-link" id="brackets-tab" data-bs-toggle="tab" data-bs-target="#brackets" type="button" role="tab" aria-controls="brackets" aria-selected="true">Brackets</button>
+                </li>
                 {tournament.rules ?
                     <li className="nav-item" role="presentation">
                         <button className="nav-link" id="rules-tab" data-bs-toggle="tab" data-bs-target="#rules" type="button" role="tab" aria-controls="rules" aria-selected="false">Rules</button>
+                    </li>
+                : '' }
+                {tournament.schedule ?
+                    <li className="nav-item" role="presentation">
+                        <button className="nav-link" id="schedule-tab" data-bs-toggle="tab" data-bs-target="#schedule" type="button" role="tab" aria-controls="schedule" aria-selected="false">Schedule</button>
                     </li>
                 : '' }
                 <li className="nav-item" role="presentation">
@@ -93,6 +102,11 @@ export default function TournamentOverview({ tournament, is_admin }) {
 
 
                 </div>
+                <div className="tab-pane fade" id="brackets" role="tabpanel" aria-labelledby="brackets-tab">
+
+                    <CompetitionBrackets tournament={tournament} is_admin={false} />
+
+                </div>
                 <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
                     {tournament && tournament.venues && tournament.venues.map(function (venue, index) {
@@ -124,7 +138,14 @@ export default function TournamentOverview({ tournament, is_admin }) {
 
                 <div className="tab-pane fade" id="rules" role="tabpanel" aria-labelledby="rules-tab">
                     <h3>Rules</h3>
-                    {tournament.rules}
+                    <div dangerouslySetInnerHTML={{__html: tournament.rules}} />
+
+                </div>
+
+                <div className="tab-pane fade" id="schedule" role="tabpanel" aria-labelledby="schedule-tab">
+                    <h3>Schedule</h3>
+                    <div dangerouslySetInnerHTML={{__html: tournament.schedule}} />
+
                 </div>
 
                 <div className="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>

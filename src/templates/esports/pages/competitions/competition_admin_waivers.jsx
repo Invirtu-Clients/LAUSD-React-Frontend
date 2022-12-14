@@ -94,21 +94,21 @@ class CompetitionsWaiversPage extends Component {
                             <form className="account-form text-left" style={{ textAlign: "left" }}>
                                 <CompetitionFormWaivers
                                     rulesValue={this.state.data.rules}
-                                    rulesOnChange={(e) => { this.setState({ data: { ...this.state.data, rules : e.target.value } }); }}
+                                    rulesOnChange={(e) => { this.setState({ data: { ...this.state.data, rules : e } }); }}
                                     agreementValue={this.state.data.agreement}
-                                    agreementOnChange={(e) => { this.setState({ data: { ...this.state.data, agreement: e.target.value } }); }} 
+                                    agreementOnChange={(e) => { this.setState({ data: { ...this.state.data, agreement: e } }); }} 
                                     scheduleValue={this.state.data.schedule}
-                                    scheduleOnChange={(e) => { this.setState({ data: { ...this.state.data, schedule : e.target.value } }); }}
+                                    scheduleOnChange={(e) => { this.setState({ data: { ...this.state.data, schedule : e } }); }}
                                     disqualifiersValue={this.state.data.disqualifiers}
-                                    disqualifiersOnChange={(e) => { this.setState({ data: { ...this.state.data, disqualifiers : e.target.value } }); }}
+                                    disqualifiersOnChange={(e) => { this.setState({ data: { ...this.state.data, disqualifiers : e } }); }}
                                     refundValue={this.state.data.refund_policy}
-                                    refundOnChange={(e) => { this.setState({ data: { ...this.state.data, refund_policy : e.target.value } }); }}
+                                    refundOnChange={(e) => { this.setState({ data: { ...this.state.data, refund_policy : e } }); }}
                                     harassmentValue={this.state.data.harassment_policy}
-                                    harassmentOnChange={(e) => { this.setState({ data: { ...this.state.data, harassment_policy : e.target.value } }); }} 
+                                    harassmentOnChange={(e) => { this.setState({ data: { ...this.state.data, harassment_policy : e } }); }} 
                                     privacyValue={this.state.data.saftey_policy}
-                                    privacyOnChange={(e) => { this.setState({ data: { ...this.state.data, saftey_policy : e.target.value } }); }} 
+                                    privacyOnChange={(e) => { this.setState({ data: { ...this.state.data, saftey_policy : e } }); }} 
                                     safteyValue={this.state.data.privacy_policy}
-                                    safteyOnChange={(e) => { this.setState({ data: { ...this.state.data, privacy_policy : e.target.value } }); }}
+                                    safteyOnChange={(e) => { this.setState({ data: { ...this.state.data, privacy_policy : e } }); }}
                                     errors = {this.state.errors}
                                 />
 

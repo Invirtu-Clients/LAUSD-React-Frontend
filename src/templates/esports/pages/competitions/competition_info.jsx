@@ -91,9 +91,7 @@ class CompetitionsInfoPage extends Component {
 
                     <hr />
 
-                    <h3>Rounds And Brackets</h3>
-
-                    <CompetitionBrackets tournament={this.state.tournament} is_admin={false} />
+                
                 </div>
 
                 <Footer />

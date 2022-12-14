@@ -70,10 +70,6 @@ class CompetitionsManagePage extends Component {
 
                                     <hr/>
 
-                                    <h3>Rounds & Brackets</h3>
-
-                                    <CompetitionBrackets tournament={this.state.tournament} is_admin={true} />
-
                                 </div>
                                 <div className="col-lg-4 col-md-7 col-12">
                                     <aside className="ps-lg-4">
