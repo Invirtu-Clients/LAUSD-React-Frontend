@@ -6,8 +6,14 @@ class PageHeader extends Component {
     render() { 
         const {title} = this.props;
         const {curPage} = this.props;
+        let {backgroundImage} = this.props;
+
+        if(!backgroundImage) {
+            backgroundImage = "/assets/images/pageheader/bg.jpg";
+        }
+
         return (
-            <section className="pageheader-section" style={{backgroundImage: "url(/assets/images/pageheader/bg.jpg)"}}>
+            <section className="pageheader-section" style={{backgroundImage: "url(" + backgroundImage +")"}}>
                 <div className="container">
                     <div className="section-wrapper text-center text-uppercase">
                         <h2 className="pageheader-title">{title}</h2>

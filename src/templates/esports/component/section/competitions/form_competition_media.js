@@ -1,44 +1,112 @@
 import React from "react";
 import DateTimePicker from "react-datetime-picker";
+import ReactImageUploading from "react-images-uploading";
 import Danger from "../../alerts/Danger";
 import Input from "../../form/input";
 import Textarea from "../../form/textarea";
+import ImageUploading from 'react-images-uploading';
+import Loading from "../../alerts/Loading";
 
-export default function CompetitionFormMedia({ nameValue, nameOnChange, descriptionValue, descriptionOnChange, startDateValue, startDateOnChange, endDateValue, endDateOnChange, errors }) {
+export default function CompetitionFormMedia({ mainImageValue, mainImageOnChange, saveMainImage, isLoadingMainImage, bannerImageValue, bannerImageOnChange, saveBannerImage, isLoadingBannerImage, errors }) {
 
     return (
         <>
-            <h3>Basic Information</h3>
+            <h3>Update Main Image</h3>
             <div className="form-group text-left">
-                <label>Tournament Name</label>
-                <Input type="text" name="name" value={nameValue} onChange={nameOnChange} placeholder="Give the tournamnet a title." />
+                <label>Main Image</label>
+                <ImageUploading
+                    multiple
+                    value={mainImageValue}
+                    onChange={mainImageOnChange}
+                    maxNumber={1}
+                    dataURLKey="data_url"
+                >
+                    {({
+                        imageList,
+                        onImageUpload,
+                        onImageRemoveAll,
+                        onImageUpdate,
+                        onImageRemove,
+                        isDragging,
+                        dragProps,
+                    }) => (
+                        // write your building UI
+                        <div className="upload__image-wrapper">
+                            <button
+                                className="btn btn-warning"
+                                style={isDragging ? { color: 'red' } : undefined}
+                                onClick={onImageUpload}
+                                {...dragProps}
+                            >
+                                Upload New Image
+                            </button>
+                            &nbsp;
+
+                            {imageList.map((image, index) => (
+                                <div key={index} className="image-item">
+                                    <img src={image['data_url']} alt="" width="400" />
+                                    <div className="image-item__btn-wrapper">
+                                        <button className="btn btn-success" onClick={saveMainImage}>{isLoadingMainImage ? <Loading /> : ''} Save Image</button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </ImageUploading>
                 {errors && errors.name && errors.name.map(function (name, index) {
                     return <Danger message={name} key={index} />;
                 })}
             </div>
-            <div className="form-group">
-                <label>Tournament Description</label>
-                <Textarea name="description" onChange={descriptionOnChange} placeholder="Describe the purprose of the tournament." >{descriptionValue}</Textarea>
-                {errors && errors.description && errors.description.map(function (name, index) {
-                    return <Danger message={name} key={index} />;
-                })}
-            </div>
 
-            <div className="form-group-time mb-5">
-                <label style={{marginRight: "10px"}} >Start Date</label>
-                <DateTimePicker onChange={startDateOnChange} value={startDateValue} />
-                {errors && errors.start_date && errors.start_date.map(function (name, index) {
-                    return <Danger message={name} key={index} />;
-                })}
-            </div>
 
-            <div className="form-group-time mb-5">
-                <label style={{marginRight: "16px"}} >End Date</label>
-                <DateTimePicker onChange={endDateOnChange} value={endDateValue} />
-                {errors && errors.end_date && errors.end_date.map(function (name, index) {
+            <h3>Update Banner Image</h3>
+            <div className="form-group text-left">
+                <label>Main Image</label>
+                <ImageUploading
+                    multiple
+                    value={bannerImageValue}
+                    onChange={bannerImageOnChange}
+                    maxNumber={1}
+                    dataURLKey="data_url"
+                >
+                    {({
+                        imageList,
+                        onImageUpload,
+                        onImageRemoveAll,
+                        onImageUpdate,
+                        onImageRemove,
+                        isDragging,
+                        dragProps,
+                    }) => (
+                        // write your building UI
+                        <div className="upload__image-wrapper">
+                            <button
+                                className="btn btn-warning"
+                                style={isDragging ? { color: 'red' } : undefined}
+                                onClick={onImageUpload}
+                                {...dragProps}
+                            >
+                                Upload New Image
+                            </button>
+                            &nbsp;
+
+                            {imageList.map((image, index) => (
+                                <div key={index} className="image-item">
+                                    <img src={image['data_url']} alt="" width="400" />
+                                    <div className="image-item__btn-wrapper">
+                                        <button className="btn btn-success" onClick={saveBannerImage}>{isLoadingBannerImage ? <Loading /> : ''} Save Image</button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </ImageUploading>
+                {errors && errors.name && errors.name.map(function (name, index) {
                     return <Danger message={name} key={index} />;
                 })}
             </div>
+            
+            
 
         </>
     );

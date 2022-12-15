@@ -299,32 +299,40 @@ const api_routes = {
         method : 'POST'
     },
     teams_view : {
-        route : '/teams/{event_id}',
+        route : '/teams/{team_id}',
         method : 'GET'
     },
     teams_update : {
-        route : '/teams/{event_id}',
+        route : '/teams/{team_id}',
         method : 'PUT'
     },
     teams_delete : {
-        route : '/teams/{event_id}',
+        route : '/teams/{team_id}',
         method : 'DELETE'
     },
     teams_users_create : {
-        route : '/teams/{competition_id}/users',
+        route : '/teams/{team_id}/users',
         method : 'POST'
     },
     teams_users_view : {
-        route : '/teams/{competition_id}/users/{user_id}',
+        route : '/teams/{team_id}/users/{user_id}',
         method : 'GET'
     },
     teams_users_update : {
-        route : '/teams/{competition_id}/users/{user_id}',
+        route : '/teams/{team_id}/users/{user_id}',
         method : 'PUT'
     },
     teams_users_delete : {
-        route : '/teams/{competition_id}/users/{user_id}',
+        route : '/teams/{team_id}/users/{user_id}',
         method : 'DELETE'
+    },
+    teams_upload_main_image : {
+        route : '/teams/{team_id}/uploadMainImage',
+        method : 'POST'
+    },
+    teams_upload_main_banner : {
+        route : '/teams/{team_id}/uploadBannerImage',
+        method : 'POST'
     },
 
     //Recordings

@@ -234,6 +234,20 @@ const Requests = {
 
         return Requests._sendRequest(url, api_routes.teams_delete.method, {});
     },
+    teamsUploadMainImage : (team_id, data, query) => {
+        let url = Requests._formatApiUrl(api_routes.teams_upload_main_image.route);
+
+        url = url.replace('{team_id}', team_id);
+
+        return Requests._sendRequest(url, api_routes.teams_upload_main_image.method, data, query);
+    },
+    teamsUploadBanner : (team_id, data, query) => {
+        let url = Requests._formatApiUrl(api_routes.teams_upload_main_banner.route);
+
+        url = url.replace('{team_id}', team_id);
+
+        return Requests._sendRequest(url, api_routes.teams_upload_main_banner.method, data, query);
+    },
     teamsJoin : (team_id, data) => {
         let url = Requests._formatApiUrl(api_routes.teams_delete.route);
 
@@ -314,6 +328,20 @@ const Requests = {
         url = url.replace('{competition_id}', competition_id);
 
         return Requests._sendRequest(url, api_routes.competitions_delete.method, {});
+    },
+    tournamentsUploadMainImage : (competition_id, data, query) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_upload_main_image.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_upload_main_image.method, data, query);
+    },
+    tournamentsUploadBanner : (competition_id, data, query) => {
+        let url = Requests._formatApiUrl(api_routes.competitions_upload_main_banner.route);
+
+        url = url.replace('{competition_id}', competition_id);
+
+        return Requests._sendRequest(url, api_routes.competitions_upload_main_banner.method, data, query);
     },
     tournamentsRegisterTeam : (competition_id, data) => {
         let url = Requests._formatApiUrl(api_routes.competitions_register_team.route);

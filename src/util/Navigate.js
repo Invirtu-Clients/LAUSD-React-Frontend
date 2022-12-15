@@ -273,6 +273,17 @@ const Navigate = {
         return path;
         
     },
+    tournamentsUpdateMedia : (tournament_id) => {
+
+        let path = app_routes.tournaments_update_media;
+
+        if(tournament_id){
+            path = path.replace(':id', tournament_id)
+        }
+
+        return path;
+        
+    },
     tournamentsView : (tournament_id) => {
 
         let path = app_routes.tournaments_view;

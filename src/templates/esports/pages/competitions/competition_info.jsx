@@ -84,7 +84,7 @@ class CompetitionsInfoPage extends Component {
         return (
             <Fragment>
                 <Header />
-                <PageHeader title={'Tournamnet Info'} curPage={'Compete'} />
+                <PageHeader title={'Tournamnet Info'} curPage={'Compete'} backgroundImage={this.state.tournament.banner_image} />
                 
                 <div className="container">
                     <TournamentOverview tournament={this.state.tournament} is_admin={false} />

@@ -33,6 +33,9 @@ export default function SidebarManageMenu({ competition_id }) {
                 <li key={6}>
                     <Link className="d-flex flex-wrap justify-content-between" to={Navigate.tournamentsUpdateWaivers(competition_id)}><span><i className="icofont-rounded-double-right"></i>Rules & Waivers</span></Link>
                 </li>
+                <li key={7}>
+                    <Link className="d-flex flex-wrap justify-content-between" to={Navigate.tournamentsUpdateMedia(competition_id)}><span><i className="icofont-rounded-double-right"></i>Media</span></Link>
+                </li>
 
             </ul>
         </div>

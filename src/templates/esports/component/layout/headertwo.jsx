@@ -143,8 +143,9 @@ class HeaderTwo extends Component {
                                                 <a href={Navigate.tournamentsList()} >Tournaments</a>
                                             </li>
 
-
-                                            {process.env.REACT_APP_DISCORD_LINK ? <li><a href={process.env.REACT_APP_DISCORD_LINK} >Discord</a></li>: '' }
+                                            <li >
+                                                <a href={Navigate.usersList()} >Users</a>
+                                            </li>
 
                                             <li className="menu-item-has-children">
                                                 <a href={Navigate.streamsCreatePage()} aria-haspopup="true" aria-expanded="false" data-bs-offset="0,0">Start Streaming</a>

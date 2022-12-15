@@ -69,6 +69,7 @@
     tournaments_participants : '/tournmanets/:id/register',
     tournaments_manage : '/tournmanets/:id/manage',
     tournaments_invite : '/tournmanets/:id/invite',
+    tournaments_update_media : '/tournmanets/:id/media',
 
     tournaments_venues : '/tournmanets/:id/venues',
     tournaments_venues_create : '/tournaments/:id/venues/create',
