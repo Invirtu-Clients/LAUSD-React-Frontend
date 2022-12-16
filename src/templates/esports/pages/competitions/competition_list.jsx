@@ -46,7 +46,7 @@ class CompetitionsListPage extends Component {
         return (
             <Fragment>
                 <Header />
-                <PageHeader title={'Tourmanets'} curPage={'Find A Tournamnet'} />
+                <PageHeader title={'Tournaments'} curPage={'Find A Tournamnet'} />
 
                 <div className="container">
 

@@ -58,7 +58,7 @@ class CompetitionsVenuesList extends Component {
         return (
             <Fragment>
                 <Header />
-                <PageHeader title={'Manage Tourmanets Venues'} curPage={'Find A Tournamnet'} />
+                <PageHeader title={'Manage Tournaments Venues'} curPage={'Find A Tournamnet'} />
 
                 <div className="blog-section blog-single padding-top padding-bottom aside-bg">
                     <div className="container">
