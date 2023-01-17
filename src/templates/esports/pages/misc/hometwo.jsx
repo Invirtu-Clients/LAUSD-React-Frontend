@@ -72,9 +72,9 @@ class HomeTwo extends Component {
                                         
                                     </div>
                                     <div className="blog-content p-4 w-xl-50 w-100">
-                                        <h3>Leverage The Live Streams To Grow Engagement & Revenue</h3>
+                                        <h3>Increase Revenue By Leveraging The Live Streams</h3>
                                         <br />
-                                        <p>The built in-streams are completely customizable to tie into your fan engagement and revenue model.</p>
+                                        <p>The built in-streams are entirely customizable to tie into your fan engagement and revenue model.</p>
 
                                         <ul className="indent small">
                                             <li><h5><small>On-Screen Donations</small></h5></li>
@@ -90,6 +90,41 @@ class HomeTwo extends Component {
                         </div>
                     </div>
                 </div>
+
+                <div className="container padding-bottom" key={'key3'}>
+                    <div className="section-wrapper">
+                        <div className="row g-4 justify-content-center"></div>
+                        <div className="col-12">
+                            <div className="blog-item-1">
+                                <div className="blog-inner d-flex flex-wrap align-items-center">
+                                    
+                                    <div className="blog-content p-4 w-xl-50 w-100">
+                                        <h3>Drive Growth and Engagement With User-Generated Content</h3>
+                                        <br />
+                                        <p>Every stream can extend the reach of your community to non-gamers who like to watch. Engage with these viewers through several features such as:</p>
+
+                                        <ul className="indent small">
+                                            <li><h5><small>Ticketing For Single Events & Tournaments</small></h5></li>
+                                            <li><h5><small>Multiple Payment Systems such as Stripe & FlutterWave</small></h5></li>
+                                            <li><h5><small>Team Management</small></h5></li>
+                                            <li><h5><small>Following Users</small></h5></li>
+                                            <li><h5><small>Social Interactions On All Content</small></h5></li>
+                                            <li><h5><small>Messenging Between Users</small></h5></li>
+                                            <li><h5><small>Live Chat</small></h5></li>
+                                        </ul>
+
+                                    </div>
+                                    <div className="blog-thumb w-xl-50 w-100">
+                                        
+                                            <img src={`assets/images/blog/glitch_growth.jpg`} alt={`Earn Donations`} className="w-100" />
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
                 <Footer />
             </Fragment>
