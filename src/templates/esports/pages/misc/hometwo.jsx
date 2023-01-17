@@ -27,39 +27,6 @@ class HomeTwo extends Component {
 
                 <AboutSection imgUrl={'assets/images/about/02.png'} />
 
-
-                <CtaSection imgUrl={'assets/images/cta/02.png'} />
-
-
-                <div className="about-team  padding-bottom padding-top-2" key={'key1'}>
-                    <div className="container">
-                        <div className="section-header">
-                            <p>High Quality Streaming With</p>
-                            <h2 className="mb-3">Up To 120 FPS Recording and Broadcasting!</h2>
-                            <p className="desc">Stream and record your games from your desktop with up to 120 FPS to capture every moment in vivid detail. Also, use our other online streaming features.</p>
-                        </div>
-                        <ul className="d-flex flex-wrap justify-content-center player-meta mb-0">
-
-                            <li className="d-flex align-items-center" key={1}>
-                                <span className="left me-3"><i className={"icofont-medal"}></i></span>
-                                <span className="right">{"Custom Overlays"}</span>
-                            </li>
-
-                            <li className="d-flex align-items-center" key={2}>
-                                <span className="left me-3"><i className={"icofont-signal"}></i></span>
-                                <span className="right">{"On-Screen Messenging"}</span>
-                            </li>
-
-                            <li className="d-flex align-items-center" key={3}>
-                                <span className="left me-3"><i className={"icofont-workers-group"}></i></span>
-                                <span className="right">{"Invite Co-hosts & Producers"}</span>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-
-
                 <div className="container padding-bottom" key={'key2'}>
                     <div className="section-wrapper">
                         <div className="row g-4 justify-content-center"></div>
@@ -125,6 +92,42 @@ class HomeTwo extends Component {
                     </div>
                 </div>
 
+                <div className="about-team  padding-bottom padding-top-2" key={'key1'}>
+                    <div className="container">
+                        <div className="section-header">
+                            <p>High Quality Streaming With</p>
+                            <h2 className="mb-3">Up To 120 FPS Recording and Broadcasting!</h2>
+                            <p className="desc">Stream and record your games from your desktop with up to 120 FPS to capture every moment in vivid detail. Also, use our other online streaming features.</p>
+                        </div>
+                        <ul className="d-flex flex-wrap justify-content-center player-meta mb-0">
+
+                            <li className="d-flex align-items-center" key={1}>
+                                <span className="left me-3"><i className={"icofont-medal"}></i></span>
+                                <span className="right">{"Custom Overlays"}</span>
+                            </li>
+
+                            <li className="d-flex align-items-center" key={2}>
+                                <span className="left me-3"><i className={"icofont-signal"}></i></span>
+                                <span className="right">{"On-Screen Messenging"}</span>
+                            </li>
+
+                            <li className="d-flex align-items-center" key={3}>
+                                <span className="left me-3"><i className={"icofont-workers-group"}></i></span>
+                                <span className="right">{"Invite Co-hosts & Producers"}</span>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+
+
+
+                <CtaSection imgUrl={'assets/images/cta/02.png'} />
+
+
+
+              
 
                 <Footer />
             </Fragment>
