@@ -99,7 +99,7 @@ class HomeTwo extends Component {
                                 <div className="blog-inner d-flex flex-wrap align-items-center">
                                     
                                     <div className="blog-content p-4 w-xl-50 w-100">
-                                        <h3>Drive Growth and Engagement With User-Generated Content</h3>
+                                        <h3>Drive User Acquistion With User-Generated Content</h3>
                                         <br />
                                         <p>Every stream can extend the reach of your community to non-gamers who like to watch. Engage with these viewers through several features such as:</p>
 
