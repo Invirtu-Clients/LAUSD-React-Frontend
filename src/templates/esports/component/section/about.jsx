@@ -2,8 +2,8 @@ import { Component } from "react";
 
 
 const subtitle = "Our Goal";
-const title = "Esports The Way You Envision";
-const desc = "Use an open-source gaming platform that you can customize, tweak and brand to create the esports you deserve.";
+const title = "Live Gaming & Esports The Way You Envision";
+const desc = "Use an open-source gaming platform that you can customize, tweak and brand to create the live gaming & esports you deserve.";
 
 
 let AboutListContent = [

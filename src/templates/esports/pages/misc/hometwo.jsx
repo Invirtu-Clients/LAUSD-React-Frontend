@@ -72,9 +72,18 @@ class HomeTwo extends Component {
                                         
                                     </div>
                                     <div className="blog-content p-4 w-xl-50 w-100">
-                                        <h3>On-Screen Donations</h3>
+                                        <h3>Leverage The Live Streams To Grow Engagement & Revenue</h3>
+                                        <br />
+                                        <p>The built in-streams are completely customizable to tie into your fan engagement and revenue model.</p>
 
-                                        <p>Get paid by asking your fans for on-screen donations that can be deposited directly into your bank account.</p>
+                                        <ul className="indent small">
+                                            <li><h5><small>On-Screen Donations</small></h5></li>
+                                            <li><h5><small>In-App Purchases</small></h5></li>
+                                            <li><h5><small>Banner Ads</small></h5></li>
+                                            <li><h5><small>Video Pre-Roll, Mid-Roll, Post-Roll</small></h5></li>
+                                            <li><h5><small>Live Shopping & Merchandising</small></h5></li>
+                                            <li><h5><small>Interactive Ads</small></h5></li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
