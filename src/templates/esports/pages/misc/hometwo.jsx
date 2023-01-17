@@ -52,7 +52,7 @@ class HomeTwo extends Component {
 
                             <li className="d-flex align-items-center" key={3}>
                                 <span className="left me-3"><i className={"icofont-workers-group"}></i></span>
-                                <span className="right">{"Add Your Own Branding"}</span>
+                                <span className="right">{"Invite Co-hosts & Producers"}</span>
                             </li>
 
                         </ul>
