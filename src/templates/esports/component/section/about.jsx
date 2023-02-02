@@ -2,7 +2,8 @@ import { Component } from "react";
 
 
 const subtitle = "Our Goal";
-const title = "Live Gaming Community The Way You Envision";
+
+const title = "Build A Live Gaming Community\n The Way You Envision";
 const desc = "Use an open-source gaming community platform that you can customize, tweak and brand to create the live gaming & esports you deserve.";
 
 
