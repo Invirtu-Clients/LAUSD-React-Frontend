@@ -25,8 +25,9 @@ class HomeTwo extends Component {
                 <HeaderTwo />
                 <BannerTwo />
 
+                
                 <AboutSection imgUrl={'assets/images/about/02.png'} />
-
+                <a id="goal"></a>
                 <div className="container padding-bottom" key={'key2'}>
                     <div className="section-wrapper">
                         <div className="row g-4 justify-content-center"></div>
@@ -34,9 +35,9 @@ class HomeTwo extends Component {
                             <div className="blog-item">
                                 <div className="blog-inner d-flex flex-wrap align-items-center">
                                     <div className="blog-thumb w-xl-50 w-100">
-                                        
-                                            <img src={`assets/images/blog/03.jpg`} alt={`Earn Donations`} className="w-100" />
-                                        
+
+                                        <img src={`assets/images/blog/03.jpg`} alt={`Earn Donations`} className="w-100" />
+
                                     </div>
                                     <div className="blog-content p-4 w-xl-50 w-100">
                                         <h3>Increase Revenue By Leveraging The Live Streams</h3>
@@ -51,6 +52,9 @@ class HomeTwo extends Component {
                                             <li><h5><small>Live Shopping & Merchandising</small></h5></li>
                                             <li><h5><small>Interactive Ads</small></h5></li>
                                         </ul>
+
+                                        <a href="/revenue" className="default-button"><span>{'Learn More'} <i className="icofont-circled-right"></i></span></a>
+
                                     </div>
                                 </div>
                             </div>
@@ -64,7 +68,7 @@ class HomeTwo extends Component {
                         <div className="col-12">
                             <div className="blog-item-1">
                                 <div className="blog-inner d-flex flex-wrap align-items-center">
-                                    
+
                                     <div className="blog-content p-4 w-xl-50 w-100">
                                         <h3>Drive User Acquistion With User-Generated Content</h3>
                                         <br />
@@ -80,11 +84,18 @@ class HomeTwo extends Component {
                                             <li><h5><small>Live Chat</small></h5></li>
                                         </ul>
 
+                                        <a href="/marketing" className="default-button mr-2"><span>{'Marketing Tools'} <i className="icofont-circled-right"></i></span></a>
+
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+
+                                        <a href="/features" className="default-button mr-2"><span>{'Features'} <i className="icofont-circled-right"></i></span></a>
+
+
                                     </div>
                                     <div className="blog-thumb w-xl-50 w-100">
-                                        
-                                            <img src={`assets/images/blog/glitch_growth.jpg`} alt={`Earn Donations`} className="w-100" />
-                                        
+
+                                        <img src={`assets/images/blog/glitch_growth.jpg`} alt={`Earn Donations`} className="w-100" />
+
                                     </div>
                                 </div>
                             </div>
@@ -121,13 +132,33 @@ class HomeTwo extends Component {
                 </div>
 
 
+                <section className="cta-section padding-bottom">
+                    <div className="container">
+                        <div className="cta-wrapper item-layer">
+                            <div className="cta-item px-4 px-sm-5 pt-4 pt-sm-5 pt-lg-0" style={{ backgroundImage: "url(/assets/images/cta/bg.jpg)" }}>
+                                <div className="row align-items-center">
+                                    <div className="col-lg-6">
+                                        <div className="cta-content">
+                                            <p className="theme-color text-uppercase ls-2">{"Let's Build together"}</p>
+                                            <h2 className="mb-3"><span className="theme-color text-uppercase">CODERS AND DEVELOPERS</span> CONTRIBUTE TO THE PLATFORM!</h2>
+                                            <p className="mb-4">{'The platform has a lot of potential to be a game-changer for esports influencers, fans, and organizations. Be part of the movement by helping us code on Github.'}</p>
+                                            <a target="_blank" href="https://github.com/orgs/Glitch-Gaming-Platform" className="default-button"><span>{'View On Github'} <i className="icofont-circled-right"></i></span></a>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-6">
+                                        <div className="cta-thumb text-end">
+                                            <img src={'assets/images/cta/02.png'} alt="gamer-img" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
 
-                <CtaSection imgUrl={'assets/images/cta/02.png'} />
 
 
-
-              
 
                 <Footer />
             </Fragment>

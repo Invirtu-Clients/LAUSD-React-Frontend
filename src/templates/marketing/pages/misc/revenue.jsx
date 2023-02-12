@@ -70,6 +70,7 @@ class RevenuePage extends Component {
                                                 <li><h5><small>NFTs</small></h5></li>
                                                 <li><h5><small>Crypto Wallet</small></h5></li>
                                                 <li><h5><small>Crypto Currency</small></h5></li>
+                                                <li><h5><small>Trade Assets</small></h5></li>
 
                                             </ul>
 

@@ -41,7 +41,7 @@ class BannerTwo extends Component {
                                                 <h1>{val.title}</h1>
                                                 <h2>{val.subtitle}</h2>
                                                 <p>{val.desc}</p>
-                                                <Link to={Navigate.authLogin()} className="default-button"><span>{val.btnText}  <i className="icofont-play-alt-1"></i></span> </Link>
+                                                <Link to={'#goal'} onClick={(e) => {window.scrollBy(0, 600);}} className="default-button"><span>Read More  <i className="icofont-play-alt-1"></i></span> </Link>
                                             </div>
                                         </div>
                                     </div>

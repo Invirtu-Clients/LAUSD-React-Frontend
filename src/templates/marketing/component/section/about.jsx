@@ -24,7 +24,7 @@ let AboutListContent = [
         imgUrl: '/assets/images/about/icon-3.png',
         imgAlt: 'About Icon',
         title: 'Make Your Own Rules and Control Monetization',
-        desc: 'Decide on your own rules for yourself and users, and create monetization strategies that work best with your approach to Esports.',
+        desc: 'Decide on your own rules for yourself and users, and create monetization strategies that work best with your approach to gaming & Esports.',
     },
 ]
 
