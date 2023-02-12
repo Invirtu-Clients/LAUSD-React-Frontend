@@ -25,7 +25,7 @@ class HomeTwo extends Component {
                 <HeaderTwo />
                 <BannerTwo />
 
-                
+
                 <AboutSection imgUrl={'assets/images/about/02.png'} />
                 <a id="goal"></a>
                 <div className="container padding-bottom" key={'key2'}>

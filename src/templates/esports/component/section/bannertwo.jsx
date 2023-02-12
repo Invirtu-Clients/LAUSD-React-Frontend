@@ -7,13 +7,6 @@ import Navigate from "../../../../util/Navigate";
 
 let BannerListContent = [
     {
-        bgImgUrl: 'assets/images/banner/home-2/bg.jpg',
-        title: site.name,
-        subtitle: site.tagline,
-        desc: site.description,
-        btnText: 'join us today',
-    },
-    {
         bgImgUrl: 'assets/images/banner/home-2/bg-2.jpg',
         title: site.name,
         subtitle: site.tagline,

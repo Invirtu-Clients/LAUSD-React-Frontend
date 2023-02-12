@@ -12,14 +12,7 @@ let BannerListContent = [
         subtitle: site.tagline,
         desc: site.description,
         btnText: 'join us today',
-    },
-    {
-        bgImgUrl: 'assets/images/banner/home-2/bg-2.jpg',
-        title: site.name,
-        subtitle: site.tagline,
-        desc: site.description,
-        btnText: 'join us today',
-    },
+    }
 ]
 
 class BannerTwo extends Component {
