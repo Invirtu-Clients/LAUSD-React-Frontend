@@ -28,6 +28,7 @@ import Navigate from "../../util/Navigate";
 import MarketingPage from './pages/misc/marketing';
 import RevenuePage from './pages/misc/revenue';
 import FeaturesPage from './pages/misc/features';
+import InstallationPage from './pages/misc/installation';
 
 
 function Template() {
@@ -51,6 +52,7 @@ function Template() {
           <Route path={Navigate.marketingPage()} element={<MarketingPage />} />
           <Route path={Navigate.revenuePage()} element={<RevenuePage />} />
           <Route path={Navigate.featuresPage()} element={<FeaturesPage />} />
+          <Route path={Navigate.installationPage()} element={<InstallationPage />} />
           
           <Route path="*" element={<ErrorPage />} />
 

@@ -15,6 +15,7 @@
     revenue : '/revenue',
     marketing : '/marketing',
     features : '/features',
+    installation: '/installation',
 
     //authentication
     auth_login : '/login',

@@ -142,6 +142,10 @@ class Header extends Component {
                                             </li>
 
                                             <li >
+                                                <a href={Navigate.featuresPage()} >Features</a>
+                                            </li>
+
+                                            <li >
                                                 <a href={Navigate.revenuePage()} >Increase Revenue</a>
                                             </li>
 
@@ -151,8 +155,10 @@ class Header extends Component {
                                             </li>
 
                                             <li >
-                                                <a href={Navigate.featuresPage()} >Features</a>
+                                                <a href={Navigate.installationPage()} >Installation</a>
                                             </li>
+
+                                            
                                             <li >
                                                 <a target={'_blank'} href={`https://community.glitch.fun`} >Example Community</a>
                                             </li>

@@ -41,6 +41,9 @@ const Navigate = {
     featuresPage : () => {
         return app_routes.features;
     },
+    installationPage : () => {
+        return app_routes.installation;
+    },
 
     //Authentication
     authLogin : () => {
