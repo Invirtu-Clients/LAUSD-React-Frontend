@@ -32,6 +32,15 @@ const Navigate = {
     accessDeniedPage : () => {
         return app_routes.access_denied;
     },
+    revenuePage : () => {
+        return app_routes.revenue;
+    },
+    marketingPage : () => {
+        return app_routes.marketing;
+    },
+    featuresPage : () => {
+        return app_routes.features;
+    },
 
     //Authentication
     authLogin : () => {

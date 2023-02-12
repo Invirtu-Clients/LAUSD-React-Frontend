@@ -96,6 +96,9 @@ import 'moment-timezone';
 //import '././assets/css/style.min.css';
 //import'./assets/sass/style.scss';
 import Navigate from "../../util/Navigate";
+import MarketingPage from './pages/misc/marketing';
+import RevenuePage from './pages/misc/revenue';
+import FeaturesPage from './pages/misc/features';
 
 
 
@@ -125,6 +128,9 @@ function Template() {
           <Route path={Navigate.dataRemovalPage()} element={<DataRemovalPage />} />
           <Route path={Navigate.gdprPage()} element={<GDPRPage />} />
           <Route path={Navigate.accessDeniedPage()} element={<AccessDeniedPage />} />
+          <Route path={Navigate.marketingPage()} element={<MarketingPage />} />
+          <Route path={Navigate.revenuePage()} element={<RevenuePage />} />
+          <Route path={Navigate.featuresPage()} element={<FeaturesPage />} />
 
           <Route path={Navigate.accountMainPage()} element={<AccountUpdatePage />} />
           <Route path={Navigate.accountRegisterStep2()} element={<RegisterStep2 />} />

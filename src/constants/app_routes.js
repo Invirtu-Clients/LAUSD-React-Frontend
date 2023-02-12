@@ -12,6 +12,9 @@
     dataremoval : '/dataremoval',
     gdpr : '/gdpr',
     access_denied : '/accessdenied',
+    revenue : '/revenue',
+    marketing : '/marketing',
+    features : '/features',
 
     //authentication
     auth_login : '/login',
