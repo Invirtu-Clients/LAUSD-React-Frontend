@@ -5,7 +5,7 @@ import { lazy } from "react";
 
 let Template = null;
 
-let template_dir = './templates/esports/index.js';
+let template_dir = process.env.REACT_APP_TEMPLATE_DIRECTORY;
 
 if (template_dir) {
 
