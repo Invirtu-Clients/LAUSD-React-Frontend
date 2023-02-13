@@ -13,7 +13,7 @@ class FeaturesPage extends Component {
                         <div className="container">
                             <div className="section-wrapper text-center text-uppercase">
                                 <div className="pageheader-thumb mb-4">
-                                    <img style={{maxHeight: '160px'}} src="assets/images/features/features.png" alt="team" />
+                                    <img style={{maxHeight: '160px'}} src="assets/images/features/app-development.png" alt="team" />
                                 </div>
                                 <h2 className="pageheader-title">Features For Your Community</h2>
 
@@ -50,7 +50,7 @@ class FeaturesPage extends Component {
                                             <div className="blog-inner">
                                                 <div className="blog-thumb text-center">
                                                    
-                                                        <img src={`assets/images/features/private_chat.png`} alt={`Test`} className="w-50" />
+                                                        <img src={`assets/images/features/rec-button.png`} alt={`Test`} className="w-50" />
                                                    
                                                 </div>
                                                 <div className="blog-content px-3 py-4">
