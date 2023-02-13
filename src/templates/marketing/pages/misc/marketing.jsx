@@ -164,7 +164,7 @@ class MarketingPage extends Component {
                                 </li>
 
                                 <li className="d-flex align-items-center" key={2}>
-                                    <img src="assets/images/features/twitch-logo.jpeg" />
+                                    <img src="assets/images/marketing/twitch.jpg" />
 
                                 </li>
 
