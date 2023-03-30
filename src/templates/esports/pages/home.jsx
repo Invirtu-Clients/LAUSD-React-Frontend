@@ -30,13 +30,8 @@ class HomePage extends Component {
                 <AboutSection imgUrl={'assets/images/about/01.png'} />
                 <MatchSection />
                 <PlayerSection />
-                <CtaSection imgUrl={'assets/images/cta/01.png'} />
-                <VideoSection />
-                <ProductSection />
-                <HrShape />
-                <SponsorSection />
-                <BlogSection />
-                <TestimonialSection />
+
+  
                 <Footer />
             </Fragment>
         );

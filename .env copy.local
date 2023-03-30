@@ -6,8 +6,8 @@ REACT_APP_OAUTH_TWITCH_URL='https://api.glitch.local/auth/twitch/redirect'
 REACT_APP_OAUTH_YOUTUBE_URL='https://api.glitch.local/auth/youtube/redirect'
 REACT_APP_OAUTH_STRIPE_URL='https://api.glitch.local/auth/stripe/redirect'
 
-REACT_APP_SITE_TITLE='LAUSD'
-REACT_APP_SITE_TAG_LINE='High School Esports Platform'
+REACT_APP_SITE_TITLE='Glitch'
+REACT_APP_SITE_TAG_LINE='Open Source Gaming Platform'
 REACT_APP_SITE_TAG_DESCRIPTION='Building your gaming fanbase and launch your own Esports website.'
 REACT_APP_COPYRIGHT='2022 Invirtu Labs, Inc'
 

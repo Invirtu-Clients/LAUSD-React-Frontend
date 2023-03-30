@@ -57,6 +57,7 @@ import CompetitionsWaiversPage from "./pages/competitions/competition_admin_waiv
 import CompetitionsListPage from './pages/competitions/competition_list';
 import CompetitionsInfoPage from './pages/competitions/competition_info';
 import CompetitionsRegisterUserPage from './pages/competitions/competition_user_register';
+import CompetitionsRegisterTeamPage from './pages/competitions/competition_team_register';
 import CompetitionsMediaPage from './pages/competitions/competition_admin_media';
 
 import CompetitionsVenuesCreate from './pages/competitions/venues_create';
@@ -162,6 +163,7 @@ function Template() {
           <Route path={Navigate.tournamentsManage()} element={<CompetitionsManagePage />} />
           <Route path={Navigate.tournamentsView()} element={<CompetitionsInfoPage />} />
           <Route path={Navigate.tournamentsRegisterUser()} element={<CompetitionsRegisterUserPage />} />
+          <Route path={Navigate.tournamentsRegisterTeam()} element={<CompetitionsRegisterTeamPage />} />
           <Route path={Navigate.tournamentsUpdateMedia()} element={<CompetitionsMediaPage />} />
 
           <Route path={Navigate.tournamentsVenuesList()} element={<CompetitionsVenuesList />} />

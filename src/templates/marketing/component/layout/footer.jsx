@@ -29,7 +29,7 @@ class Footer extends Component {
                                 <div className="footer-middle-item-wrapper">
                                     <div className="footer-middle-item mb-lg-0">
                                         <div className="fm-item-title mb-4">
-                                            <img src="/assets/images/logo/glitch_3.png" width="100px" alt="logo" />
+                                            <img src="/assets/images/logo/LAUSD_seal_oct2022v1.png" width="100px" alt="logo" />
                                         </div>
                                         <div className="fm-item-content">
                                             <p className="mb-4">{site.description}</p>

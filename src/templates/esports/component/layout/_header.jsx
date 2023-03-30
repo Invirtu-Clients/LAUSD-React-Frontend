@@ -82,7 +82,7 @@ class HeaderOld extends Component {
                         <div className="brand-logo d-none d-lg-inline-block">
                             <div className="logo">
                                 <Link to="/">
-                                    <img className="img-fluid" width="150px" src="/assets/images/logo/glitch_3.png" alt="logo" />
+                                    <img className="img-fluid" width="150px" src="/assets/images/logo/LAUSD_seal_oct2022v1.png" alt="logo" />
                                 </Link>
                             </div>
                         </div>
@@ -108,7 +108,7 @@ class HeaderOld extends Component {
                             <div className="header-bottom">
                                 <div className="header-wrapper justify-content-lg-end">
                                     <div className="mobile-logo d-lg-none">
-                                        <Link to="/"><img src="/assets/images/logo/glitch_3.png" alt="logo" /></Link>
+                                        <Link to="/"><img src="/assets/images/logo/LAUSD_seal_oct2022v1.png" alt="logo" /></Link>
                                     </div>
                                     <div className="menu-area">
                                         <ul className="menu">
